@@ -1,0 +1,41 @@
+;	STMicroelectronics dependencies file
+
+[Version]
+Keyword=ST7Project
+Number=1.3
+
+[Root.Source Files.mapping.asm.Config.0]
+ExternDep= mapping.asm mapping.inc
+
+[Root.Source Files.stm8s105k4.asm.Config.0]
+ExternDep= stm8s105k4.asm "c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.asm"
+
+[Root.Source Files.lcd_adc.asm.Config.0]
+ExternDep= lcd_adc.asm LCD.inc stm8s105k4.inc "c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc" GlobalVar.inc MacroFunction.inc Common.inc ADC.inc ADC_Handler.inc Key.inc Beeper.inc
+
+[Root.Source Files.lcd.asm.Config.0]
+ExternDep= lcd.asm LCD.inc stm8s105k4.inc "c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc" GlobalVar.inc MacroFunction.inc Common.inc
+
+[Root.Source Files.key.asm.Config.0]
+ExternDep= key.asm stm8s105k4.inc "c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc" MacroFunction.inc LCD.inc GlobalVar.inc Common.inc Key.inc
+
+[Root.Source Files.initialize.asm.Config.0]
+ExternDep= initialize.asm stm8s105k4.inc "c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc" LCD.inc GlobalVar.inc MacroFunction.inc Common.inc ADC.inc ADC_Handler.inc Key.inc Beeper.inc
+
+[Root.Source Files.globalvar.asm.Config.0]
+ExternDep= globalvar.asm
+
+[Root.Source Files.common.asm.Config.0]
+ExternDep= common.asm GlobalVar.inc
+
+[Root.Source Files.beeper.asm.Config.0]
+ExternDep= beeper.asm Beeper.inc stm8s105k4.inc "c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc" GlobalVar.inc
+
+[Root.Source Files.adc_handler.asm.Config.0]
+ExternDep= adc_handler.asm ADC_Handler.inc Common.inc GlobalVar.inc MacroFunction.inc LCD.inc stm8s105k4.inc "c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc" Key.inc Beeper.inc
+
+[Root.Source Files.adc.asm.Config.0]
+ExternDep= adc.asm ADC.inc Common.inc GlobalVar.inc MacroFunction.inc LCD.inc stm8s105k4.inc "c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc" ADC_Handler.inc Key.inc Beeper.inc
+
+[Root.Source Files.main.asm.Config.0]
+ExternDep= main.asm main.inc mapping.inc GlobalVar.inc MacroFunction.inc LCD.inc stm8s105k4.inc "c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc" Common.inc ADC.inc ADC_Handler.inc Key.inc Beeper.inc

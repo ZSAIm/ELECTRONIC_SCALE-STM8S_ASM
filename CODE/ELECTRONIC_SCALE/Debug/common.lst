@@ -1,0 +1,1157 @@
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 1  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+   1                         stm8/     
+   2                                   
+   3                                                          ;#include "stm8s105k4.inc"
+   0  000000                                 #include "GlobalVar.inc"
+   1                         
+   2  000000 U                               #IFDEF   __GLOBAL_VAR__
+   5                                   
+   6  000000                                 #define  __GLOBAL_VAR__ 1
+   7                         ;   ++ 0x0F
+   8  000000                                 EXTERN   LCD_VAR0.B
+   9  000000                                 EXTERN   LCD_VAR1.B
+  10  000000                                 EXTERN   LCD_VAR2.B
+  11                                   
+  12  000000                                 EXTERN   ADC_COUNTER.B
+  13                         
+  14                                   
+  15                         ;   ++ 0x04
+  16  000000                                 EXTERN   ADC_SUM.B
+  17  000000                                 EXTERN   ADC_SUM0.B
+  18  000000                                 EXTERN   ADC_SUM1.B
+  19  000000                                 EXTERN   ADC_SUM2.B
+  20  000000                                 EXTERN   ADC_SUM3.B
+  21                         ;   ++ 0x04
+  22  000000                                 EXTERN   ADC_AVG.B
+  23  000000                                 EXTERN   ADC_AVG0.B
+  24  000000                                 EXTERN   ADC_AVG1.B
+  25  000000                                 EXTERN   ADC_AVG2.B
+  26  000000                                 EXTERN   ADC_AVG3.B
+  27                         ;   ++ 0x18
+  28  000000                                 EXTERN   ADC_STORE.B
+  29                         
+  30  000000                                 EXTERN   ADC_S00.B 
+  31  000000                                 EXTERN   ADC_S01.B
+  32  000000                                 EXTERN   ADC_S02.B
+  33                                   
+  34  000000                                 EXTERN   ADC_S10.B
+  35  000000                                 EXTERN   ADC_S11.B
+  36  000000                                 EXTERN   ADC_S12.B
+  37                         
+  38  000000                                 EXTERN   ADC_S20.B
+  39  000000                                 EXTERN   ADC_S21.B
+  40  000000                                 EXTERN   ADC_S22.B
+  41                                   
+  42  000000                                 EXTERN   ADC_S30.B
+  43  000000                                 EXTERN   ADC_S31.B
+  44  000000                                 EXTERN   ADC_S32.B
+  45                                   
+  46  000000                                 EXTERN   ADC_S40.B
+  47  000000                                 EXTERN   ADC_S41.B
+  48  000000                                 EXTERN   ADC_S42.B
+  49                                   
+  50  000000                                 EXTERN   ADC_S50.B
+  51  000000                                 EXTERN   ADC_S51.B
+  52  000000                                 EXTERN   ADC_S52.B
+  53                                   
+  54  000000                                 EXTERN   ADC_S60.B
+  55  000000                                 EXTERN   ADC_S61.B
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 2  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+  56  000000                                 EXTERN   ADC_S62.B
+  57                                   
+  58  000000                                 EXTERN   ADC_S70.B
+  59  000000                                 EXTERN   ADC_S71.B
+  60  000000                                 EXTERN   ADC_S72.B
+  61                         ;   ++ 0x03
+  62  000000                                 EXTERN   ADC_S80.B
+  63  000000                                 EXTERN   ADC_S81.B
+  64  000000                                 EXTERN   ADC_S82.B
+  65                                   
+  66  000000                                 EXTERN   ADC_S90.B
+  67  000000                                 EXTERN   ADC_S91.B
+  68  000000                                 EXTERN   ADC_S92.B
+  69                                   
+  70  000000                                 EXTERN   ADC_SA0.B
+  71  000000                                 EXTERN   ADC_SA1.B
+  72  000000                                 EXTERN   ADC_SA2.B
+  73                                   
+  74  000000                                 EXTERN   ADC_SB0.B
+  75  000000                                 EXTERN   ADC_SB1.B
+  76  000000                                 EXTERN   ADC_SB2.B
+  77                                   
+  78  000000                                 EXTERN   ADC_SC0.B
+  79  000000                                 EXTERN   ADC_SC1.B
+  80  000000                                 EXTERN   ADC_SC2.B
+  81                                   
+  82  000000                                 EXTERN   ADC_SD0.B
+  83  000000                                 EXTERN   ADC_SD1.B
+  84  000000                                 EXTERN   ADC_SD2.B
+  85                                   
+  86  000000                                 EXTERN   ADC_SE0.B
+  87  000000                                 EXTERN   ADC_SE1.B
+  88  000000                                 EXTERN   ADC_SE2.B
+  89                                   
+  90  000000                                 EXTERN   ADC_SF0.B
+  91  000000                                 EXTERN   ADC_SF1.B
+  92  000000                                 EXTERN   ADC_SF2.B
+  93                                   
+  94  000000                                 EXTERN   ADC_SG0.B
+  95  000000                                 EXTERN   ADC_SG1.B
+  96  000000                                 EXTERN   ADC_SG2.B
+  97                                   
+  98  000000                                 EXTERN   ADC_SH0.B
+  99  000000                                 EXTERN   ADC_SH1.B
+ 100  000000                                 EXTERN   ADC_SH2.B
+ 101                                   
+ 102  000000                                 EXTERN   ADC_SI0.B
+ 103  000000                                 EXTERN   ADC_SI1.B
+ 104  000000                                 EXTERN   ADC_SI2.B
+ 105                                   
+ 106  000000                                 EXTERN   ADC_SJ0.B
+ 107  000000                                 EXTERN   ADC_SJ1.B
+ 108  000000                                 EXTERN   ADC_SJ2.B
+ 109                                   
+ 110  000000                                 EXTERN   ADC_SK0.B
+ 111  000000                                 EXTERN   ADC_SK1.B
+ 112  000000                                 EXTERN   ADC_SK2.B
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 3  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 113                                   
+ 114  000000                                 EXTERN   ADC_SL0.B
+ 115  000000                                 EXTERN   ADC_SL1.B
+ 116  000000                                 EXTERN   ADC_SL2.B
+ 117                                   
+ 118  000000                                 EXTERN   ADC_SM0.B
+ 119  000000                                 EXTERN   ADC_SM1.B
+ 120  000000                                 EXTERN   ADC_SM2.B
+ 121                                   
+ 122  000000                                 EXTERN   ADC_SN0.B
+ 123  000000                                 EXTERN   ADC_SN1.B
+ 124  000000                                 EXTERN   ADC_SN2.B
+ 125                                   
+ 126  000000                                 EXTERN   ADC_SO0.B
+ 127  000000                                 EXTERN   ADC_SO1.B
+ 128  000000                                 EXTERN   ADC_SO2.B
+ 129                                   
+ 130  000000                                 EXTERN   ADC_SP0.B
+ 131  000000                                 EXTERN   ADC_SP1.B
+ 132  000000                                 EXTERN   ADC_SP2.B
+ 133                                   
+ 134  000000                                 EXTERN   ADC_SQ0.B
+ 135  000000                                 EXTERN   ADC_SQ1.B
+ 136  000000                                 EXTERN   ADC_SQ2.B
+ 137                                   
+ 138  000000                                 EXTERN   ADC_SR0.B
+ 139  000000                                 EXTERN   ADC_SR1.B
+ 140  000000                                 EXTERN   ADC_SR2.B
+ 141                                   
+ 142  000000                                 EXTERN   ADC_SS0.B
+ 143  000000                                 EXTERN   ADC_SS1.B
+ 144  000000                                 EXTERN   ADC_SS2.B
+ 145                                   
+ 146  000000                                 EXTERN   ADC_ST0.B
+ 147  000000                                 EXTERN   ADC_ST1.B
+ 148  000000                                 EXTERN   ADC_ST2.B
+ 149                                   
+ 150  000000                                 EXTERN   ADC_SU0.B
+ 151  000000                                 EXTERN   ADC_SU1.B
+ 152  000000                                 EXTERN   ADC_SU2.B
+ 153                                   
+ 154  000000                                 EXTERN   ADC_SV0.B
+ 155  000000                                 EXTERN   ADC_SV1.B
+ 156  000000                                 EXTERN   ADC_SV2.B
+ 157                                   
+ 158  000000                                 EXTERN   ADC_SW0.B
+ 159  000000                                 EXTERN   ADC_SW1.B
+ 160  000000                                 EXTERN   ADC_SW2.B
+ 161                                   
+ 162  000000                                 EXTERN   ADC_SX0.B
+ 163  000000                                 EXTERN   ADC_SX1.B
+ 164  000000                                 EXTERN   ADC_SX2.B
+ 165                                   
+ 166  000000                                 EXTERN   ADC_SY0.B
+ 167  000000                                 EXTERN   ADC_SY1.B
+ 168  000000                                 EXTERN   ADC_SY2.B
+ 169                                   
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 4  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 170  000000                                 EXTERN   ADC_THRESHOLD_QUOTIENT.B
+ 171  000000                                 EXTERN   ADC_THRESHOLD_QUOTIENT1.B
+ 172  000000                                 EXTERN   ADC_THRESHOLD_QUOTIENT0.B
+ 173                         
+ 174  000000                                 EXTERN   ADC_MAX_QUOTIENT.B
+ 175  000000                                 EXTERN   ADC_MAX_QUOTIENT_S1.B
+ 176  000000                                 EXTERN   ADC_MAX_QUOTIENT_S0.B
+ 177                         
+ 178  000000                                 EXTERN   ADC_MAX_REMAINDER.B
+ 179  000000                                 EXTERN   ADC_MAX_REMAINDER_S1.B
+ 180  000000                                 EXTERN   ADC_MAX_REMAINDER_S0.B
+ 181                                   
+ 182                                   
+ 183                                                          ;EXTERN ADC_SLOPE.B
+ 184                         ;   ++ 0x01
+ 185  000000                                 EXTERN   ADC_NEXT_PTR.B
+ 186                                                          ;EXTERN ADC_MAX_PTR.B
+ 187                                                          ;EXTERN ADC_MIN_PTR.B
+ 188                                   
+ 189                                   
+ 190  000000                                 EXTERN   ADC_SLOPE.B
+ 191                         ;   ++ 0x04
+ 192  000000                                 EXTERN   ZERO_ADC.B
+ 193  000000                                 EXTERN   ZERO_ADC0.B
+ 194  000000                                 EXTERN   ZERO_ADC1.B
+ 195  000000                                 EXTERN   ZERO_ADC2.B
+ 196  000000                                 EXTERN   ZERO_ADC3.B
+ 197                                   
+ 198  000000                                 EXTERN   NET_ADC.B
+ 199  000000                                 EXTERN   NET_ADC0.B
+ 200  000000                                 EXTERN   NET_ADC1.B
+ 201  000000                                 EXTERN   NET_ADC2.B
+ 202  000000                                 EXTERN   NET_ADC3.B
+ 203                                   
+ 204  000000                                 EXTERN   NET_BUF.B
+ 205  000000                                 EXTERN   NET_BUF3.B
+ 206  000000                                 EXTERN   NET_BUF2.B
+ 207  000000                                 EXTERN   NET_BUF1.B
+ 208  000000                                 EXTERN   NET_BUF0.B
+ 209                                   
+ 210                                   
+ 211  000000                                 EXTERN   WEIGHT_QUOTIENT.B
+ 212  000000                                 EXTERN   WEIGHT_REMAINDER.B
+ 213                                   
+ 214                                   
+ 215  000000                                 EXTERN   PRICE_MUL3.B
+ 216  000000                                 EXTERN   PRICE_MUL2.B
+ 217  000000                                 EXTERN   PRICE_MUL1.B
+ 218  000000                                 EXTERN   PRICE_MUL0.B
+ 219                                   
+ 220  000000                                 EXTERN   KEYDOWN_FLAG.B
+ 221                                   
+ 222                                   
+ 223  000000                                 EXTERN   KEYBOARD_STORE.B
+ 224                                   
+ 225  000000                                 EXTERN   KEYBOARD_S4.B
+ 226  000000                                 EXTERN   KEYBOARD_S3.B
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 5  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 227  000000                                 EXTERN   KEYBOARD_S2.B
+ 228  000000                                 EXTERN   KEYBOARD_S1.B
+ 229  000000                                 EXTERN   KEYBOARD_S0.B
+ 230  000000                                 EXTERN   KEYBOARD_PTR.B
+ 231                                   
+ 232  000000                                 EXTERN   KEYBOARD_DOT_OK.B
+ 233                                   
+ 234  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S4.B
+ 235  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S3.B
+ 236  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S2.B
+ 237  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S1.B
+ 238  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S0.B
+ 239                                   
+ 240                                   
+ 241  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S4.B
+ 242  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S3.B
+ 243  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S2.B
+ 244  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S1.B
+ 245  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S0.B
+ 246                                   
+ 247                                   
+ 248  000000                                 EXTERN   KEY_ARRAY_MENU.B
+ 249  000000                                 EXTERN   KEY_TYPING_FLAG.B
+ 250                                   
+ 251                                   
+ 252  000000                                 EXTERN   STR_MASS.B
+ 253  000000                                 EXTERN   CHAR_MASS9.B
+ 254  000000                                 EXTERN   CHAR_MASS8.B
+ 255  000000                                 EXTERN   CHAR_MASS7.B
+ 256  000000                                 EXTERN   CHAR_MASS6.B
+ 257  000000                                 EXTERN   CHAR_MASS5.B
+ 258  000000                                 EXTERN   CHAR_MASS4.B
+ 259  000000                                 EXTERN   CHAR_MASS3.B
+ 260  000000                                 EXTERN   CHAR_MASS2.B
+ 261  000000                                 EXTERN   CHAR_MASS1.B
+ 262  000000                                 EXTERN   CHAR_MASS0.B
+ 263  000000                                 EXTERN   CHAR_MASS_1.B
+ 264                         
+ 265                                   
+ 266                                   
+ 267  000000                                 EXTERN   STR_PRICE.B
+ 268  000000                                 EXTERN   CHAR_PRICE5.B
+ 269  000000                                 EXTERN   CHAR_PRICE4.B
+ 270  000000                                 EXTERN   CHAR_PRICE3.B
+ 271  000000                                 EXTERN   CHAR_PRICE2.B
+ 272  000000                                 EXTERN   CHAR_PRICE1.B
+ 273  000000                                 EXTERN   CHAR_PRICE0.B
+ 274                                   
+ 275  000000                                 EXTERN   STR_THRESHOLD.B
+ 276  000000                                 EXTERN   CHAR_THRESHOLD7.B
+ 277  000000                                 EXTERN   CHAR_THRESHOLD6.B
+ 278  000000                                 EXTERN   CHAR_THRESHOLD5.B
+ 279  000000                                 EXTERN   CHAR_THRESHOLD4.B
+ 280  000000                                 EXTERN   CHAR_THRESHOLD3.B
+ 281  000000                                 EXTERN   CHAR_THRESHOLD2.B
+ 282  000000                                 EXTERN   CHAR_THRESHOLD1.B
+ 283  000000                                 EXTERN   CHAR_THRESHOLD0.B
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 6  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 284                                   
+ 285                                   
+ 286                                   
+ 287  000000                                 EXTERN   STR_MONEY.B
+ 288  000000                                 EXTERN   CHAR_MONEY7.B
+ 289  000000                                 EXTERN   CHAR_MONEY6.B
+ 290  000000                                 EXTERN   CHAR_MONEY5.B
+ 291  000000                                 EXTERN   CHAR_MONEY4.B
+ 292  000000                                 EXTERN   CHAR_MONEY3.B
+ 293  000000                                 EXTERN   CHAR_MONEY2.B
+ 294  000000                                 EXTERN   CHAR_MONEY1.B
+ 295  000000                                 EXTERN   CHAR_MONEY0.B
+ 296                                   
+ 297                                   
+ 298  000000                                 EXTERN   STR_MAX_MASS.B
+ 299                                                          ;EXTERN CHAR_MAX_MASS11.B
+ 300                                                          ;EXTERN CHAR_MAX_MASS10.B
+ 301  000000                                 EXTERN   CHAR_MAX_MASS9.B
+ 302  000000                                 EXTERN   CHAR_MAX_MASS8.B
+ 303  000000                                 EXTERN   CHAR_MAX_MASS7.B
+ 304  000000                                 EXTERN   CHAR_MAX_MASS6.B
+ 305  000000                                 EXTERN   CHAR_MAX_MASS5.B
+ 306  000000                                 EXTERN   CHAR_MAX_MASS4.B
+ 307  000000                                 EXTERN   CHAR_MAX_MASS3.B
+ 308  000000                                 EXTERN   CHAR_MAX_MASS2.B
+ 309  000000                                 EXTERN   CHAR_MAX_MASS1.B
+ 310  000000                                 EXTERN   CHAR_MAX_MASS0.B
+ 311  000000                                 EXTERN   CHAR_MAX_MASS_1.B
+ 312                                   
+ 313  000000                                 #ENDIF   
+ 314                                   
+ 315                                   
+<END_OF_INCLUSION>
+   5                                                          ;#include ""
+   6                                   
+   7                                   segment  'rom'
+   8  0089E9                                 INTEL    
+   9                         ;***********************************************************
+  10                         ;name   : CPU_Delay_1us(VAR0F: )
+  11                         ;fun    : delay time = VAR01 * 1us
+  12                         ;params : 
+  13                         ;         IN  : VAR0F <= delay time(s) 1us each
+  14                         ;         OUT : NULL
+  15                         ;***********************************************************
+  16                         .CPU_Delay_1us.W  
+  17  0089E9   9089                          pushw    Y
+  18  0089EB   89                            pushw    X
+  19  0089EC   AEFFFF                        ldw      X, #0FFFFH
+  20                         cpu_timer1:  
+  21  0089EF   90AEFFFF                      ldw      Y, #0FFFFH
+  22                         cpu_delay_loop:  
+  23  0089F3   9D                            nop      
+  24  0089F4   905A                          decw     Y
+  25  0089F6   26FB                          jrne     cpu_delay_loop
+  26                                   
+  27  0089F8   5A                            decw     X
+  28  0089F9   26F4                          jrne     cpu_timer1
+  29  0089FB   85                            popw     X
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 7  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+  30  0089FC   9085                          popw     Y
+  31                         
+  32  0089FE   81                            ret      
+  33                                   
+  34                         ;***********************************************************
+  35                         ;name   : LCD_Delay()
+  36                         ;fun    : delay just for LCD
+  37                         ;params : 
+  38                         ;         IN  : NULL
+  39                         ;         OUT : NULL
+  40                         ;***********************************************************
+  41                         .LCD_Delay.W  
+  42  0089FF   9089                          pushw    Y
+  43  008A01   90AE0138                      ldw      Y, #0138H
+  44                                   
+  45                         lcd_delay_loop:  
+  46  008A05   905A                          decw     Y
+  47  008A07   26FC                          jrne     lcd_delay_loop
+  48  008A09   9085                          popw     Y
+  49                         
+  50  008A0B   81                            ret      
+  51                         ;***********************************************************
+  52                         ;name   : KeyDelay()
+  53                         ;fun    : delay just for key
+  54                         ;params : 
+  55                         ;         IN  : NULL
+  56                         ;         OUT : NULL
+  57                         ;***********************************************************
+  58                         .KeyDelay.W  
+  59  008A0C   9089                          pushw    Y
+  60  008A0E   90AE0FFF                      ldw      Y, #0FFFH
+  61                                   
+  62                         key_delay_loop:  
+  63  008A12   905A                          decw     Y
+  64  008A14   9D                            nop      
+  65  008A15   26FB                          jrne     key_delay_loop
+  66  008A17   9085                          popw     Y
+  67                         
+  68  008A19   81                            ret      
+  69                                   
+  70                         
+  71                         
+  72                         ;***********************************************************
+  73                         ;name   : ADC_Delay()
+  74                         ;fun    : delay just for ADC IC - HX711
+  75                         ;params : 
+  76                         ;         IN  : NULL
+  77                         ;         OUT : NULL
+  78                         ;***********************************************************
+  79                         .ADC_Delay.W  
+  80  008A1A   9089                          pushw    Y
+  81  008A1C   90AE0100                      ldw      Y, #0100H
+  82                                   
+  83                         adc_delay_loop:  
+  84  008A20   905A                          decw     Y
+  85  008A22   26FC                          jrne     adc_delay_loop
+  86  008A24   9085                          popw     Y
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 8  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+  87                         
+  88  008A26   81                            ret      
+  89                         
+  90                         ;***********************************************************
+  91                         ;name   : MassDivider() 
+  92                         ;fun    : do the division specifically (unsigned)
+  93                         ;           X = 32bit / 16bit ; Y = 32bit % 16bit
+  94                         ;params : 
+  95                         ;         IN  : NET_ADC3: dividend(31-24)
+  96                         ;               NET_ADC2: dividend(23-16)
+  97                         ;               NET_ADC1: dividend(15-8)
+  98                         ;               NET_ADC0: dividend(7-0)
+  99                         ;               X       : divisor(15-0)
+ 100                         ;         OUT : X       : counting quotient(<=65535)
+ 101                         ;               Y       : remainder(<=65535)
+ 102                         ;***********************************************************
+ 103                         .MassDivider.W  
+ 104  008A27   8A                            push     CC
+ 105  008A28   88                            push     A
+ 106                                   
+ 107                                                          ; allocate a word for storing 
+                                                                ;quotient
+ 108  008A29   4B00                          push     #0
+ 109  008A2B   4B00                          push     #0
+ 110                                                          ; load NET_ADC2 to A, the 3rd 
+                                                                ;byte
+ 111  008A2D   B684                          ld       A, NET_ADC2
+ 112                                                          ; save divisor, mark as *
+ 113  008A2F   89                            pushw    X
+ 114                                                          ; move to Y
+ 115  008A30   9093                          ldw      Y, X
+ 116                         
+ 117                         div_start:  
+ 118  008A32   905D                          tnzw     Y
+ 119  008A34   271D                          jreq     div_end0
+ 120                                                          ; div => X:(partial)quotient  
+                                                                ;Y:(partial)remainder
+ 121  008A36   BE85                          ldw      X, NET_ADC1
+ 122  008A38   65                            divw     X, Y             ; X/Y
+ 123                                                          ; inc before saving partial 
+                                                                ;quotient
+ 124  008A39   5C                            incw     X
+ 125  008A3A   72FB03                        addw     X, (3,SP)
+ 126  008A3D   1F03                          ldw      (3,SP), X
+ 127                                                          ; sub by *, (in SP + 2)
+ 128  008A3F   72F201                        subw     Y, (1,SP)
+ 129                                                          ; must carry, so jmp anway
+ 130  008A42   A200                          sbc      A, #0
+ 131  008A44   2507                          jrc      div_3_borrow
+ 132                         div_restore_loop_status:  
+ 133                                                          ; write back to keep dividing
+ 134  008A46   90BF85                        ldw      NET_ADC1, Y
+ 135  008A49   1601                          ldw      Y, (1,SP)
+ 136  008A4B   20E5                          jra      div_start
+ 137                         div_3_borrow:  
+ 138  008A4D   3A83                          dec      NET_ADC3
+ 139  008A4F   2AF5                          jrpl     div_restore_loop_status
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 9  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 140  008A51   3C83                          inc      NET_ADC3
+ 141                         div_end0:  
+ 142  008A53   72F901                        addw     Y, (1,SP)
+ 143                                                          ; pop out divisor saver, that is
+                                                                ; *
+ 144  008A56   85                            popw     X
+ 145                                                          ; pop out the quotient
+ 146  008A57   85                            popw     X
+ 147                                                          ; roll back to last X before 
+                                                                ;sub
+ 148  008A58   5A                            decw     X
+ 149                         
+ 150  008A59   84                            pop      A
+ 151  008A5A   86                            pop      CC
+ 152  008A5B   81                            ret      
+ 153                                   
+ 154                                   
+ 155                         
+ 156                         ;***********************************************************
+ 157                         ;name   : TriMul() - 3 byte
+ 158                         ;fun    : 
+ 159                         ;params : 
+ 160                         ;         IN  : X, A
+ 161                         ;         OUT : A:X       (A:X <= X * A)
+ 162                         ;***********************************************************
+ 163                         .TriMul.W  
+ 164  008A5C   8A                            push     CC
+ 165  008A5D   9089                          pushw    Y
+ 166                                   
+ 167  008A5F   A30000                        cpw      X, #0
+ 168  008A62   2706                          jreq     trimul_zero_exit
+ 169  008A64   A100                          cp       A, #0
+ 170  008A66   2702                          jreq     trimul_zero_exit
+ 171  008A68   2007                          jra      trimul_not_zero
+ 172                         trimul_zero_exit:  
+ 173  008A6A   AE0000                        ldw      X, #0
+ 174  008A6D   A600                          ld       A, #0
+ 175  008A6F   2032                          jra      trimul_exit
+ 176                                   
+ 177                         trimul_not_zero:  
+ 178  008A71   4B00                          push     #0
+ 179  008A73   4B00                          push     #0
+ 180  008A75   4B00                          push     #0
+ 181                                   
+ 182  008A77   89                            pushw    X
+ 183                                   
+ 184  008A78   42                            mul      X, A
+ 185                                                          ;-------------
+ 186                                                          ;   HIGH STACK
+ 187                                                          ;+5 (1)
+ 188                                                          ;+4 (2)
+ 189                                                          ;+3 (3)
+ 190                                                          ;+2 XL(input)
+ 191                                                          ;+1 XH(input)
+ 192                                                          ;   LOW STACK
+ 193                                                          ;-------------
+ 194  008A79   1F04                          ldw      (4,SP), X
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 10  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 195                                   
+ 196  008A7B   AE00FF                        ldw      X, #00FFH
+ 197  008A7E   42                            mul      X, A
+ 198                                   
+ 199  008A7F   88                            push     A
+ 200  008A80   4B00                          push     #0
+ 201  008A82   72FB01                        addw     X, (1,SP)
+ 202  008A85   84                            pop      A
+ 203  008A86   84                            pop      A
+ 204  008A87   89                            pushw    X
+ 205                                                          ;-------------
+ 206                                                          ;   HIGH STACK
+ 207                                                          ;+7 (1)
+ 208                                                          ;+6 (2)
+ 209                                                          ;+5 (3)
+ 210                                                          ;+4 XL(input)
+ 211                                                          ;+3 XH(input)
+ 212                                                          ;+2 XL(MUL)
+ 213                                                          ;+1 XH(MUL)
+ 214                                                          ;   LOW STACK
+ 215                                                          ;-------------
+ 216  008A88   7B03                          ld       A, (3,SP)
+ 217  008A8A   2713                          jreq     trimul_int_end
+ 218                         trimul_int_loop:  
+ 219                                   
+ 220  008A8C   7B05                          ld       A, (5,SP)
+ 221  008A8E   1E01                          ldw      X, (1,SP)
+ 222  008A90   72FB06                        addw     X, (6,SP)
+ 223  008A93   A900                          adc      A, #0
+ 224  008A95   6B05                          ld       (5,SP), A
+ 225  008A97   1F06                          ldw      (6,SP), X
+ 226  008A99   0A03                          dec      (3,SP)
+ 227  008A9B   2702                          jreq     trimul_int_end
+ 228  008A9D   20ED                          jra      trimul_int_loop
+ 229                         
+ 230                         trimul_int_end:  
+ 231  008A9F   85                            popw     X
+ 232  008AA0   85                            popw     X
+ 233                                   
+ 234                                                          ;-------------
+ 235                                                          ;   HIGH STACK
+ 236                                                          ;+3 (1)
+ 237                                                          ;+2 (2)
+ 238                                                          ;+1 (3)
+ 239                                                          ;   LOW STACK
+ 240                                                          ;-------------
+ 241                                   
+ 242  008AA1   84                            pop      A
+ 243  008AA2   85                            popw     X
+ 244                                   
+ 245                         
+ 246                         trimul_exit:  
+ 247  008AA3   9085                          popw     Y
+ 248  008AA5   86                            pop      CC
+ 249  008AA6   81                            ret      
+ 250                         
+ 251                         
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 11  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 252                         ;***********************************************************
+ 253                         ;name   : QuadMul() - 4 byte
+ 254                         ;fun    : 
+ 255                         ;params : 
+ 256                         ;         IN  : X, Y
+ 257                         ;         OUT : X:Y       (X:Y <= X * Y)
+ 258                         ;***********************************************************
+ 259                         .QuadMul.W  
+ 260  008AA7   8A                            push     CC
+ 261  008AA8   88                            push     A
+ 262                                   
+ 263  008AA9   A30000                        cpw      X, #0
+ 264  008AAC   2708                          jreq     quadmul_zero_exit
+ 265  008AAE   90A30000                      cpw      Y, #0
+ 266  008AB2   2702                          jreq     quadmul_zero_exit
+ 267  008AB4   2009                          jra      quadmul_not_zero
+ 268                         quadmul_zero_exit:  
+ 269  008AB6   AE0000                        ldw      X, #0
+ 270  008AB9   90AE0000                      ldw      Y, #0
+ 271  008ABD   204F                          jra      quadmul_exit
+ 272                         
+ 273                         quadmul_not_zero:  
+ 274  008ABF   4B00                          push     #0
+ 275  008AC1   4B00                          push     #0
+ 276  008AC3   4B00                          push     #0
+ 277  008AC5   4B00                          push     #0
+ 278                                                          ;pushw X
+ 279  008AC7   89                            pushw    X
+ 280                                   
+ 281                                                          ;ld X, X
+ 282  008AC8   909F                          ld       A, YL
+ 283  008ACA   CD8A5C                        call     TriMul
+ 284                                                          ; A:X
+ 285                                                          ;-------------
+ 286                                                          ;   HIGH STACK
+ 287                                                          ;+6 (1)
+ 288                                                          ;+5 (2)
+ 289                                                          ;+4 (3)
+ 290                                                          ;+3 (4)
+ 291                                                          ;+2 XL(input)
+ 292                                                          ;+1 XH(input)
+ 293                                                          ;   LOW STACK
+ 294                                                          ;-------------
+ 295  008ACD   1F05                          ldw      (5,SP), X
+ 296  008ACF   6B04                          ld       (4,SP), A
+ 297                                   
+ 298  008AD1   85                            popw     X
+ 299                                                          ;-------------
+ 300                                                          ;   HIGH STACK
+ 301                                                          ;+4 (1)
+ 302                                                          ;+3 (2)
+ 303                                                          ;+2 (3)
+ 304                                                          ;+1 (4)
+ 305                                                          ;   LOW STACK
+ 306                                                          ;-------------
+ 307                                                          ; X = input
+ 308  008AD2   89                            pushw    X
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 12  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 309  008AD3   A6FF                          ld       A, #0FFH
+ 310  008AD5   CD8A5C                        call     TriMul
+ 311                                                          ; A:X
+ 312                                                          ;-------------
+ 313                                                          ;   HIGH STACK
+ 314                                                          ;+6 (1)
+ 315                                                          ;+5 (2)
+ 316                                                          ;+4 (3)
+ 317                                                          ;+3 (4)
+ 318                                                          ;+2 XL(input)
+ 319                                                          ;+1 XH(input)
+ 320                                                          ;   LOW STACK
+ 321                                                          ;-------------
+ 322  008AD8   72FB01                        addw     X, (1,SP)
+ 323  008ADB   1F01                          ldw      (1,SP), X
+ 324  008ADD   85                            popw     X
+ 325  008ADE   A900                          adc      A, #0
+ 326                                   
+ 327  008AE0   89                            pushw    X
+ 328  008AE1   88                            push     A
+ 329                                   
+ 330  008AE2   909E                          ld       A, YH
+ 331  008AE4   88                            push     A             ; decrment
+ 332                                                          ;-------------
+ 333                                                          ;   HIGH STACK
+ 334                                                          ;+8 (1)
+ 335                                                          ;+7 (2)
+ 336                                                          ;+6 (3)
+ 337                                                          ;+5 (4)
+ 338                                                          ;+4 XL(MUL) - 1
+ 339                                                          ;+3 XH(MUL) - 2
+ 340                                                          ;+2 A(MUL)  - 3
+ 341                                                          ;+1 YH(dec) - decrement
+ 342                                                          ;   LOW STACK
+ 343                                                          ;-------------
+ 344  008AE5   7B01                          ld       A, (1,SP)
+ 345  008AE7   271E                          jreq     quadmul_end
+ 346                         quadmul_accu_loop:  
+ 347                                   
+ 348  008AE9   88                            push     A
+ 349  008AEA   7B02                          ld       A, (2,SP)
+ 350  008AEC   1E03                          ldw      X, (3,SP)
+ 351  008AEE   72FB07                        addw     X, (7,SP)
+ 352  008AF1   1902                          adc      A, (2,SP)
+ 353  008AF3   8A                            push     CC
+ 354  008AF4   6B06                          ld       (6,SP), A
+ 355  008AF6   7B05                          ld       A, (5,SP)
+ 356  008AF8   86                            pop      CC
+ 357  008AF9   A900                          adc      A, #0
+ 358  008AFB   6B05                          ld       (5,SP), A
+ 359  008AFD   1F07                          ldw      (7,SP), X
+ 360  008AFF   84                            pop      A
+ 361  008B00   6B01                          ld       (1,SP), A
+ 362  008B02   4A                            dec      A
+ 363  008B03   2702                          jreq     quadmul_end
+ 364  008B05   20E2                          jra      quadmul_accu_loop
+ 365                         
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 13  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 366                         quadmul_end:  
+ 367  008B07   84                            pop      A
+ 368  008B08   84                            pop      A
+ 369  008B09   9085                          popw     Y
+ 370                                   
+ 371                                                          ; X:Y
+ 372  008B0B   85                            popw     X
+ 373  008B0C   9085                          popw     Y
+ 374                                   
+ 375                         quadmul_exit:  
+ 376  008B0E   84                            pop      A
+ 377  008B0F   86                            pop      CC
+ 378  008B10   81                            ret      
+ 379                         
+ 380                         ;***********************************************************
+ 381                         ;name   : TriDiv() - 3 byte
+ 382                         ;fun    : 
+ 383                         ;params : 
+ 384                         ;         IN  : A:X, Y
+ 385                         ;         OUT : quotient: A:X   remainder: Y
+ 386                         ;                  (A:X <= A:X / Y)
+ 387                         ;***********************************************************
+ 388                         .TriDiv.W  
+ 389  008B11   8A                            push     CC
+ 390                         
+ 391                                   
+ 392  008B12   90A30000                      cpw      Y, #0
+ 393  008B16   274A                          jreq     tridiv_exit
+ 394  008B18   A100                          cp       A, #0
+ 395  008B1A   2603                          jrne     long_div
+ 396  008B1C   65                            divw     X, Y
+ 397  008B1D   2043                          jra      tridiv_exit
+ 398                                   
+ 399                         long_div:  
+ 400                                                          ;push #0     ;(1) - Y
+ 401                                                          ;push #0     ;(2) - Y
+ 402                         
+ 403  008B1F   4B00                          push     #0            ;(1) - A:X
+ 404  008B21   4B00                          push     #0            ;(2) - A:X
+ 405  008B23   4B00                          push     #0            ;(3) - A:X
+ 406                         
+ 407  008B25   89                            pushw    X
+ 408  008B26   9089                          pushw    Y
+ 409  008B28   88                            push     A
+ 410                                                          ;-------------
+ 411                                                          ;   HIGH STACK
+ 412                                                          ;+8 (1) - A:X   - return 
+                                                                ;quotient
+ 413                                                          ;+7 (2) - A:X   - return 
+                                                                ;quotient
+ 414                                                          ;+6 (3) - A:X   - return 
+                                                                ;quotient
+ 415                                                          ;+5 XL(input)   - variable
+ 416                                                          ;+4 XH(input)   - variable
+ 417                                                          ;+3 YL(input)   - invariable
+ 418                                                          ;+2 YH(input)   - invariable
+ 419                                                          ;+1 A(input)    - variable
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 14  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 420                                                          ;   LOW STACK
+ 421                                                          ;-------------
+ 422                         tridiv_acc_loop:  
+ 423  008B29   1602                          ldw      Y, (2,SP)
+ 424  008B2B   1E04                          ldw      X, (4,SP)
+ 425  008B2D   65                            divw     X, Y
+ 426                                                          ; handle quotient 
+ 427  008B2E   7B06                          ld       A, (6,SP)
+ 428  008B30   72FB07                        addw     X, (7,SP)
+ 429  008B33   A900                          adc      A, #0
+ 430                                                          ;ld (6,SP), A
+ 431  008B35   1C0001                        addw     X, #1
+ 432  008B38   A900                          adc      A, #0
+ 433  008B3A   6B06                          ld       (6,SP), A
+ 434  008B3C   1F07                          ldw      (7,SP), X
+ 435                                                          ; handle remainder 
+ 436  008B3E   72F202                        subw     Y, (2,SP)
+ 437  008B41   1704                          ldw      (4,SP), Y
+ 438                                                          ;addw X
+ 439  008B43   0A01                          dec      (1,SP)
+ 440  008B45   2702                          jreq     tridiv_end
+ 441  008B47   20E0                          jra      tridiv_acc_loop
+ 442                                   
+ 443                         tridiv_end:  
+ 444  008B49   1602                          ldw      Y, (2,SP)
+ 445  008B4B   1E04                          ldw      X, (4,SP)
+ 446  008B4D   65                            divw     X, Y
+ 447  008B4E   1704                          ldw      (4,SP), Y
+ 448                                                          ; handle quotient 
+ 449  008B50   7B06                          ld       A, (6,SP)
+ 450  008B52   72FB07                        addw     X, (7,SP)
+ 451  008B55   A900                          adc      A, #0
+ 452                                                          ;ld (6,SP), A
+ 453  008B57   6B06                          ld       (6,SP), A
+ 454  008B59   1F07                          ldw      (7,SP), X
+ 455                                                          ; handle remainder 
+ 456                         
+ 457                         
+ 458                         
+ 459                         
+ 460  008B5B   84                            pop      A
+ 461  008B5C   9085                          popw     Y
+ 462                                   
+ 463                                                          ; remainder
+ 464  008B5E   9085                          popw     Y
+ 465                                                          ; quotient A:X
+ 466  008B60   84                            pop      A
+ 467  008B61   85                            popw     X
+ 468                         
+ 469                         
+ 470                         tridiv_exit:  
+ 471  008B62   86                            pop      CC
+ 472  008B63   81                            ret      
+ 473                         
+ 474                         
+ 475                         
+ 476                         
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 15  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 477  008B64                                 end      
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 16  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+Symbol Name                       Value     Call       Type  Scope      Rel.  Line  Privacy  Segment   Size  Bytes File
+
+ADC_COUNTER                             03         no  BYTE  Internal   ABS     12  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM                                 04         no  BYTE  Internal   ABS     16  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM0                                07         no  BYTE  Internal   ABS     17  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM1                                06         no  BYTE  Internal   ABS     18  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM2                                05         no  BYTE  Internal   ABS     19  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM3                                04         no  BYTE  Internal   ABS     20  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG                                 08         no  BYTE  Internal   ABS     22  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG0                                0B         no  BYTE  Internal   ABS     23  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG1                                0A         no  BYTE  Internal   ABS     24  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG2                                09         no  BYTE  Internal   ABS     25  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG3                                08         no  BYTE  Internal   ABS     26  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_STORE                               0C         no  BYTE  Internal   ABS     28  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S00                                 0E         no  BYTE  Internal   ABS     30  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S01                                 0D         no  BYTE  Internal   ABS     31  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S02                                 0C         no  BYTE  Internal   ABS     32  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S10                                 11         no  BYTE  Internal   ABS     34  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S11                                 10         no  BYTE  Internal   ABS     35  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S12                                 0F         no  BYTE  Internal   ABS     36  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S20                                 14         no  BYTE  Internal   ABS     38  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S21                                 13         no  BYTE  Internal   ABS     39  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S22                                 12         no  BYTE  Internal   ABS     40  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S30                                 17         no  BYTE  Internal   ABS     42  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S31                                 16         no  BYTE  Internal   ABS     43  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S32                                 15         no  BYTE  Internal   ABS     44  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S40                                 1A         no  BYTE  Internal   ABS     46  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S41                                 19         no  BYTE  Internal   ABS     47  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S42                                 18         no  BYTE  Internal   ABS     48  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S50                                 1D         no  BYTE  Internal   ABS     50  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S51                                 1C         no  BYTE  Internal   ABS     51  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S52                                 1B         no  BYTE  Internal   ABS     52  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S60                                 20         no  BYTE  Internal   ABS     54  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S61                                 1F         no  BYTE  Internal   ABS     55  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S62                                 1E         no  BYTE  Internal   ABS     56  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S70                                 23         no  BYTE  Internal   ABS     58  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S71                                 22         no  BYTE  Internal   ABS     59  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S72                                 21         no  BYTE  Internal   ABS     60  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S80                                 26         no  BYTE  Internal   ABS     62  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S81                                 25         no  BYTE  Internal   ABS     63  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S82                                 24         no  BYTE  Internal   ABS     64  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S90                                 29         no  BYTE  Internal   ABS     66  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S91                                 28         no  BYTE  Internal   ABS     67  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S92                                 27         no  BYTE  Internal   ABS     68  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SA0                                 2C         no  BYTE  Internal   ABS     70  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SA1                                 2B         no  BYTE  Internal   ABS     71  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SA2                                 2A         no  BYTE  Internal   ABS     72  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SB0                                 2F         no  BYTE  Internal   ABS     74  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SB1                                 2E         no  BYTE  Internal   ABS     75  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SB2                                 2D         no  BYTE  Internal   ABS     76  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SC0                                 32         no  BYTE  Internal   ABS     78  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SC1                                 31         no  BYTE  Internal   ABS     79  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SC2                                 30         no  BYTE  Internal   ABS     80  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SD0                                 35         no  BYTE  Internal   ABS     82  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SD1                                 34         no  BYTE  Internal   ABS     83  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SD2                                 33         no  BYTE  Internal   ABS     84  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SE0                                 38         no  BYTE  Internal   ABS     86  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 17  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ADC_SE1                                 37         no  BYTE  Internal   ABS     87  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SE2                                 36         no  BYTE  Internal   ABS     88  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SF0                                 3B         no  BYTE  Internal   ABS     90  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SF1                                 3A         no  BYTE  Internal   ABS     91  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SF2                                 39         no  BYTE  Internal   ABS     92  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SG0                                 3E         no  BYTE  Internal   ABS     94  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SG1                                 3D         no  BYTE  Internal   ABS     95  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SG2                                 3C         no  BYTE  Internal   ABS     96  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SH0                                 41         no  BYTE  Internal   ABS     98  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SH1                                 40         no  BYTE  Internal   ABS     99  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SH2                                 3F         no  BYTE  Internal   ABS    100  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SI0                                 44         no  BYTE  Internal   ABS    102  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SI1                                 43         no  BYTE  Internal   ABS    103  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SI2                                 42         no  BYTE  Internal   ABS    104  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SJ0                                 47         no  BYTE  Internal   ABS    106  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SJ1                                 46         no  BYTE  Internal   ABS    107  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SJ2                                 45         no  BYTE  Internal   ABS    108  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SK0                                 4A         no  BYTE  Internal   ABS    110  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SK1                                 49         no  BYTE  Internal   ABS    111  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SK2                                 48         no  BYTE  Internal   ABS    112  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SL0                                 4D         no  BYTE  Internal   ABS    114  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SL1                                 4C         no  BYTE  Internal   ABS    115  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SL2                                 4B         no  BYTE  Internal   ABS    116  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SM0                                 50         no  BYTE  Internal   ABS    118  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SM1                                 4F         no  BYTE  Internal   ABS    119  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SM2                                 4E         no  BYTE  Internal   ABS    120  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SN0                                 53         no  BYTE  Internal   ABS    122  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SN1                                 52         no  BYTE  Internal   ABS    123  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SN2                                 51         no  BYTE  Internal   ABS    124  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SO0                                 56         no  BYTE  Internal   ABS    126  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SO1                                 55         no  BYTE  Internal   ABS    127  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SO2                                 54         no  BYTE  Internal   ABS    128  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SP0                                 59         no  BYTE  Internal   ABS    130  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SP1                                 58         no  BYTE  Internal   ABS    131  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SP2                                 57         no  BYTE  Internal   ABS    132  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SQ0                                 5C         no  BYTE  Internal   ABS    134  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SQ1                                 5B         no  BYTE  Internal   ABS    135  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SQ2                                 5A         no  BYTE  Internal   ABS    136  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SR0                                 5F         no  BYTE  Internal   ABS    138  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SR1                                 5E         no  BYTE  Internal   ABS    139  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SR2                                 5D         no  BYTE  Internal   ABS    140  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SS0                                 62         no  BYTE  Internal   ABS    142  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SS1                                 61         no  BYTE  Internal   ABS    143  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SS2                                 60         no  BYTE  Internal   ABS    144  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_ST0                                 65         no  BYTE  Internal   ABS    146  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_ST1                                 64         no  BYTE  Internal   ABS    147  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_ST2                                 63         no  BYTE  Internal   ABS    148  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SU0                                 68         no  BYTE  Internal   ABS    150  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SU1                                 67         no  BYTE  Internal   ABS    151  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SU2                                 66         no  BYTE  Internal   ABS    152  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SV0                                 6B         no  BYTE  Internal   ABS    154  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SV1                                 6A         no  BYTE  Internal   ABS    155  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SV2                                 69         no  BYTE  Internal   ABS    156  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SW0                                 6E         no  BYTE  Internal   ABS    158  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SW1                                 6D         no  BYTE  Internal   ABS    159  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SW2                                 6C         no  BYTE  Internal   ABS    160  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SX0                                 71         no  BYTE  Internal   ABS    162  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 18  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ADC_SX1                                 70         no  BYTE  Internal   ABS    163  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SX2                                 6F         no  BYTE  Internal   ABS    164  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SY0                                 74         no  BYTE  Internal   ABS    166  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SY1                                 73         no  BYTE  Internal   ABS    167  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SY2                                 72         no  BYTE  Internal   ABS    168  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_THRESHOLD_QUOTIENT                  75         no  BYTE  Internal   ABS    170  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_THRESHOLD_QUOTIENT1                 75         no  BYTE  Internal   ABS    171  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_THRESHOLD_QUOTIENT0                 76         no  BYTE  Internal   ABS    172  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_QUOTIENT                        77         no  BYTE  Internal   ABS    174  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_QUOTIENT_S1                     77         no  BYTE  Internal   ABS    175  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_QUOTIENT_S0                     78         no  BYTE  Internal   ABS    176  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_REMAINDER                       79         no  BYTE  Internal   ABS    178  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_REMAINDER_S1                    79         no  BYTE  Internal   ABS    179  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_REMAINDER_S0                    7A         no  BYTE  Internal   ABS    180  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_NEXT_PTR                            7B         no  BYTE  Internal   ABS    185  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SLOPE                               7D         no  BYTE  Internal   ABS    190  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_Delay                             8A1A         no  WORD  Internal   ABS     79  public   text         6     0  -
+
+CHAR_MASS9                              A8         no  BYTE  Internal   ABS    253  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS8                              A9         no  BYTE  Internal   ABS    254  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS7                              AA         no  BYTE  Internal   ABS    255  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS6                              AB         no  BYTE  Internal   ABS    256  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS5                              AC         no  BYTE  Internal   ABS    257  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS4                              AD         no  BYTE  Internal   ABS    258  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS3                              AE         no  BYTE  Internal   ABS    259  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS2                              AF         no  BYTE  Internal   ABS    260  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS1                              B0         no  BYTE  Internal   ABS    261  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS0                              B1         no  BYTE  Internal   ABS    262  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS_1                             B2         no  BYTE  Internal   ABS    263  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE5                             B4         no  BYTE  Internal   ABS    268  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE4                             B5         no  BYTE  Internal   ABS    269  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE3                             B6         no  BYTE  Internal   ABS    270  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE2                             B7         no  BYTE  Internal   ABS    271  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE1                             B8         no  BYTE  Internal   ABS    272  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE0                             B9         no  BYTE  Internal   ABS    273  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD7                         BB         no  BYTE  Internal   ABS    276  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD6                         BC         no  BYTE  Internal   ABS    277  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD5                         BD         no  BYTE  Internal   ABS    278  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD4                         BE         no  BYTE  Internal   ABS    279  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD3                         BF         no  BYTE  Internal   ABS    280  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD2                         C0         no  BYTE  Internal   ABS    281  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD1                         C1         no  BYTE  Internal   ABS    282  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD0                         C2         no  BYTE  Internal   ABS    283  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY7                             C4         no  BYTE  Internal   ABS    288  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY6                             C5         no  BYTE  Internal   ABS    289  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY5                             C6         no  BYTE  Internal   ABS    290  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY4                             C7         no  BYTE  Internal   ABS    291  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY3                             C8         no  BYTE  Internal   ABS    292  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY2                             C9         no  BYTE  Internal   ABS    293  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY1                             CA         no  BYTE  Internal   ABS    294  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY0                             CB         no  BYTE  Internal   ABS    295  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS9                          CD         no  BYTE  Internal   ABS    301  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS8                          CE         no  BYTE  Internal   ABS    302  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS7                          CF         no  BYTE  Internal   ABS    303  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS6                          D0         no  BYTE  Internal   ABS    304  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS5                          D1         no  BYTE  Internal   ABS    305  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS4                          D2         no  BYTE  Internal   ABS    306  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 19  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+CHAR_MAX_MASS3                          D3         no  BYTE  Internal   ABS    307  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS2                          D4         no  BYTE  Internal   ABS    308  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS1                          D5         no  BYTE  Internal   ABS    309  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS0                          D6         no  BYTE  Internal   ABS    310  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS_1                         D7         no  BYTE  Internal   ABS    311  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CPU_Delay_1us                         89E9         no  WORD  Internal   ABS     16  public   text         6     0  -
+
+KEYDOWN_FLAG                            93         no  BYTE  Internal   ABS    220  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_STORE                          94         no  BYTE  Internal   ABS    223  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S4                             94         no  BYTE  Internal   ABS    225  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S3                             95         no  BYTE  Internal   ABS    226  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S2                             96         no  BYTE  Internal   ABS    227  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S1                             97         no  BYTE  Internal   ABS    228  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S0                             98         no  BYTE  Internal   ABS    229  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PTR                            99         no  BYTE  Internal   ABS    230  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_DOT_OK                         9B         no  BYTE  Internal   ABS    232  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S4                   9C         no  BYTE  Internal   ABS    234  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S3                   9D         no  BYTE  Internal   ABS    235  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S2                   9E         no  BYTE  Internal   ABS    236  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S1                   9F         no  BYTE  Internal   ABS    237  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S0                   A0         no  BYTE  Internal   ABS    238  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S4               A1         no  BYTE  Internal   ABS    241  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S3               A2         no  BYTE  Internal   ABS    242  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S2               A3         no  BYTE  Internal   ABS    243  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S1               A4         no  BYTE  Internal   ABS    244  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S0               A5         no  BYTE  Internal   ABS    245  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEY_ARRAY_MENU                          A6         no  BYTE  Internal   ABS    248  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEY_TYPING_FLAG                         A7         no  BYTE  Internal   ABS    249  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KeyDelay                              8A0C         no  WORD  Internal   ABS     58  public   text         6     0  -
+
+LCD_VAR0                                00         no  BYTE  Internal   ABS      8  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+LCD_VAR1                                01         no  BYTE  Internal   ABS      9  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+LCD_VAR2                                02         no  BYTE  Internal   ABS     10  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+LCD_Delay                             89FF         no  WORD  Internal   ABS     41  public   text         6     0  -
+
+MassDivider                           8A27         no  WORD  Internal   ABS    103  public   text        11     0  -
+
+NET_ADC                                 83         no  BYTE  Internal   ABS    198  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC0                                86         no  BYTE  Internal   ABS    199  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC1                                85         no  BYTE  Internal   ABS    200  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC2                                84         no  BYTE  Internal   ABS    201  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC3                                83         no  BYTE  Internal   ABS    202  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF                                 87         no  BYTE  Internal   ABS    204  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF3                                87         no  BYTE  Internal   ABS    205  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF2                                88         no  BYTE  Internal   ABS    206  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF1                                89         no  BYTE  Internal   ABS    207  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF0                                8A         no  BYTE  Internal   ABS    208  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+PRICE_MUL3                              8F         no  BYTE  Internal   ABS    215  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+PRICE_MUL2                              90         no  BYTE  Internal   ABS    216  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+PRICE_MUL1                              91         no  BYTE  Internal   ABS    217  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+PRICE_MUL0                              92         no  BYTE  Internal   ABS    218  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+QuadMul                               8AA7         no  WORD  Internal   ABS    259  public   text        15     0  -
+
+STR_MASS                                A8         no  BYTE  Internal   ABS    252  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_PRICE                               B4         no  BYTE  Internal   ABS    267  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 20  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+STR_THRESHOLD                           BB         no  BYTE  Internal   ABS    275  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_MONEY                               C4         no  BYTE  Internal   ABS    287  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_MAX_MASS                            CD         no  BYTE  Internal   ABS    298  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+TriMul                                8A5C         no  WORD  Internal   ABS    163  public   text        14     0  -
+TriDiv                                8B11         no  WORD  Internal   ABS    388  public   text        14     0  -
+
+WEIGHT_QUOTIENT                         8B         no  BYTE  Internal   ABS    211  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+WEIGHT_REMAINDER                        8D         no  BYTE  Internal   ABS    212  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+ZERO_ADC                                7F         no  BYTE  Internal   ABS    192  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC0                               82         no  BYTE  Internal   ABS    193  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC1                               81         no  BYTE  Internal   ABS    194  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC2                               80         no  BYTE  Internal   ABS    195  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC3                               7F         no  BYTE  Internal   ABS    196  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+adc_delay_loop                        8A20         no  WORD  Internal   ABS     83  private  text         7     0  -
+
+cpu_timer1                            89EF         no  WORD  Internal   ABS     20  private  text         4     0  -
+cpu_delay_loop                        89F3         no  WORD  Internal   ABS     22  private  text        12     0  -
+
+div_start                             8A32         no  WORD  Internal   ABS    117  private  text        20     0  -
+div_restore_loop_status               8A46         no  WORD  Internal   ABS    132  private  text         7     0  -
+div_3_borrow                          8A4D         no  WORD  Internal   ABS    137  private  text         6     0  -
+div_end0                              8A53         no  WORD  Internal   ABS    141  private  text         9     0  -
+
+key_delay_loop                        8A12         no  WORD  Internal   ABS     62  private  text         8     0  -
+
+lcd_delay_loop                        8A05         no  WORD  Internal   ABS     45  private  text         7     0  -
+long_div                              8B1F         no  WORD  Internal   ABS    399  private  text        10     0  -
+
+quadmul_zero_exit                     8AB6         no  WORD  Internal   ABS    268  private  text         9     0  -
+quadmul_not_zero                      8ABF         no  WORD  Internal   ABS    273  private  text        42     0  -
+quadmul_accu_loop                     8AE9         no  WORD  Internal   ABS    346  private  text        30     0  -
+quadmul_end                           8B07         no  WORD  Internal   ABS    366  private  text         7     0  -
+quadmul_exit                          8B0E         no  WORD  Internal   ABS    375  private  text         3     0  -
+
+trimul_zero_exit                      8A6A         no  WORD  Internal   ABS    172  private  text         7     0  -
+trimul_not_zero                       8A71         no  WORD  Internal   ABS    177  private  text        27     0  -
+trimul_int_loop                       8A8C         no  WORD  Internal   ABS    218  private  text        19     0  -
+trimul_int_end                        8A9F         no  WORD  Internal   ABS    230  private  text         4     0  -
+trimul_exit                           8AA3         no  WORD  Internal   ABS    246  private  text         4     0  -
+tridiv_acc_loop                       8B29         no  WORD  Internal   ABS    422  private  text        32     0  -
+tridiv_end                            8B49         no  WORD  Internal   ABS    443  private  text        25     0  -
+tridiv_exit                           8B62         no  WORD  Internal   ABS    470  private  text         2     0  -
+
+
+253 labels
+No errors on assembly of 'e:\stm8s\electronic_scale\common.asm'

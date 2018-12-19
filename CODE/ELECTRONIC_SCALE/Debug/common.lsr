@@ -1,0 +1,1157 @@
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 1  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+   1                         stm8/     
+   2                                   
+   3                                                          ;#include "stm8s105k4.inc"
+   0  000000                                 #include "GlobalVar.inc"
+   1                         
+   2  000000 U                               #IFDEF   __GLOBAL_VAR__
+   5                                   
+   6  000000                                 #define  __GLOBAL_VAR__ 1
+   7                         ;   ++ 0x0F
+   8  000000                                 EXTERN   LCD_VAR0.B
+   9  000000                                 EXTERN   LCD_VAR1.B
+  10  000000                                 EXTERN   LCD_VAR2.B
+  11                                   
+  12  000000                                 EXTERN   ADC_COUNTER.B
+  13                         
+  14                                   
+  15                         ;   ++ 0x04
+  16  000000                                 EXTERN   ADC_SUM.B
+  17  000000                                 EXTERN   ADC_SUM0.B
+  18  000000                                 EXTERN   ADC_SUM1.B
+  19  000000                                 EXTERN   ADC_SUM2.B
+  20  000000                                 EXTERN   ADC_SUM3.B
+  21                         ;   ++ 0x04
+  22  000000                                 EXTERN   ADC_AVG.B
+  23  000000                                 EXTERN   ADC_AVG0.B
+  24  000000                                 EXTERN   ADC_AVG1.B
+  25  000000                                 EXTERN   ADC_AVG2.B
+  26  000000                                 EXTERN   ADC_AVG3.B
+  27                         ;   ++ 0x18
+  28  000000                                 EXTERN   ADC_STORE.B
+  29                         
+  30  000000                                 EXTERN   ADC_S00.B 
+  31  000000                                 EXTERN   ADC_S01.B
+  32  000000                                 EXTERN   ADC_S02.B
+  33                                   
+  34  000000                                 EXTERN   ADC_S10.B
+  35  000000                                 EXTERN   ADC_S11.B
+  36  000000                                 EXTERN   ADC_S12.B
+  37                         
+  38  000000                                 EXTERN   ADC_S20.B
+  39  000000                                 EXTERN   ADC_S21.B
+  40  000000                                 EXTERN   ADC_S22.B
+  41                                   
+  42  000000                                 EXTERN   ADC_S30.B
+  43  000000                                 EXTERN   ADC_S31.B
+  44  000000                                 EXTERN   ADC_S32.B
+  45                                   
+  46  000000                                 EXTERN   ADC_S40.B
+  47  000000                                 EXTERN   ADC_S41.B
+  48  000000                                 EXTERN   ADC_S42.B
+  49                                   
+  50  000000                                 EXTERN   ADC_S50.B
+  51  000000                                 EXTERN   ADC_S51.B
+  52  000000                                 EXTERN   ADC_S52.B
+  53                                   
+  54  000000                                 EXTERN   ADC_S60.B
+  55  000000                                 EXTERN   ADC_S61.B
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 2  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+  56  000000                                 EXTERN   ADC_S62.B
+  57                                   
+  58  000000                                 EXTERN   ADC_S70.B
+  59  000000                                 EXTERN   ADC_S71.B
+  60  000000                                 EXTERN   ADC_S72.B
+  61                         ;   ++ 0x03
+  62  000000                                 EXTERN   ADC_S80.B
+  63  000000                                 EXTERN   ADC_S81.B
+  64  000000                                 EXTERN   ADC_S82.B
+  65                                   
+  66  000000                                 EXTERN   ADC_S90.B
+  67  000000                                 EXTERN   ADC_S91.B
+  68  000000                                 EXTERN   ADC_S92.B
+  69                                   
+  70  000000                                 EXTERN   ADC_SA0.B
+  71  000000                                 EXTERN   ADC_SA1.B
+  72  000000                                 EXTERN   ADC_SA2.B
+  73                                   
+  74  000000                                 EXTERN   ADC_SB0.B
+  75  000000                                 EXTERN   ADC_SB1.B
+  76  000000                                 EXTERN   ADC_SB2.B
+  77                                   
+  78  000000                                 EXTERN   ADC_SC0.B
+  79  000000                                 EXTERN   ADC_SC1.B
+  80  000000                                 EXTERN   ADC_SC2.B
+  81                                   
+  82  000000                                 EXTERN   ADC_SD0.B
+  83  000000                                 EXTERN   ADC_SD1.B
+  84  000000                                 EXTERN   ADC_SD2.B
+  85                                   
+  86  000000                                 EXTERN   ADC_SE0.B
+  87  000000                                 EXTERN   ADC_SE1.B
+  88  000000                                 EXTERN   ADC_SE2.B
+  89                                   
+  90  000000                                 EXTERN   ADC_SF0.B
+  91  000000                                 EXTERN   ADC_SF1.B
+  92  000000                                 EXTERN   ADC_SF2.B
+  93                                   
+  94  000000                                 EXTERN   ADC_SG0.B
+  95  000000                                 EXTERN   ADC_SG1.B
+  96  000000                                 EXTERN   ADC_SG2.B
+  97                                   
+  98  000000                                 EXTERN   ADC_SH0.B
+  99  000000                                 EXTERN   ADC_SH1.B
+ 100  000000                                 EXTERN   ADC_SH2.B
+ 101                                   
+ 102  000000                                 EXTERN   ADC_SI0.B
+ 103  000000                                 EXTERN   ADC_SI1.B
+ 104  000000                                 EXTERN   ADC_SI2.B
+ 105                                   
+ 106  000000                                 EXTERN   ADC_SJ0.B
+ 107  000000                                 EXTERN   ADC_SJ1.B
+ 108  000000                                 EXTERN   ADC_SJ2.B
+ 109                                   
+ 110  000000                                 EXTERN   ADC_SK0.B
+ 111  000000                                 EXTERN   ADC_SK1.B
+ 112  000000                                 EXTERN   ADC_SK2.B
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 3  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 113                                   
+ 114  000000                                 EXTERN   ADC_SL0.B
+ 115  000000                                 EXTERN   ADC_SL1.B
+ 116  000000                                 EXTERN   ADC_SL2.B
+ 117                                   
+ 118  000000                                 EXTERN   ADC_SM0.B
+ 119  000000                                 EXTERN   ADC_SM1.B
+ 120  000000                                 EXTERN   ADC_SM2.B
+ 121                                   
+ 122  000000                                 EXTERN   ADC_SN0.B
+ 123  000000                                 EXTERN   ADC_SN1.B
+ 124  000000                                 EXTERN   ADC_SN2.B
+ 125                                   
+ 126  000000                                 EXTERN   ADC_SO0.B
+ 127  000000                                 EXTERN   ADC_SO1.B
+ 128  000000                                 EXTERN   ADC_SO2.B
+ 129                                   
+ 130  000000                                 EXTERN   ADC_SP0.B
+ 131  000000                                 EXTERN   ADC_SP1.B
+ 132  000000                                 EXTERN   ADC_SP2.B
+ 133                                   
+ 134  000000                                 EXTERN   ADC_SQ0.B
+ 135  000000                                 EXTERN   ADC_SQ1.B
+ 136  000000                                 EXTERN   ADC_SQ2.B
+ 137                                   
+ 138  000000                                 EXTERN   ADC_SR0.B
+ 139  000000                                 EXTERN   ADC_SR1.B
+ 140  000000                                 EXTERN   ADC_SR2.B
+ 141                                   
+ 142  000000                                 EXTERN   ADC_SS0.B
+ 143  000000                                 EXTERN   ADC_SS1.B
+ 144  000000                                 EXTERN   ADC_SS2.B
+ 145                                   
+ 146  000000                                 EXTERN   ADC_ST0.B
+ 147  000000                                 EXTERN   ADC_ST1.B
+ 148  000000                                 EXTERN   ADC_ST2.B
+ 149                                   
+ 150  000000                                 EXTERN   ADC_SU0.B
+ 151  000000                                 EXTERN   ADC_SU1.B
+ 152  000000                                 EXTERN   ADC_SU2.B
+ 153                                   
+ 154  000000                                 EXTERN   ADC_SV0.B
+ 155  000000                                 EXTERN   ADC_SV1.B
+ 156  000000                                 EXTERN   ADC_SV2.B
+ 157                                   
+ 158  000000                                 EXTERN   ADC_SW0.B
+ 159  000000                                 EXTERN   ADC_SW1.B
+ 160  000000                                 EXTERN   ADC_SW2.B
+ 161                                   
+ 162  000000                                 EXTERN   ADC_SX0.B
+ 163  000000                                 EXTERN   ADC_SX1.B
+ 164  000000                                 EXTERN   ADC_SX2.B
+ 165                                   
+ 166  000000                                 EXTERN   ADC_SY0.B
+ 167  000000                                 EXTERN   ADC_SY1.B
+ 168  000000                                 EXTERN   ADC_SY2.B
+ 169                                   
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 4  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 170  000000                                 EXTERN   ADC_THRESHOLD_QUOTIENT.B
+ 171  000000                                 EXTERN   ADC_THRESHOLD_QUOTIENT1.B
+ 172  000000                                 EXTERN   ADC_THRESHOLD_QUOTIENT0.B
+ 173                         
+ 174  000000                                 EXTERN   ADC_MAX_QUOTIENT.B
+ 175  000000                                 EXTERN   ADC_MAX_QUOTIENT_S1.B
+ 176  000000                                 EXTERN   ADC_MAX_QUOTIENT_S0.B
+ 177                         
+ 178  000000                                 EXTERN   ADC_MAX_REMAINDER.B
+ 179  000000                                 EXTERN   ADC_MAX_REMAINDER_S1.B
+ 180  000000                                 EXTERN   ADC_MAX_REMAINDER_S0.B
+ 181                                   
+ 182                                   
+ 183                                                          ;EXTERN ADC_SLOPE.B
+ 184                         ;   ++ 0x01
+ 185  000000                                 EXTERN   ADC_NEXT_PTR.B
+ 186                                                          ;EXTERN ADC_MAX_PTR.B
+ 187                                                          ;EXTERN ADC_MIN_PTR.B
+ 188                                   
+ 189                                   
+ 190  000000                                 EXTERN   ADC_SLOPE.B
+ 191                         ;   ++ 0x04
+ 192  000000                                 EXTERN   ZERO_ADC.B
+ 193  000000                                 EXTERN   ZERO_ADC0.B
+ 194  000000                                 EXTERN   ZERO_ADC1.B
+ 195  000000                                 EXTERN   ZERO_ADC2.B
+ 196  000000                                 EXTERN   ZERO_ADC3.B
+ 197                                   
+ 198  000000                                 EXTERN   NET_ADC.B
+ 199  000000                                 EXTERN   NET_ADC0.B
+ 200  000000                                 EXTERN   NET_ADC1.B
+ 201  000000                                 EXTERN   NET_ADC2.B
+ 202  000000                                 EXTERN   NET_ADC3.B
+ 203                                   
+ 204  000000                                 EXTERN   NET_BUF.B
+ 205  000000                                 EXTERN   NET_BUF3.B
+ 206  000000                                 EXTERN   NET_BUF2.B
+ 207  000000                                 EXTERN   NET_BUF1.B
+ 208  000000                                 EXTERN   NET_BUF0.B
+ 209                                   
+ 210                                   
+ 211  000000                                 EXTERN   WEIGHT_QUOTIENT.B
+ 212  000000                                 EXTERN   WEIGHT_REMAINDER.B
+ 213                                   
+ 214                                   
+ 215  000000                                 EXTERN   PRICE_MUL3.B
+ 216  000000                                 EXTERN   PRICE_MUL2.B
+ 217  000000                                 EXTERN   PRICE_MUL1.B
+ 218  000000                                 EXTERN   PRICE_MUL0.B
+ 219                                   
+ 220  000000                                 EXTERN   KEYDOWN_FLAG.B
+ 221                                   
+ 222                                   
+ 223  000000                                 EXTERN   KEYBOARD_STORE.B
+ 224                                   
+ 225  000000                                 EXTERN   KEYBOARD_S4.B
+ 226  000000                                 EXTERN   KEYBOARD_S3.B
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 5  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 227  000000                                 EXTERN   KEYBOARD_S2.B
+ 228  000000                                 EXTERN   KEYBOARD_S1.B
+ 229  000000                                 EXTERN   KEYBOARD_S0.B
+ 230  000000                                 EXTERN   KEYBOARD_PTR.B
+ 231                                   
+ 232  000000                                 EXTERN   KEYBOARD_DOT_OK.B
+ 233                                   
+ 234  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S4.B
+ 235  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S3.B
+ 236  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S2.B
+ 237  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S1.B
+ 238  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S0.B
+ 239                                   
+ 240                                   
+ 241  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S4.B
+ 242  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S3.B
+ 243  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S2.B
+ 244  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S1.B
+ 245  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S0.B
+ 246                                   
+ 247                                   
+ 248  000000                                 EXTERN   KEY_ARRAY_MENU.B
+ 249  000000                                 EXTERN   KEY_TYPING_FLAG.B
+ 250                                   
+ 251                                   
+ 252  000000                                 EXTERN   STR_MASS.B
+ 253  000000                                 EXTERN   CHAR_MASS9.B
+ 254  000000                                 EXTERN   CHAR_MASS8.B
+ 255  000000                                 EXTERN   CHAR_MASS7.B
+ 256  000000                                 EXTERN   CHAR_MASS6.B
+ 257  000000                                 EXTERN   CHAR_MASS5.B
+ 258  000000                                 EXTERN   CHAR_MASS4.B
+ 259  000000                                 EXTERN   CHAR_MASS3.B
+ 260  000000                                 EXTERN   CHAR_MASS2.B
+ 261  000000                                 EXTERN   CHAR_MASS1.B
+ 262  000000                                 EXTERN   CHAR_MASS0.B
+ 263  000000                                 EXTERN   CHAR_MASS_1.B
+ 264                         
+ 265                                   
+ 266                                   
+ 267  000000                                 EXTERN   STR_PRICE.B
+ 268  000000                                 EXTERN   CHAR_PRICE5.B
+ 269  000000                                 EXTERN   CHAR_PRICE4.B
+ 270  000000                                 EXTERN   CHAR_PRICE3.B
+ 271  000000                                 EXTERN   CHAR_PRICE2.B
+ 272  000000                                 EXTERN   CHAR_PRICE1.B
+ 273  000000                                 EXTERN   CHAR_PRICE0.B
+ 274                                   
+ 275  000000                                 EXTERN   STR_THRESHOLD.B
+ 276  000000                                 EXTERN   CHAR_THRESHOLD7.B
+ 277  000000                                 EXTERN   CHAR_THRESHOLD6.B
+ 278  000000                                 EXTERN   CHAR_THRESHOLD5.B
+ 279  000000                                 EXTERN   CHAR_THRESHOLD4.B
+ 280  000000                                 EXTERN   CHAR_THRESHOLD3.B
+ 281  000000                                 EXTERN   CHAR_THRESHOLD2.B
+ 282  000000                                 EXTERN   CHAR_THRESHOLD1.B
+ 283  000000                                 EXTERN   CHAR_THRESHOLD0.B
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 6  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 284                                   
+ 285                                   
+ 286                                   
+ 287  000000                                 EXTERN   STR_MONEY.B
+ 288  000000                                 EXTERN   CHAR_MONEY7.B
+ 289  000000                                 EXTERN   CHAR_MONEY6.B
+ 290  000000                                 EXTERN   CHAR_MONEY5.B
+ 291  000000                                 EXTERN   CHAR_MONEY4.B
+ 292  000000                                 EXTERN   CHAR_MONEY3.B
+ 293  000000                                 EXTERN   CHAR_MONEY2.B
+ 294  000000                                 EXTERN   CHAR_MONEY1.B
+ 295  000000                                 EXTERN   CHAR_MONEY0.B
+ 296                                   
+ 297                                   
+ 298  000000                                 EXTERN   STR_MAX_MASS.B
+ 299                                                          ;EXTERN CHAR_MAX_MASS11.B
+ 300                                                          ;EXTERN CHAR_MAX_MASS10.B
+ 301  000000                                 EXTERN   CHAR_MAX_MASS9.B
+ 302  000000                                 EXTERN   CHAR_MAX_MASS8.B
+ 303  000000                                 EXTERN   CHAR_MAX_MASS7.B
+ 304  000000                                 EXTERN   CHAR_MAX_MASS6.B
+ 305  000000                                 EXTERN   CHAR_MAX_MASS5.B
+ 306  000000                                 EXTERN   CHAR_MAX_MASS4.B
+ 307  000000                                 EXTERN   CHAR_MAX_MASS3.B
+ 308  000000                                 EXTERN   CHAR_MAX_MASS2.B
+ 309  000000                                 EXTERN   CHAR_MAX_MASS1.B
+ 310  000000                                 EXTERN   CHAR_MAX_MASS0.B
+ 311  000000                                 EXTERN   CHAR_MAX_MASS_1.B
+ 312                                   
+ 313  000000                                 #ENDIF   
+ 314                                   
+ 315                                   
+<END_OF_INCLUSION>
+   5                                                          ;#include ""
+   6                                   
+   7                                   segment  'rom'
+   8  000000                                 INTEL    
+   9                         ;***********************************************************
+  10                         ;name   : CPU_Delay_1us(VAR0F: )
+  11                         ;fun    : delay time = VAR01 * 1us
+  12                         ;params : 
+  13                         ;         IN  : VAR0F <= delay time(s) 1us each
+  14                         ;         OUT : NULL
+  15                         ;***********************************************************
+  16                         .CPU_Delay_1us.W  
+  17  000000   9089                          pushw    Y
+  18  000002   89                            pushw    X
+  19  000003   AEFFFF                        ldw      X, #0FFFFH
+  20                         cpu_timer1:  
+  21  000006   90AEFFFF                      ldw      Y, #0FFFFH
+  22                         cpu_delay_loop:  
+  23  00000A   9D                            nop      
+  24  00000B   905A                          decw     Y
+  25  00000D R 26FB                          jrne     cpu_delay_loop
+  26                                   
+  27  00000F   5A                            decw     X
+  28  000010 R 26F4                          jrne     cpu_timer1
+  29  000012   85                            popw     X
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 7  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+  30  000013   9085                          popw     Y
+  31                         
+  32  000015   81                            ret      
+  33                                   
+  34                         ;***********************************************************
+  35                         ;name   : LCD_Delay()
+  36                         ;fun    : delay just for LCD
+  37                         ;params : 
+  38                         ;         IN  : NULL
+  39                         ;         OUT : NULL
+  40                         ;***********************************************************
+  41                         .LCD_Delay.W  
+  42  000016   9089                          pushw    Y
+  43  000018   90AE0138                      ldw      Y, #0138H
+  44                                   
+  45                         lcd_delay_loop:  
+  46  00001C   905A                          decw     Y
+  47  00001E R 26FC                          jrne     lcd_delay_loop
+  48  000020   9085                          popw     Y
+  49                         
+  50  000022   81                            ret      
+  51                         ;***********************************************************
+  52                         ;name   : KeyDelay()
+  53                         ;fun    : delay just for key
+  54                         ;params : 
+  55                         ;         IN  : NULL
+  56                         ;         OUT : NULL
+  57                         ;***********************************************************
+  58                         .KeyDelay.W  
+  59  000023   9089                          pushw    Y
+  60  000025   90AE0FFF                      ldw      Y, #0FFFH
+  61                                   
+  62                         key_delay_loop:  
+  63  000029   905A                          decw     Y
+  64  00002B   9D                            nop      
+  65  00002C R 26FB                          jrne     key_delay_loop
+  66  00002E   9085                          popw     Y
+  67                         
+  68  000030   81                            ret      
+  69                                   
+  70                         
+  71                         
+  72                         ;***********************************************************
+  73                         ;name   : ADC_Delay()
+  74                         ;fun    : delay just for ADC IC - HX711
+  75                         ;params : 
+  76                         ;         IN  : NULL
+  77                         ;         OUT : NULL
+  78                         ;***********************************************************
+  79                         .ADC_Delay.W  
+  80  000031   9089                          pushw    Y
+  81  000033   90AE0100                      ldw      Y, #0100H
+  82                                   
+  83                         adc_delay_loop:  
+  84  000037   905A                          decw     Y
+  85  000039 R 26FC                          jrne     adc_delay_loop
+  86  00003B   9085                          popw     Y
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 8  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+  87                         
+  88  00003D   81                            ret      
+  89                         
+  90                         ;***********************************************************
+  91                         ;name   : MassDivider() 
+  92                         ;fun    : do the division specifically (unsigned)
+  93                         ;           X = 32bit / 16bit ; Y = 32bit % 16bit
+  94                         ;params : 
+  95                         ;         IN  : NET_ADC3: dividend(31-24)
+  96                         ;               NET_ADC2: dividend(23-16)
+  97                         ;               NET_ADC1: dividend(15-8)
+  98                         ;               NET_ADC0: dividend(7-0)
+  99                         ;               X       : divisor(15-0)
+ 100                         ;         OUT : X       : counting quotient(<=65535)
+ 101                         ;               Y       : remainder(<=65535)
+ 102                         ;***********************************************************
+ 103                         .MassDivider.W  
+ 104  00003E   8A                            push     CC
+ 105  00003F   88                            push     A
+ 106                                   
+ 107                                                          ; allocate a word for storing 
+                                                                ;quotient
+ 108  000040   4B00                          push     #0
+ 109  000042   4B00                          push     #0
+ 110                                                          ; load NET_ADC2 to A, the 3rd 
+                                                                ;byte
+ 111  000044 X B600                          ld       A, NET_ADC2
+ 112                                                          ; save divisor, mark as *
+ 113  000046   89                            pushw    X
+ 114                                                          ; move to Y
+ 115  000047   9093                          ldw      Y, X
+ 116                         
+ 117                         div_start:  
+ 118  000049   905D                          tnzw     Y
+ 119  00004B R 271D                          jreq     div_end0
+ 120                                                          ; div => X:(partial)quotient  
+                                                                ;Y:(partial)remainder
+ 121  00004D X BE00                          ldw      X, NET_ADC1
+ 122  00004F   65                            divw     X, Y             ; X/Y
+ 123                                                          ; inc before saving partial 
+                                                                ;quotient
+ 124  000050   5C                            incw     X
+ 125  000051   72FB03                        addw     X, (3,SP)
+ 126  000054   1F03                          ldw      (3,SP), X
+ 127                                                          ; sub by *, (in SP + 2)
+ 128  000056   72F201                        subw     Y, (1,SP)
+ 129                                                          ; must carry, so jmp anway
+ 130  000059   A200                          sbc      A, #0
+ 131  00005B R 2507                          jrc      div_3_borrow
+ 132                         div_restore_loop_status:  
+ 133                                                          ; write back to keep dividing
+ 134  00005D X 90BF00                        ldw      NET_ADC1, Y
+ 135  000060   1601                          ldw      Y, (1,SP)
+ 136  000062 R 20E5                          jra      div_start
+ 137                         div_3_borrow:  
+ 138  000064 X 3A00                          dec      NET_ADC3
+ 139  000066 R 2AF5                          jrpl     div_restore_loop_status
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 9  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 140  000068 X 3C00                          inc      NET_ADC3
+ 141                         div_end0:  
+ 142  00006A   72F901                        addw     Y, (1,SP)
+ 143                                                          ; pop out divisor saver, that is
+                                                                ; *
+ 144  00006D   85                            popw     X
+ 145                                                          ; pop out the quotient
+ 146  00006E   85                            popw     X
+ 147                                                          ; roll back to last X before 
+                                                                ;sub
+ 148  00006F   5A                            decw     X
+ 149                         
+ 150  000070   84                            pop      A
+ 151  000071   86                            pop      CC
+ 152  000072   81                            ret      
+ 153                                   
+ 154                                   
+ 155                         
+ 156                         ;***********************************************************
+ 157                         ;name   : TriMul() - 3 byte
+ 158                         ;fun    : 
+ 159                         ;params : 
+ 160                         ;         IN  : X, A
+ 161                         ;         OUT : A:X       (A:X <= X * A)
+ 162                         ;***********************************************************
+ 163                         .TriMul.W  
+ 164  000073   8A                            push     CC
+ 165  000074   9089                          pushw    Y
+ 166                                   
+ 167  000076   A30000                        cpw      X, #0
+ 168  000079 R 2706                          jreq     trimul_zero_exit
+ 169  00007B   A100                          cp       A, #0
+ 170  00007D R 2702                          jreq     trimul_zero_exit
+ 171  00007F R 2007                          jra      trimul_not_zero
+ 172                         trimul_zero_exit:  
+ 173  000081   AE0000                        ldw      X, #0
+ 174  000084   A600                          ld       A, #0
+ 175  000086 R 2032                          jra      trimul_exit
+ 176                                   
+ 177                         trimul_not_zero:  
+ 178  000088   4B00                          push     #0
+ 179  00008A   4B00                          push     #0
+ 180  00008C   4B00                          push     #0
+ 181                                   
+ 182  00008E   89                            pushw    X
+ 183                                   
+ 184  00008F   42                            mul      X, A
+ 185                                                          ;-------------
+ 186                                                          ;   HIGH STACK
+ 187                                                          ;+5 (1)
+ 188                                                          ;+4 (2)
+ 189                                                          ;+3 (3)
+ 190                                                          ;+2 XL(input)
+ 191                                                          ;+1 XH(input)
+ 192                                                          ;   LOW STACK
+ 193                                                          ;-------------
+ 194  000090   1F04                          ldw      (4,SP), X
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 10  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 195                                   
+ 196  000092   AE00FF                        ldw      X, #00FFH
+ 197  000095   42                            mul      X, A
+ 198                                   
+ 199  000096   88                            push     A
+ 200  000097   4B00                          push     #0
+ 201  000099   72FB01                        addw     X, (1,SP)
+ 202  00009C   84                            pop      A
+ 203  00009D   84                            pop      A
+ 204  00009E   89                            pushw    X
+ 205                                                          ;-------------
+ 206                                                          ;   HIGH STACK
+ 207                                                          ;+7 (1)
+ 208                                                          ;+6 (2)
+ 209                                                          ;+5 (3)
+ 210                                                          ;+4 XL(input)
+ 211                                                          ;+3 XH(input)
+ 212                                                          ;+2 XL(MUL)
+ 213                                                          ;+1 XH(MUL)
+ 214                                                          ;   LOW STACK
+ 215                                                          ;-------------
+ 216  00009F   7B03                          ld       A, (3,SP)
+ 217  0000A1 R 2713                          jreq     trimul_int_end
+ 218                         trimul_int_loop:  
+ 219                                   
+ 220  0000A3   7B05                          ld       A, (5,SP)
+ 221  0000A5   1E01                          ldw      X, (1,SP)
+ 222  0000A7   72FB06                        addw     X, (6,SP)
+ 223  0000AA   A900                          adc      A, #0
+ 224  0000AC   6B05                          ld       (5,SP), A
+ 225  0000AE   1F06                          ldw      (6,SP), X
+ 226  0000B0   0A03                          dec      (3,SP)
+ 227  0000B2 R 2702                          jreq     trimul_int_end
+ 228  0000B4 R 20ED                          jra      trimul_int_loop
+ 229                         
+ 230                         trimul_int_end:  
+ 231  0000B6   85                            popw     X
+ 232  0000B7   85                            popw     X
+ 233                                   
+ 234                                                          ;-------------
+ 235                                                          ;   HIGH STACK
+ 236                                                          ;+3 (1)
+ 237                                                          ;+2 (2)
+ 238                                                          ;+1 (3)
+ 239                                                          ;   LOW STACK
+ 240                                                          ;-------------
+ 241                                   
+ 242  0000B8   84                            pop      A
+ 243  0000B9   85                            popw     X
+ 244                                   
+ 245                         
+ 246                         trimul_exit:  
+ 247  0000BA   9085                          popw     Y
+ 248  0000BC   86                            pop      CC
+ 249  0000BD   81                            ret      
+ 250                         
+ 251                         
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 11  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 252                         ;***********************************************************
+ 253                         ;name   : QuadMul() - 4 byte
+ 254                         ;fun    : 
+ 255                         ;params : 
+ 256                         ;         IN  : X, Y
+ 257                         ;         OUT : X:Y       (X:Y <= X * Y)
+ 258                         ;***********************************************************
+ 259                         .QuadMul.W  
+ 260  0000BE   8A                            push     CC
+ 261  0000BF   88                            push     A
+ 262                                   
+ 263  0000C0   A30000                        cpw      X, #0
+ 264  0000C3 R 2708                          jreq     quadmul_zero_exit
+ 265  0000C5   90A30000                      cpw      Y, #0
+ 266  0000C9 R 2702                          jreq     quadmul_zero_exit
+ 267  0000CB R 2009                          jra      quadmul_not_zero
+ 268                         quadmul_zero_exit:  
+ 269  0000CD   AE0000                        ldw      X, #0
+ 270  0000D0   90AE0000                      ldw      Y, #0
+ 271  0000D4 R 204F                          jra      quadmul_exit
+ 272                         
+ 273                         quadmul_not_zero:  
+ 274  0000D6   4B00                          push     #0
+ 275  0000D8   4B00                          push     #0
+ 276  0000DA   4B00                          push     #0
+ 277  0000DC   4B00                          push     #0
+ 278                                                          ;pushw X
+ 279  0000DE   89                            pushw    X
+ 280                                   
+ 281                                                          ;ld X, X
+ 282  0000DF   909F                          ld       A, YL
+ 283  0000E1 R CD0000                        call     TriMul
+ 284                                                          ; A:X
+ 285                                                          ;-------------
+ 286                                                          ;   HIGH STACK
+ 287                                                          ;+6 (1)
+ 288                                                          ;+5 (2)
+ 289                                                          ;+4 (3)
+ 290                                                          ;+3 (4)
+ 291                                                          ;+2 XL(input)
+ 292                                                          ;+1 XH(input)
+ 293                                                          ;   LOW STACK
+ 294                                                          ;-------------
+ 295  0000E4   1F05                          ldw      (5,SP), X
+ 296  0000E6   6B04                          ld       (4,SP), A
+ 297                                   
+ 298  0000E8   85                            popw     X
+ 299                                                          ;-------------
+ 300                                                          ;   HIGH STACK
+ 301                                                          ;+4 (1)
+ 302                                                          ;+3 (2)
+ 303                                                          ;+2 (3)
+ 304                                                          ;+1 (4)
+ 305                                                          ;   LOW STACK
+ 306                                                          ;-------------
+ 307                                                          ; X = input
+ 308  0000E9   89                            pushw    X
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 12  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 309  0000EA   A6FF                          ld       A, #0FFH
+ 310  0000EC R CD0000                        call     TriMul
+ 311                                                          ; A:X
+ 312                                                          ;-------------
+ 313                                                          ;   HIGH STACK
+ 314                                                          ;+6 (1)
+ 315                                                          ;+5 (2)
+ 316                                                          ;+4 (3)
+ 317                                                          ;+3 (4)
+ 318                                                          ;+2 XL(input)
+ 319                                                          ;+1 XH(input)
+ 320                                                          ;   LOW STACK
+ 321                                                          ;-------------
+ 322  0000EF   72FB01                        addw     X, (1,SP)
+ 323  0000F2   1F01                          ldw      (1,SP), X
+ 324  0000F4   85                            popw     X
+ 325  0000F5   A900                          adc      A, #0
+ 326                                   
+ 327  0000F7   89                            pushw    X
+ 328  0000F8   88                            push     A
+ 329                                   
+ 330  0000F9   909E                          ld       A, YH
+ 331  0000FB   88                            push     A             ; decrment
+ 332                                                          ;-------------
+ 333                                                          ;   HIGH STACK
+ 334                                                          ;+8 (1)
+ 335                                                          ;+7 (2)
+ 336                                                          ;+6 (3)
+ 337                                                          ;+5 (4)
+ 338                                                          ;+4 XL(MUL) - 1
+ 339                                                          ;+3 XH(MUL) - 2
+ 340                                                          ;+2 A(MUL)  - 3
+ 341                                                          ;+1 YH(dec) - decrement
+ 342                                                          ;   LOW STACK
+ 343                                                          ;-------------
+ 344  0000FC   7B01                          ld       A, (1,SP)
+ 345  0000FE R 271E                          jreq     quadmul_end
+ 346                         quadmul_accu_loop:  
+ 347                                   
+ 348  000100   88                            push     A
+ 349  000101   7B02                          ld       A, (2,SP)
+ 350  000103   1E03                          ldw      X, (3,SP)
+ 351  000105   72FB07                        addw     X, (7,SP)
+ 352  000108   1902                          adc      A, (2,SP)
+ 353  00010A   8A                            push     CC
+ 354  00010B   6B06                          ld       (6,SP), A
+ 355  00010D   7B05                          ld       A, (5,SP)
+ 356  00010F   86                            pop      CC
+ 357  000110   A900                          adc      A, #0
+ 358  000112   6B05                          ld       (5,SP), A
+ 359  000114   1F07                          ldw      (7,SP), X
+ 360  000116   84                            pop      A
+ 361  000117   6B01                          ld       (1,SP), A
+ 362  000119   4A                            dec      A
+ 363  00011A R 2702                          jreq     quadmul_end
+ 364  00011C R 20E2                          jra      quadmul_accu_loop
+ 365                         
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 13  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 366                         quadmul_end:  
+ 367  00011E   84                            pop      A
+ 368  00011F   84                            pop      A
+ 369  000120   9085                          popw     Y
+ 370                                   
+ 371                                                          ; X:Y
+ 372  000122   85                            popw     X
+ 373  000123   9085                          popw     Y
+ 374                                   
+ 375                         quadmul_exit:  
+ 376  000125   84                            pop      A
+ 377  000126   86                            pop      CC
+ 378  000127   81                            ret      
+ 379                         
+ 380                         ;***********************************************************
+ 381                         ;name   : TriDiv() - 3 byte
+ 382                         ;fun    : 
+ 383                         ;params : 
+ 384                         ;         IN  : A:X, Y
+ 385                         ;         OUT : quotient: A:X   remainder: Y
+ 386                         ;                  (A:X <= A:X / Y)
+ 387                         ;***********************************************************
+ 388                         .TriDiv.W  
+ 389  000128   8A                            push     CC
+ 390                         
+ 391                                   
+ 392  000129   90A30000                      cpw      Y, #0
+ 393  00012D R 274A                          jreq     tridiv_exit
+ 394  00012F   A100                          cp       A, #0
+ 395  000131 R 2603                          jrne     long_div
+ 396  000133   65                            divw     X, Y
+ 397  000134 R 2043                          jra      tridiv_exit
+ 398                                   
+ 399                         long_div:  
+ 400                                                          ;push #0     ;(1) - Y
+ 401                                                          ;push #0     ;(2) - Y
+ 402                         
+ 403  000136   4B00                          push     #0            ;(1) - A:X
+ 404  000138   4B00                          push     #0            ;(2) - A:X
+ 405  00013A   4B00                          push     #0            ;(3) - A:X
+ 406                         
+ 407  00013C   89                            pushw    X
+ 408  00013D   9089                          pushw    Y
+ 409  00013F   88                            push     A
+ 410                                                          ;-------------
+ 411                                                          ;   HIGH STACK
+ 412                                                          ;+8 (1) - A:X   - return 
+                                                                ;quotient
+ 413                                                          ;+7 (2) - A:X   - return 
+                                                                ;quotient
+ 414                                                          ;+6 (3) - A:X   - return 
+                                                                ;quotient
+ 415                                                          ;+5 XL(input)   - variable
+ 416                                                          ;+4 XH(input)   - variable
+ 417                                                          ;+3 YL(input)   - invariable
+ 418                                                          ;+2 YH(input)   - invariable
+ 419                                                          ;+1 A(input)    - variable
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 14  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 420                                                          ;   LOW STACK
+ 421                                                          ;-------------
+ 422                         tridiv_acc_loop:  
+ 423  000140   1602                          ldw      Y, (2,SP)
+ 424  000142   1E04                          ldw      X, (4,SP)
+ 425  000144   65                            divw     X, Y
+ 426                                                          ; handle quotient 
+ 427  000145   7B06                          ld       A, (6,SP)
+ 428  000147   72FB07                        addw     X, (7,SP)
+ 429  00014A   A900                          adc      A, #0
+ 430                                                          ;ld (6,SP), A
+ 431  00014C   1C0001                        addw     X, #1
+ 432  00014F   A900                          adc      A, #0
+ 433  000151   6B06                          ld       (6,SP), A
+ 434  000153   1F07                          ldw      (7,SP), X
+ 435                                                          ; handle remainder 
+ 436  000155   72F202                        subw     Y, (2,SP)
+ 437  000158   1704                          ldw      (4,SP), Y
+ 438                                                          ;addw X
+ 439  00015A   0A01                          dec      (1,SP)
+ 440  00015C R 2702                          jreq     tridiv_end
+ 441  00015E R 20E0                          jra      tridiv_acc_loop
+ 442                                   
+ 443                         tridiv_end:  
+ 444  000160   1602                          ldw      Y, (2,SP)
+ 445  000162   1E04                          ldw      X, (4,SP)
+ 446  000164   65                            divw     X, Y
+ 447  000165   1704                          ldw      (4,SP), Y
+ 448                                                          ; handle quotient 
+ 449  000167   7B06                          ld       A, (6,SP)
+ 450  000169   72FB07                        addw     X, (7,SP)
+ 451  00016C   A900                          adc      A, #0
+ 452                                                          ;ld (6,SP), A
+ 453  00016E   6B06                          ld       (6,SP), A
+ 454  000170   1F07                          ldw      (7,SP), X
+ 455                                                          ; handle remainder 
+ 456                         
+ 457                         
+ 458                         
+ 459                         
+ 460  000172   84                            pop      A
+ 461  000173   9085                          popw     Y
+ 462                                   
+ 463                                                          ; remainder
+ 464  000175   9085                          popw     Y
+ 465                                                          ; quotient A:X
+ 466  000177   84                            pop      A
+ 467  000178   85                            popw     X
+ 468                         
+ 469                         
+ 470                         tridiv_exit:  
+ 471  000179   86                            pop      CC
+ 472  00017A   81                            ret      
+ 473                         
+ 474                         
+ 475                         
+ 476                         
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 15  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ 477  00017B                                 end      
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 16  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+Symbol Name                       Value     Call       Type  Scope      Rel.  Line  Privacy  Segment   Size  Bytes File
+
+ADC_COUNTER                       ????????         no  BYTE  External   rel     12  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM                           ????????         no  BYTE  External   rel     16  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM0                          ????????         no  BYTE  External   rel     17  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM1                          ????????         no  BYTE  External   rel     18  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM2                          ????????         no  BYTE  External   rel     19  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM3                          ????????         no  BYTE  External   rel     20  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG                           ????????         no  BYTE  External   rel     22  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG0                          ????????         no  BYTE  External   rel     23  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG1                          ????????         no  BYTE  External   rel     24  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG2                          ????????         no  BYTE  External   rel     25  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG3                          ????????         no  BYTE  External   rel     26  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_STORE                         ????????         no  BYTE  External   rel     28  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S00                           ????????         no  BYTE  External   rel     30  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S01                           ????????         no  BYTE  External   rel     31  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S02                           ????????         no  BYTE  External   rel     32  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S10                           ????????         no  BYTE  External   rel     34  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S11                           ????????         no  BYTE  External   rel     35  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S12                           ????????         no  BYTE  External   rel     36  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S20                           ????????         no  BYTE  External   rel     38  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S21                           ????????         no  BYTE  External   rel     39  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S22                           ????????         no  BYTE  External   rel     40  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S30                           ????????         no  BYTE  External   rel     42  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S31                           ????????         no  BYTE  External   rel     43  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S32                           ????????         no  BYTE  External   rel     44  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S40                           ????????         no  BYTE  External   rel     46  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S41                           ????????         no  BYTE  External   rel     47  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S42                           ????????         no  BYTE  External   rel     48  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S50                           ????????         no  BYTE  External   rel     50  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S51                           ????????         no  BYTE  External   rel     51  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S52                           ????????         no  BYTE  External   rel     52  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S60                           ????????         no  BYTE  External   rel     54  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S61                           ????????         no  BYTE  External   rel     55  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S62                           ????????         no  BYTE  External   rel     56  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S70                           ????????         no  BYTE  External   rel     58  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S71                           ????????         no  BYTE  External   rel     59  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S72                           ????????         no  BYTE  External   rel     60  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S80                           ????????         no  BYTE  External   rel     62  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S81                           ????????         no  BYTE  External   rel     63  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S82                           ????????         no  BYTE  External   rel     64  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S90                           ????????         no  BYTE  External   rel     66  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S91                           ????????         no  BYTE  External   rel     67  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S92                           ????????         no  BYTE  External   rel     68  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SA0                           ????????         no  BYTE  External   rel     70  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SA1                           ????????         no  BYTE  External   rel     71  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SA2                           ????????         no  BYTE  External   rel     72  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SB0                           ????????         no  BYTE  External   rel     74  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SB1                           ????????         no  BYTE  External   rel     75  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SB2                           ????????         no  BYTE  External   rel     76  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SC0                           ????????         no  BYTE  External   rel     78  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SC1                           ????????         no  BYTE  External   rel     79  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SC2                           ????????         no  BYTE  External   rel     80  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SD0                           ????????         no  BYTE  External   rel     82  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SD1                           ????????         no  BYTE  External   rel     83  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SD2                           ????????         no  BYTE  External   rel     84  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SE0                           ????????         no  BYTE  External   rel     86  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 17  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ADC_SE1                           ????????         no  BYTE  External   rel     87  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SE2                           ????????         no  BYTE  External   rel     88  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SF0                           ????????         no  BYTE  External   rel     90  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SF1                           ????????         no  BYTE  External   rel     91  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SF2                           ????????         no  BYTE  External   rel     92  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SG0                           ????????         no  BYTE  External   rel     94  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SG1                           ????????         no  BYTE  External   rel     95  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SG2                           ????????         no  BYTE  External   rel     96  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SH0                           ????????         no  BYTE  External   rel     98  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SH1                           ????????         no  BYTE  External   rel     99  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SH2                           ????????         no  BYTE  External   rel    100  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SI0                           ????????         no  BYTE  External   rel    102  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SI1                           ????????         no  BYTE  External   rel    103  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SI2                           ????????         no  BYTE  External   rel    104  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SJ0                           ????????         no  BYTE  External   rel    106  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SJ1                           ????????         no  BYTE  External   rel    107  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SJ2                           ????????         no  BYTE  External   rel    108  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SK0                           ????????         no  BYTE  External   rel    110  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SK1                           ????????         no  BYTE  External   rel    111  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SK2                           ????????         no  BYTE  External   rel    112  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SL0                           ????????         no  BYTE  External   rel    114  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SL1                           ????????         no  BYTE  External   rel    115  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SL2                           ????????         no  BYTE  External   rel    116  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SM0                           ????????         no  BYTE  External   rel    118  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SM1                           ????????         no  BYTE  External   rel    119  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SM2                           ????????         no  BYTE  External   rel    120  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SN0                           ????????         no  BYTE  External   rel    122  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SN1                           ????????         no  BYTE  External   rel    123  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SN2                           ????????         no  BYTE  External   rel    124  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SO0                           ????????         no  BYTE  External   rel    126  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SO1                           ????????         no  BYTE  External   rel    127  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SO2                           ????????         no  BYTE  External   rel    128  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SP0                           ????????         no  BYTE  External   rel    130  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SP1                           ????????         no  BYTE  External   rel    131  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SP2                           ????????         no  BYTE  External   rel    132  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SQ0                           ????????         no  BYTE  External   rel    134  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SQ1                           ????????         no  BYTE  External   rel    135  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SQ2                           ????????         no  BYTE  External   rel    136  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SR0                           ????????         no  BYTE  External   rel    138  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SR1                           ????????         no  BYTE  External   rel    139  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SR2                           ????????         no  BYTE  External   rel    140  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SS0                           ????????         no  BYTE  External   rel    142  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SS1                           ????????         no  BYTE  External   rel    143  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SS2                           ????????         no  BYTE  External   rel    144  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_ST0                           ????????         no  BYTE  External   rel    146  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_ST1                           ????????         no  BYTE  External   rel    147  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_ST2                           ????????         no  BYTE  External   rel    148  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SU0                           ????????         no  BYTE  External   rel    150  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SU1                           ????????         no  BYTE  External   rel    151  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SU2                           ????????         no  BYTE  External   rel    152  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SV0                           ????????         no  BYTE  External   rel    154  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SV1                           ????????         no  BYTE  External   rel    155  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SV2                           ????????         no  BYTE  External   rel    156  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SW0                           ????????         no  BYTE  External   rel    158  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SW1                           ????????         no  BYTE  External   rel    159  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SW2                           ????????         no  BYTE  External   rel    160  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SX0                           ????????         no  BYTE  External   rel    162  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 18  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+ADC_SX1                           ????????         no  BYTE  External   rel    163  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SX2                           ????????         no  BYTE  External   rel    164  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SY0                           ????????         no  BYTE  External   rel    166  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SY1                           ????????         no  BYTE  External   rel    167  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SY2                           ????????         no  BYTE  External   rel    168  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_THRESHOLD_QUOTIENT            ????????         no  BYTE  External   rel    170  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_THRESHOLD_QUOTIENT1           ????????         no  BYTE  External   rel    171  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_THRESHOLD_QUOTIENT0           ????????         no  BYTE  External   rel    172  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_QUOTIENT                  ????????         no  BYTE  External   rel    174  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_QUOTIENT_S1               ????????         no  BYTE  External   rel    175  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_QUOTIENT_S0               ????????         no  BYTE  External   rel    176  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_REMAINDER                 ????????         no  BYTE  External   rel    178  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_REMAINDER_S1              ????????         no  BYTE  External   rel    179  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_REMAINDER_S0              ????????         no  BYTE  External   rel    180  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_NEXT_PTR                      ????????         no  BYTE  External   rel    185  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SLOPE                         ????????         no  BYTE  External   rel    190  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_Delay                             0031         no  WORD  Internal   rel     79  public   text         6     0  -
+
+CHAR_MASS9                        ????????         no  BYTE  External   rel    253  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS8                        ????????         no  BYTE  External   rel    254  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS7                        ????????         no  BYTE  External   rel    255  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS6                        ????????         no  BYTE  External   rel    256  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS5                        ????????         no  BYTE  External   rel    257  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS4                        ????????         no  BYTE  External   rel    258  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS3                        ????????         no  BYTE  External   rel    259  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS2                        ????????         no  BYTE  External   rel    260  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS1                        ????????         no  BYTE  External   rel    261  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS0                        ????????         no  BYTE  External   rel    262  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS_1                       ????????         no  BYTE  External   rel    263  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE5                       ????????         no  BYTE  External   rel    268  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE4                       ????????         no  BYTE  External   rel    269  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE3                       ????????         no  BYTE  External   rel    270  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE2                       ????????         no  BYTE  External   rel    271  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE1                       ????????         no  BYTE  External   rel    272  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE0                       ????????         no  BYTE  External   rel    273  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD7                   ????????         no  BYTE  External   rel    276  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD6                   ????????         no  BYTE  External   rel    277  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD5                   ????????         no  BYTE  External   rel    278  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD4                   ????????         no  BYTE  External   rel    279  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD3                   ????????         no  BYTE  External   rel    280  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD2                   ????????         no  BYTE  External   rel    281  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD1                   ????????         no  BYTE  External   rel    282  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD0                   ????????         no  BYTE  External   rel    283  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY7                       ????????         no  BYTE  External   rel    288  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY6                       ????????         no  BYTE  External   rel    289  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY5                       ????????         no  BYTE  External   rel    290  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY4                       ????????         no  BYTE  External   rel    291  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY3                       ????????         no  BYTE  External   rel    292  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY2                       ????????         no  BYTE  External   rel    293  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY1                       ????????         no  BYTE  External   rel    294  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY0                       ????????         no  BYTE  External   rel    295  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS9                    ????????         no  BYTE  External   rel    301  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS8                    ????????         no  BYTE  External   rel    302  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS7                    ????????         no  BYTE  External   rel    303  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS6                    ????????         no  BYTE  External   rel    304  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS5                    ????????         no  BYTE  External   rel    305  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS4                    ????????         no  BYTE  External   rel    306  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 19  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+CHAR_MAX_MASS3                    ????????         no  BYTE  External   rel    307  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS2                    ????????         no  BYTE  External   rel    308  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS1                    ????????         no  BYTE  External   rel    309  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS0                    ????????         no  BYTE  External   rel    310  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS_1                   ????????         no  BYTE  External   rel    311  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+CPU_Delay_1us                         0000         no  WORD  Internal   rel     16  public   text         6     0  -
+
+KEYDOWN_FLAG                      ????????         no  BYTE  External   rel    220  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_STORE                    ????????         no  BYTE  External   rel    223  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S4                       ????????         no  BYTE  External   rel    225  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S3                       ????????         no  BYTE  External   rel    226  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S2                       ????????         no  BYTE  External   rel    227  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S1                       ????????         no  BYTE  External   rel    228  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S0                       ????????         no  BYTE  External   rel    229  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PTR                      ????????         no  BYTE  External   rel    230  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_DOT_OK                   ????????         no  BYTE  External   rel    232  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S4             ????????         no  BYTE  External   rel    234  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S3             ????????         no  BYTE  External   rel    235  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S2             ????????         no  BYTE  External   rel    236  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S1             ????????         no  BYTE  External   rel    237  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S0             ????????         no  BYTE  External   rel    238  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S4         ????????         no  BYTE  External   rel    241  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S3         ????????         no  BYTE  External   rel    242  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S2         ????????         no  BYTE  External   rel    243  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S1         ????????         no  BYTE  External   rel    244  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S0         ????????         no  BYTE  External   rel    245  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEY_ARRAY_MENU                    ????????         no  BYTE  External   rel    248  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEY_TYPING_FLAG                   ????????         no  BYTE  External   rel    249  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+KeyDelay                              0023         no  WORD  Internal   rel     58  public   text         6     0  -
+
+LCD_VAR0                          ????????         no  BYTE  External   rel      8  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+LCD_VAR1                          ????????         no  BYTE  External   rel      9  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+LCD_VAR2                          ????????         no  BYTE  External   rel     10  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+LCD_Delay                             0016         no  WORD  Internal   rel     41  public   text         6     0  -
+
+MassDivider                           003E         no  WORD  Internal   rel    103  public   text        11     0  -
+
+NET_ADC                           ????????         no  BYTE  External   rel    198  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC0                          ????????         no  BYTE  External   rel    199  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC1                          ????????         no  BYTE  External   rel    200  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC2                          ????????         no  BYTE  External   rel    201  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC3                          ????????         no  BYTE  External   rel    202  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF                           ????????         no  BYTE  External   rel    204  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF3                          ????????         no  BYTE  External   rel    205  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF2                          ????????         no  BYTE  External   rel    206  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF1                          ????????         no  BYTE  External   rel    207  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF0                          ????????         no  BYTE  External   rel    208  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+PRICE_MUL3                        ????????         no  BYTE  External   rel    215  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+PRICE_MUL2                        ????????         no  BYTE  External   rel    216  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+PRICE_MUL1                        ????????         no  BYTE  External   rel    217  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+PRICE_MUL0                        ????????         no  BYTE  External   rel    218  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+QuadMul                               00BE         no  WORD  Internal   rel    259  public   text        15     0  -
+
+STR_MASS                          ????????         no  BYTE  External   rel    252  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_PRICE                         ????????         no  BYTE  External   rel    267  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:38 2018
+Page 20  Assembler
+                                               e:\stm8s\electronic_scale\common.asm
+
+STR_THRESHOLD                     ????????         no  BYTE  External   rel    275  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_MONEY                         ????????         no  BYTE  External   rel    287  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_MAX_MASS                      ????????         no  BYTE  External   rel    298  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+TriMul                                0073         no  WORD  Internal   rel    163  public   text        14     0  -
+TriDiv                                0128         no  WORD  Internal   rel    388  public   text        14     0  -
+
+WEIGHT_QUOTIENT                   ????????         no  BYTE  External   rel    211  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+WEIGHT_REMAINDER                  ????????         no  BYTE  External   rel    212  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+ZERO_ADC                          ????????         no  BYTE  External   rel    192  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC0                         ????????         no  BYTE  External   rel    193  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC1                         ????????         no  BYTE  External   rel    194  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC2                         ????????         no  BYTE  External   rel    195  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC3                         ????????         no  BYTE  External   rel    196  private  text         0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+adc_delay_loop                        0037         no  WORD  Internal   rel     83  private  text         7     0  -
+
+cpu_timer1                            0006         no  WORD  Internal   rel     20  private  text         4     0  -
+cpu_delay_loop                        000A         no  WORD  Internal   rel     22  private  text        12     0  -
+
+div_start                             0049         no  WORD  Internal   rel    117  private  text        20     0  -
+div_restore_loop_status               005D         no  WORD  Internal   rel    132  private  text         7     0  -
+div_3_borrow                          0064         no  WORD  Internal   rel    137  private  text         6     0  -
+div_end0                              006A         no  WORD  Internal   rel    141  private  text         9     0  -
+
+key_delay_loop                        0029         no  WORD  Internal   rel     62  private  text         8     0  -
+
+lcd_delay_loop                        001C         no  WORD  Internal   rel     45  private  text         7     0  -
+long_div                              0136         no  WORD  Internal   rel    399  private  text        10     0  -
+
+quadmul_zero_exit                     00CD         no  WORD  Internal   rel    268  private  text         9     0  -
+quadmul_not_zero                      00D6         no  WORD  Internal   rel    273  private  text        42     0  -
+quadmul_accu_loop                     0100         no  WORD  Internal   rel    346  private  text        30     0  -
+quadmul_end                           011E         no  WORD  Internal   rel    366  private  text         7     0  -
+quadmul_exit                          0125         no  WORD  Internal   rel    375  private  text         3     0  -
+
+trimul_zero_exit                      0081         no  WORD  Internal   rel    172  private  text         7     0  -
+trimul_not_zero                       0088         no  WORD  Internal   rel    177  private  text        27     0  -
+trimul_int_loop                       00A3         no  WORD  Internal   rel    218  private  text        19     0  -
+trimul_int_end                        00B6         no  WORD  Internal   rel    230  private  text         4     0  -
+trimul_exit                           00BA         no  WORD  Internal   rel    246  private  text         4     0  -
+tridiv_acc_loop                       0140         no  WORD  Internal   rel    422  private  text        32     0  -
+tridiv_end                            0160         no  WORD  Internal   rel    443  private  text        25     0  -
+tridiv_exit                           0179         no  WORD  Internal   rel    470  private  text         2     0  -
+
+
+253 labels
+No errors on assembly of 'e:\stm8s\electronic_scale\common.asm'

@@ -1,0 +1,2281 @@
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 1  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+   1                         stm8/     
+   2                         
+   3                                   
+   0  000000                                 #include "LCD.inc"
+   1                                   
+   2  000000 U                               #IFDEF   __LCD_ 1
+   5  000000                                 #define  __LCD_ 1
+   6                                   
+   0  000000                                 #include "stm8s105k4.inc"
+   1                         ; STM8S105K4.inc
+   2  000000 U                               #IFDEF   __INCLUDE_STM8S105K4_
+   4  000000                                 #define  __INCLUDE_STM8S105K4_ 1
+   0  000000                                 #include "STM8S105K.inc"
+   1                         ; STM8S105K.inc
+   2                         
+   3                         ; Copyright (c) 2003-2012 STMicroelectronics
+   4                         
+   5  000000 U                               #ifdef   __STM8S105K__
+   8  000000                                 #define  __STM8S105K__ 1
+   9                         
+  10                         ; STM8S105K
+  11                         
+  12                         
+  13                         ; Port A
+  14                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+  15                         
+  16  000000                                 EXTERN   PA_ODR.w      ; Port A data output latch 
+                                                                ;register
+  17                         
+  18  000000                                 EXTERN   PA_IDR.w      ; Port A input pin value 
+                                                                ;register
+  19                         
+  20  000000                                 EXTERN   PA_DDR.w      ; Port A data direction 
+                                                                ;register
+  21                         
+  22  000000                                 EXTERN   PA_CR1.w      ; Port A control register 1
+  23                         
+  24  000000                                 EXTERN   PA_CR2.w      ; Port A control register 2
+  25                         
+  26                         ; Port B
+  27                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+  28                         
+  29  000000                                 EXTERN   PB_ODR.w      ; Port B data output latch 
+                                                                ;register
+  30                         
+  31  000000                                 EXTERN   PB_IDR.w      ; Port B input pin value 
+                                                                ;register
+  32                         
+  33  000000                                 EXTERN   PB_DDR.w      ; Port B data direction 
+                                                                ;register
+  34                         
+  35  000000                                 EXTERN   PB_CR1.w      ; Port B control register 1
+  36                         
+  37  000000                                 EXTERN   PB_CR2.w      ; Port B control register 2
+  38                         
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 2  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+  39                         ; Port C
+  40                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+  41                         
+  42  000000                                 EXTERN   PC_ODR.w      ; Port C data output latch 
+                                                                ;register
+  43                         
+  44  000000                                 EXTERN   PC_IDR.w      ; Port C input pin value 
+                                                                ;register
+  45                         
+  46  000000                                 EXTERN   PC_DDR.w      ; Port C data direction 
+                                                                ;register
+  47                         
+  48  000000                                 EXTERN   PC_CR1.w      ; Port C control register 1
+  49                         
+  50  000000                                 EXTERN   PC_CR2.w      ; Port C control register 2
+  51                         
+  52                         ; Port D
+  53                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+  54                         
+  55  000000                                 EXTERN   PD_ODR.w      ; Port D data output latch 
+                                                                ;register
+  56                         
+  57  000000                                 EXTERN   PD_IDR.w      ; Port D input pin value 
+                                                                ;register
+  58                         
+  59  000000                                 EXTERN   PD_DDR.w      ; Port D data direction 
+                                                                ;register
+  60                         
+  61  000000                                 EXTERN   PD_CR1.w      ; Port D control register 1
+  62                         
+  63  000000                                 EXTERN   PD_CR2.w      ; Port D control register 2
+  64                         
+  65                         ; Port E
+  66                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+  67                         
+  68  000000                                 EXTERN   PE_ODR.w      ; Port E data output latch 
+                                                                ;register
+  69                         
+  70  000000                                 EXTERN   PE_IDR.w      ; Port E input pin value 
+                                                                ;register
+  71                         
+  72  000000                                 EXTERN   PE_DDR.w      ; Port E data direction 
+                                                                ;register
+  73                         
+  74  000000                                 EXTERN   PE_CR1.w      ; Port E control register 1
+  75                         
+  76  000000                                 EXTERN   PE_CR2.w      ; Port E control register 2
+  77                         
+  78                         ; Port F
+  79                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+  80                         
+  81  000000                                 EXTERN   PF_ODR.w      ; Port F data output latch 
+                                                                ;register
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 3  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+  82                         
+  83  000000                                 EXTERN   PF_IDR.w      ; Port F input pin value 
+                                                                ;register
+  84                         
+  85  000000                                 EXTERN   PF_DDR.w      ; Port F data direction 
+                                                                ;register
+  86                         
+  87  000000                                 EXTERN   PF_CR1.w      ; Port F control register 1
+  88                         
+  89  000000                                 EXTERN   PF_CR2.w      ; Port F control register 2
+  90                         
+  91                         ; Flash
+  92                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+  93                         
+  94  000000                                 EXTERN   FLASH_CR1.w   ; Flash control register 1
+  95                         
+  96  000000                                 EXTERN   FLASH_CR2.w   ; Flash control register 2
+  97                         
+  98  000000                                 EXTERN   FLASH_NCR2.w  ; Flash complementary control 
+                                                                ;register 2
+  99                         
+ 100  000000                                 EXTERN   FLASH_FPR.w   ; Flash protection register
+ 101                         
+ 102  000000                                 EXTERN   FLASH_NFPR.w  ; Flash complementary protection
+                                                                ; register
+ 103                         
+ 104  000000                                 EXTERN   FLASH_IAPSR.w  ; Flash in-application 
+                                                                ;programming status register
+ 105                         
+ 106  000000                                 EXTERN   FLASH_PUKR.w  ; Flash Program memory 
+                                                                ;unprotection register
+ 107                         
+ 108  000000                                 EXTERN   FLASH_DUKR.w  ; Data EEPROM unprotection 
+                                                                ;register
+ 109                         
+ 110                         ; External Interrupt Control Register (ITC)
+ 111                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 112                         
+ 113  000000                                 EXTERN   EXTI_CR1.w    ; External interrupt control 
+                                                                ;register 1
+ 114                         
+ 115  000000                                 EXTERN   EXTI_CR2.w    ; External interrupt control 
+                                                                ;register 2
+ 116                         
+ 117                         ; Reset (RST)
+ 118                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 119                         
+ 120  000000                                 EXTERN   RST_SR.w      ; Reset status register 1
+ 121                         
+ 122                         ; Clock Control (CLK)
+ 123                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 124                         
+ 125  000000                                 EXTERN   CLK_ICKR.w    ; Internal clock control 
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 4  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+                                                                ;register
+ 126                         
+ 127  000000                                 EXTERN   CLK_ECKR.w    ; External clock control 
+                                                                ;register
+ 128                         
+ 129  000000                                 EXTERN   CLK_CMSR.w    ; Clock master status register
+ 130                         
+ 131  000000                                 EXTERN   CLK_SWR.w     ; Clock master switch register
+ 132                         
+ 133  000000                                 EXTERN   CLK_SWCR.w    ; Clock switch control register
+ 134                         
+ 135  000000                                 EXTERN   CLK_CKDIVR.w  ; Clock divider register
+ 136                         
+ 137  000000                                 EXTERN   CLK_PCKENR1.w  ; Peripheral clock gating 
+                                                                ;register 1
+ 138                         
+ 139  000000                                 EXTERN   CLK_CSSR.w    ; Clock security system 
+                                                                ;register
+ 140                         
+ 141  000000                                 EXTERN   CLK_CCOR.w    ; Configurable clock control 
+                                                                ;register
+ 142                         
+ 143  000000                                 EXTERN   CLK_PCKENR2.w  ; Peripheral clock gating 
+                                                                ;register 2
+ 144                         
+ 145  000000                                 EXTERN   CLK_CANCCR.w  ; CAN clock control register
+ 146                         
+ 147  000000                                 EXTERN   CLK_HSITRIMR.w  ; HSI clock calibration trimming
+                                                                ; register
+ 148                         
+ 149  000000                                 EXTERN   CLK_SWIMCCR.w  ; SWIM clock control register
+ 150                         
+ 151                         ; Window Watchdog (WWDG)
+ 152                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 153                         
+ 154  000000                                 EXTERN   WWDG_CR.w     ; WWDG Control Register
+ 155                         
+ 156  000000                                 EXTERN   WWDG_WR.w     ; WWDR Window Register
+ 157                         
+ 158                         ; Independent Watchdog (IWDG)
+ 159                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 160                         
+ 161  000000                                 EXTERN   IWDG_KR.w     ; IWDG Key Register
+ 162                         
+ 163  000000                                 EXTERN   IWDG_PR.w     ; IWDG Prescaler Register
+ 164                         
+ 165  000000                                 EXTERN   IWDG_RLR.w    ; IWDG Reload Register
+ 166                         
+ 167                         ; Auto Wake-Up (AWU)
+ 168                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 169                         
+ 170  000000                                 EXTERN   AWU_CSR.w     ; AWU Control/Status Register
+ 171                         
+ 172  000000                                 EXTERN   AWU_APR.w     ; AWU asynchronous prescaler 
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 5  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+                                                                ;buffer register
+ 173                         
+ 174  000000                                 EXTERN   AWU_TBR.w     ; AWU Timebase selection 
+                                                                ;register
+ 175                         
+ 176                         ; Beeper (BEEP)
+ 177                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 178                         
+ 179  000000                                 EXTERN   BEEP_CSR.w    ; BEEP Control/Status Register
+ 180                         
+ 181                         ; Serial Peripheral Interface (SPI)
+ 182                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 183                         
+ 184  000000                                 EXTERN   SPI_CR1.w     ; SPI Control Register 1
+ 185                         
+ 186  000000                                 EXTERN   SPI_CR2.w     ; SPI Control Register 2
+ 187                         
+ 188  000000                                 EXTERN   SPI_ICR.w     ; SPI Interrupt Control 
+                                                                ;Register
+ 189                         
+ 190  000000                                 EXTERN   SPI_SR.w      ; SPI Status Register
+ 191                         
+ 192  000000                                 EXTERN   SPI_DR.w      ; SPI Data Register
+ 193                         
+ 194  000000                                 EXTERN   SPI_CRCPR.w   ; SPI CRC Polynomial Register
+ 195                         
+ 196  000000                                 EXTERN   SPI_RXCRCR.w  ; SPI Rx CRC Register
+ 197                         
+ 198  000000                                 EXTERN   SPI_TXCRCR.w  ; SPI Tx CRC Register
+ 199                         
+ 200                         ; I2C Bus Interface (I2C)
+ 201                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 202                         
+ 203  000000                                 EXTERN   I2C_CR1.w     ; I2C control register 1
+ 204                         
+ 205  000000                                 EXTERN   I2C_CR2.w     ; I2C control register 2
+ 206                         
+ 207  000000                                 EXTERN   I2C_FREQR.w   ; I2C frequency register
+ 208                         
+ 209  000000                                 EXTERN   I2C_OARL.w    ; I2C Own address register low
+ 210                         
+ 211  000000                                 EXTERN   I2C_OARH.w    ; I2C Own address register high
+ 212                         
+ 213  000000                                 EXTERN   I2C_DR.w      ; I2C data register
+ 214                         
+ 215  000000                                 EXTERN   I2C_SR1.w     ; I2C status register 1
+ 216                         
+ 217  000000                                 EXTERN   I2C_SR2.w     ; I2C status register 2
+ 218                         
+ 219  000000                                 EXTERN   I2C_SR3.w     ; I2C status register 3
+ 220                         
+ 221  000000                                 EXTERN   I2C_ITR.w     ; I2C interrupt control 
+                                                                ;register
+ 222                         
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 6  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 223  000000                                 EXTERN   I2C_CCRL.w    ; I2C Clock control register 
+                                                                ;low
+ 224                         
+ 225  000000                                 EXTERN   I2C_CCRH.w    ; I2C Clock control register 
+                                                                ;high
+ 226                         
+ 227  000000                                 EXTERN   I2C_TRISER.w  ; I2C TRISE register
+ 228                         
+ 229  000000                                 EXTERN   I2C_PECR.w    ; I2C packet error checking 
+                                                                ;register
+ 230                         
+ 231                         ; LIN Universal asynch. receiver transmitter (UART2)
+ 232                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 233                         
+ 234  000000                                 EXTERN   UART2_SR.w    ; UART2 Status Register
+ 235                         
+ 236  000000                                 EXTERN   UART2_DR.w    ; UART2 Data Register
+ 237                         
+ 238  000000                                 EXTERN   UART2_BRR1.w  ; UART2 Baud Rate Register 1
+ 239                         
+ 240  000000                                 EXTERN   UART2_BRR2.w  ; UART2 Baud Rate Register 2
+ 241                         
+ 242  000000                                 EXTERN   UART2_CR1.w   ; UART2 Control Register 1
+ 243                         
+ 244  000000                                 EXTERN   UART2_CR2.w   ; UART2 Control Register 2
+ 245                         
+ 246  000000                                 EXTERN   UART2_CR3.w   ; UART2 Control Register 3
+ 247                         
+ 248  000000                                 EXTERN   UART2_CR4.w   ; UART2 Control Register 4
+ 249                         
+ 250  000000                                 EXTERN   UART2_CR5.w   ; UART2 Control Register 5
+ 251                         
+ 252  000000                                 EXTERN   UART2_CR6.w   ; UART2 Control Register 6
+ 253                         
+ 254  000000                                 EXTERN   UART2_GTR.w   ; UART2 Guard time Register
+ 255                         
+ 256  000000                                 EXTERN   UART2_PSCR.w  ; UART2 Prescaler Register
+ 257                         
+ 258                         ; 16-Bit Timer 1 (TIM1)
+ 259                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 260                         
+ 261  000000                                 EXTERN   TIM1_CR1.w    ; TIM1 Control register 1
+ 262                         
+ 263  000000                                 EXTERN   TIM1_CR2.w    ; TIM1 Control register 2
+ 264                         
+ 265  000000                                 EXTERN   TIM1_SMCR.w   ; TIM1 Slave Mode Control 
+                                                                ;register
+ 266                         
+ 267  000000                                 EXTERN   TIM1_ETR.w    ; TIM1 external trigger 
+                                                                ;register
+ 268                         
+ 269  000000                                 EXTERN   TIM1_IER.w    ; TIM1 Interrupt enable 
+                                                                ;register
+ 270                         
+ 271  000000                                 EXTERN   TIM1_SR1.w    ; TIM1 Status register 1
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 7  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 272                         
+ 273  000000                                 EXTERN   TIM1_SR2.w    ; TIM1 Status register 2
+ 274                         
+ 275  000000                                 EXTERN   TIM1_EGR.w    ; TIM1 Event Generation 
+                                                                ;register
+ 276                         
+ 277  000000                                 EXTERN   TIM1_CCMR1.w  ; TIM1 Capture/Compare mode 
+                                                                ;register 1
+ 278                         
+ 279  000000                                 EXTERN   TIM1_CCMR2.w  ; TIM1 Capture/Compare mode 
+                                                                ;register 2
+ 280                         
+ 281  000000                                 EXTERN   TIM1_CCMR3.w  ; TIM1 Capture/Compare mode 
+                                                                ;register 3
+ 282                         
+ 283  000000                                 EXTERN   TIM1_CCMR4.w  ; TIM1 Capture/Compare mode 
+                                                                ;register 4
+ 284                         
+ 285  000000                                 EXTERN   TIM1_CCER1.w  ; TIM1 Capture/Compare enable 
+                                                                ;register 1
+ 286                         
+ 287  000000                                 EXTERN   TIM1_CCER2.w  ; TIM1 Capture/Compare enable 
+                                                                ;register 2
+ 288                         
+ 289  000000                                 EXTERN   TIM1_CNTRH.w  ; Data bits High
+ 290                         
+ 291  000000                                 EXTERN   TIM1_CNTRL.w  ; Data bits Low
+ 292                         
+ 293  000000                                 EXTERN   TIM1_PSCRH.w  ; Data bits High
+ 294                         
+ 295  000000                                 EXTERN   TIM1_PSCRL.w  ; Data bits Low
+ 296                         
+ 297  000000                                 EXTERN   TIM1_ARRH.w   ; Data bits High
+ 298                         
+ 299  000000                                 EXTERN   TIM1_ARRL.w   ; Data bits Low
+ 300                         
+ 301  000000                                 EXTERN   TIM1_RCR.w    ; TIM1 Repetition counter 
+                                                                ;register
+ 302                         
+ 303  000000                                 EXTERN   TIM1_CCR1H.w  ; Data bits High
+ 304                         
+ 305  000000                                 EXTERN   TIM1_CCR1L.w  ; Data bits Low
+ 306                         
+ 307  000000                                 EXTERN   TIM1_CCR2H.w  ; Data bits High
+ 308                         
+ 309  000000                                 EXTERN   TIM1_CCR2L.w  ; Data bits Low
+ 310                         
+ 311  000000                                 EXTERN   TIM1_CCR3H.w  ; Data bits High
+ 312                         
+ 313  000000                                 EXTERN   TIM1_CCR3L.w  ; Data bits Low
+ 314                         
+ 315  000000                                 EXTERN   TIM1_CCR4H.w  ; Data bits High
+ 316                         
+ 317  000000                                 EXTERN   TIM1_CCR4L.w  ; Data bits Low
+ 318                         
+ 319  000000                                 EXTERN   TIM1_BKR.w    ; TIM1 Break register
+ 320                         
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 8  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 321  000000                                 EXTERN   TIM1_DTR.w    ; TIM1 Dead-time register
+ 322                         
+ 323  000000                                 EXTERN   TIM1_OISR.w   ; TIM1 Output idle state 
+                                                                ;register
+ 324                         
+ 325                         ; 16-Bit Timer 2 (TIM2)
+ 326                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 327                         
+ 328  000000                                 EXTERN   TIM2_CR1.w    ; TIM2 Control register 1
+ 329                         
+ 330  000000                                 EXTERN   TIM2_IER.w    ; TIM2 Interrupt enable 
+                                                                ;register
+ 331                         
+ 332  000000                                 EXTERN   TIM2_SR1.w    ; TIM2 Status register 1
+ 333                         
+ 334  000000                                 EXTERN   TIM2_SR2.w    ; TIM2 Status register 2
+ 335                         
+ 336  000000                                 EXTERN   TIM2_EGR.w    ; TIM2 Event Generation 
+                                                                ;register
+ 337                         
+ 338  000000                                 EXTERN   TIM2_CCMR1.w  ; TIM2 Capture/Compare mode 
+                                                                ;register 1
+ 339                         
+ 340  000000                                 EXTERN   TIM2_CCMR2.w  ; TIM2 Capture/Compare mode 
+                                                                ;register 2
+ 341                         
+ 342  000000                                 EXTERN   TIM2_CCMR3.w  ; TIM2 Capture/Compare mode 
+                                                                ;register 3
+ 343                         
+ 344  000000                                 EXTERN   TIM2_CCER1.w  ; TIM2 Capture/Compare enable 
+                                                                ;register 1
+ 345                         
+ 346  000000                                 EXTERN   TIM2_CCER2.w  ; TIM2 Capture/Compare enable 
+                                                                ;register 2
+ 347                         
+ 348  000000                                 EXTERN   TIM2_CNTRH.w  ; Data bits High
+ 349                         
+ 350  000000                                 EXTERN   TIM2_CNTRL.w  ; Data bits Low
+ 351                         
+ 352  000000                                 EXTERN   TIM2_PSCR.w   ; TIM2 Prescaler register
+ 353                         
+ 354  000000                                 EXTERN   TIM2_ARRH.w   ; Data bits High
+ 355                         
+ 356  000000                                 EXTERN   TIM2_ARRL.w   ; Data bits Low
+ 357                         
+ 358  000000                                 EXTERN   TIM2_CCR1H.w  ; Data bits High
+ 359                         
+ 360  000000                                 EXTERN   TIM2_CCR1L.w  ; Data bits Low
+ 361                         
+ 362  000000                                 EXTERN   TIM2_CCR2H.w  ; Data bits High
+ 363                         
+ 364  000000                                 EXTERN   TIM2_CCR2L.w  ; Data bits Low
+ 365                         
+ 366  000000                                 EXTERN   TIM2_CCR3H.w  ; Data bits High
+ 367                         
+ 368  000000                                 EXTERN   TIM2_CCR3L.w  ; Data bits Low
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 9  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 369                         
+ 370                         ; 16-Bit Timer 3 (TIM3)
+ 371                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 372                         
+ 373  000000                                 EXTERN   TIM3_CR1.w    ; TIM3 Control register 1
+ 374                         
+ 375  000000                                 EXTERN   TIM3_IER.w    ; TIM3 Interrupt enable 
+                                                                ;register
+ 376                         
+ 377  000000                                 EXTERN   TIM3_SR1.w    ; TIM3 Status register 1
+ 378                         
+ 379  000000                                 EXTERN   TIM3_SR2.w    ; TIM3 Status register 2
+ 380                         
+ 381  000000                                 EXTERN   TIM3_EGR.w    ; TIM3 Event Generation 
+                                                                ;register
+ 382                         
+ 383  000000                                 EXTERN   TIM3_CCMR1.w  ; TIM3 Capture/Compare mode 
+                                                                ;register 1
+ 384                         
+ 385  000000                                 EXTERN   TIM3_CCMR2.w  ; TIM3 Capture/Compare mode 
+                                                                ;register 2
+ 386                         
+ 387  000000                                 EXTERN   TIM3_CCER1.w  ; TIM3 Capture/Compare enable 
+                                                                ;register 1
+ 388                         
+ 389  000000                                 EXTERN   TIM3_CNTRH.w  ; Data bits High
+ 390                         
+ 391  000000                                 EXTERN   TIM3_CNTRL.w  ; Data bits Low
+ 392                         
+ 393  000000                                 EXTERN   TIM3_PSCR.w   ; TIM3 Prescaler register
+ 394                         
+ 395  000000                                 EXTERN   TIM3_ARRH.w   ; Data bits High
+ 396                         
+ 397  000000                                 EXTERN   TIM3_ARRL.w   ; Data bits Low
+ 398                         
+ 399  000000                                 EXTERN   TIM3_CCR1H.w  ; Data bits High
+ 400                         
+ 401  000000                                 EXTERN   TIM3_CCR1L.w  ; Data bits Low
+ 402                         
+ 403  000000                                 EXTERN   TIM3_CCR2H.w  ; Data bits High
+ 404                         
+ 405  000000                                 EXTERN   TIM3_CCR2L.w  ; Data bits Low
+ 406                         
+ 407                         ; 8-Bit  Timer 4 (TIM4)
+ 408                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 409                         
+ 410  000000                                 EXTERN   TIM4_CR1.w    ; TIM4 Control register 1
+ 411                         
+ 412  000000                                 EXTERN   TIM4_IER.w    ; TIM4 Interrupt enable 
+                                                                ;register
+ 413                         
+ 414  000000                                 EXTERN   TIM4_SR.w     ; TIM4 Status register
+ 415                         
+ 416  000000                                 EXTERN   TIM4_EGR.w    ; TIM4 Event Generation 
+                                                                ;register
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 10  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 417                         
+ 418  000000                                 EXTERN   TIM4_CNTR.w   ; TIM4 Counter
+ 419                         
+ 420  000000                                 EXTERN   TIM4_PSCR.w   ; TIM4 Prescaler register
+ 421                         
+ 422  000000                                 EXTERN   TIM4_ARR.w    ; TIM4 Auto-reload register
+ 423                         
+ 424                         ; 10-Bit A/D Converter (ADC1)
+ 425                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 426                         
+ 427  000000                                 EXTERN   ADC_DB0RH.w   ; Data Buffer register 0 High
+ 428                         
+ 429  000000                                 EXTERN   ADC_DB0RL.w   ; Data Buffer register 0 Low
+ 430                         
+ 431  000000                                 EXTERN   ADC_DB1RH.w   ; Data Buffer register 1 High
+ 432                         
+ 433  000000                                 EXTERN   ADC_DB1RL.w   ; Data Buffer register 1 Low
+ 434                         
+ 435  000000                                 EXTERN   ADC_DB2RH.w   ; Data Buffer register 2 High
+ 436                         
+ 437  000000                                 EXTERN   ADC_DB2RL.w   ; Data Buffer register 2 Low
+ 438                         
+ 439  000000                                 EXTERN   ADC_DB3RH.w   ; Data Buffer register 3 High
+ 440                         
+ 441  000000                                 EXTERN   ADC_DB3RL.w   ; Data Buffer register 3 Low
+ 442                         
+ 443  000000                                 EXTERN   ADC_DB4RH.w   ; Data Buffer register 4 High
+ 444                         
+ 445  000000                                 EXTERN   ADC_DB4RL.w   ; Data Buffer register 4 Low
+ 446                         
+ 447  000000                                 EXTERN   ADC_DB5RH.w   ; Data Buffer register 5 High
+ 448                         
+ 449  000000                                 EXTERN   ADC_DB5RL.w   ; Data Buffer register 5 Low
+ 450                         
+ 451  000000                                 EXTERN   ADC_DB6RH.w   ; Data Buffer register 6 High
+ 452                         
+ 453  000000                                 EXTERN   ADC_DB6RL.w   ; Data Buffer register 6 Low
+ 454                         
+ 455  000000                                 EXTERN   ADC_DB7RH.w   ; Data Buffer register 7 High
+ 456                         
+ 457  000000                                 EXTERN   ADC_DB7RL.w   ; Data Buffer register 7 Low
+ 458                         
+ 459  000000                                 EXTERN   ADC_DB8RH.w   ; Data Buffer register 8 High
+ 460                         
+ 461  000000                                 EXTERN   ADC_DB8RL.w   ; Data Buffer register 8 Low
+ 462                         
+ 463  000000                                 EXTERN   ADC_DB9RH.w   ; Data Buffer register 9 High
+ 464                         
+ 465  000000                                 EXTERN   ADC_DB9RL.w   ; Data Buffer register 9 Low
+ 466                         
+ 467  000000                                 EXTERN   ADC_CSR.w     ; ADC Control/Status Register
+ 468                         
+ 469  000000                                 EXTERN   ADC_CR1.w     ; ADC Configuration Register 1
+ 470                         
+ 471  000000                                 EXTERN   ADC_CR2.w     ; ADC Configuration Register 2
+ 472                         
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 11  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 473  000000                                 EXTERN   ADC_CR3.w     ; ADC Configuration Register 3
+ 474                         
+ 475  000000                                 EXTERN   ADC_DRH.w     ; Data bits High
+ 476                         
+ 477  000000                                 EXTERN   ADC_DRL.w     ; Data bits Low
+ 478                         
+ 479  000000                                 EXTERN   ADC_TDRH.w    ; Schmitt trigger disable High
+ 480                         
+ 481  000000                                 EXTERN   ADC_TDRL.w    ; Schmitt trigger disable Low
+ 482                         
+ 483  000000                                 EXTERN   ADC_HTRH.w    ; High Threshold Register High
+ 484                         
+ 485  000000                                 EXTERN   ADC_HTRL.w    ; High Threshold Register Low
+ 486                         
+ 487  000000                                 EXTERN   ADC_LTRH.w    ; Low Threshold Register High
+ 488                         
+ 489  000000                                 EXTERN   ADC_LTRL.w    ; Low Threshold Register Low
+ 490                         
+ 491  000000                                 EXTERN   ADC_AWSRH.w   ; Analog Watchdog Status 
+                                                                ;register High
+ 492                         
+ 493  000000                                 EXTERN   ADC_AWSRL.w   ; Analog Watchdog Status 
+                                                                ;register Low
+ 494                         
+ 495  000000                                 EXTERN   ADC_AWCRH.w   ; Analog Watchdog Control 
+                                                                ;register High
+ 496                         
+ 497  000000                                 EXTERN   ADC_AWCRL.w   ; Analog Watchdog Control 
+                                                                ;register Low
+ 498                         
+ 499                         ;  Global configuration register (CFG)
+ 500                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 501                         
+ 502  000000                                 EXTERN   CFG_GCR.w     ; CFG Global configuration 
+                                                                ;register
+ 503                         
+ 504                         ; Interrupt Software Priority Register (ITC)
+ 505                         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                               ;;;;;;
+ 506                         
+ 507  000000                                 EXTERN   ITC_SPR1.w    ; Interrupt Software priority 
+                                                                ;register 1
+ 508                         
+ 509  000000                                 EXTERN   ITC_SPR2.w    ; Interrupt Software priority 
+                                                                ;register 2
+ 510                         
+ 511  000000                                 EXTERN   ITC_SPR3.w    ; Interrupt Software priority 
+                                                                ;register 3
+ 512                         
+ 513  000000                                 EXTERN   ITC_SPR4.w    ; Interrupt Software priority 
+                                                                ;register 4
+ 514                         
+ 515  000000                                 EXTERN   ITC_SPR5.w    ; Interrupt Software priority 
+                                                                ;register 5
+ 516                         
+ 517  000000                                 EXTERN   ITC_SPR6.w    ; Interrupt Software priority 
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 12  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+                                                                ;register 6
+ 518                         
+ 519  000000                                 EXTERN   ITC_SPR7.w    ; Interrupt Software priority 
+                                                                ;register 7
+ 520                         
+ 521  000000                                 #endif                 ; __STM8S105K__
+<END_OF_INCLUSION>
+   6                                   
+   7  000000                                 #ENDIF   
+   8                         
+   9                         
+<END_OF_INCLUSION>
+   0  000000                                 #include "GlobalVar.inc"
+   1                         
+   2  000000 U                               #IFDEF   __GLOBAL_VAR__
+   5                                   
+   6  000000                                 #define  __GLOBAL_VAR__ 1
+   7                         ;   ++ 0x0F
+   8  000000                                 EXTERN   LCD_VAR0.B
+   9  000000                                 EXTERN   LCD_VAR1.B
+  10  000000                                 EXTERN   LCD_VAR2.B
+  11                                   
+  12  000000                                 EXTERN   ADC_COUNTER.B
+  13                         
+  14                                   
+  15                         ;   ++ 0x04
+  16  000000                                 EXTERN   ADC_SUM.B
+  17  000000                                 EXTERN   ADC_SUM0.B
+  18  000000                                 EXTERN   ADC_SUM1.B
+  19  000000                                 EXTERN   ADC_SUM2.B
+  20  000000                                 EXTERN   ADC_SUM3.B
+  21                         ;   ++ 0x04
+  22  000000                                 EXTERN   ADC_AVG.B
+  23  000000                                 EXTERN   ADC_AVG0.B
+  24  000000                                 EXTERN   ADC_AVG1.B
+  25  000000                                 EXTERN   ADC_AVG2.B
+  26  000000                                 EXTERN   ADC_AVG3.B
+  27                         ;   ++ 0x18
+  28  000000                                 EXTERN   ADC_STORE.B
+  29                         
+  30  000000                                 EXTERN   ADC_S00.B 
+  31  000000                                 EXTERN   ADC_S01.B
+  32  000000                                 EXTERN   ADC_S02.B
+  33                                   
+  34  000000                                 EXTERN   ADC_S10.B
+  35  000000                                 EXTERN   ADC_S11.B
+  36  000000                                 EXTERN   ADC_S12.B
+  37                         
+  38  000000                                 EXTERN   ADC_S20.B
+  39  000000                                 EXTERN   ADC_S21.B
+  40  000000                                 EXTERN   ADC_S22.B
+  41                                   
+  42  000000                                 EXTERN   ADC_S30.B
+  43  000000                                 EXTERN   ADC_S31.B
+  44  000000                                 EXTERN   ADC_S32.B
+  45                                   
+  46  000000                                 EXTERN   ADC_S40.B
+  47  000000                                 EXTERN   ADC_S41.B
+  48  000000                                 EXTERN   ADC_S42.B
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 13  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+  49                                   
+  50  000000                                 EXTERN   ADC_S50.B
+  51  000000                                 EXTERN   ADC_S51.B
+  52  000000                                 EXTERN   ADC_S52.B
+  53                                   
+  54  000000                                 EXTERN   ADC_S60.B
+  55  000000                                 EXTERN   ADC_S61.B
+  56  000000                                 EXTERN   ADC_S62.B
+  57                                   
+  58  000000                                 EXTERN   ADC_S70.B
+  59  000000                                 EXTERN   ADC_S71.B
+  60  000000                                 EXTERN   ADC_S72.B
+  61                         ;   ++ 0x03
+  62  000000                                 EXTERN   ADC_S80.B
+  63  000000                                 EXTERN   ADC_S81.B
+  64  000000                                 EXTERN   ADC_S82.B
+  65                                   
+  66  000000                                 EXTERN   ADC_S90.B
+  67  000000                                 EXTERN   ADC_S91.B
+  68  000000                                 EXTERN   ADC_S92.B
+  69                                   
+  70  000000                                 EXTERN   ADC_SA0.B
+  71  000000                                 EXTERN   ADC_SA1.B
+  72  000000                                 EXTERN   ADC_SA2.B
+  73                                   
+  74  000000                                 EXTERN   ADC_SB0.B
+  75  000000                                 EXTERN   ADC_SB1.B
+  76  000000                                 EXTERN   ADC_SB2.B
+  77                                   
+  78  000000                                 EXTERN   ADC_SC0.B
+  79  000000                                 EXTERN   ADC_SC1.B
+  80  000000                                 EXTERN   ADC_SC2.B
+  81                                   
+  82  000000                                 EXTERN   ADC_SD0.B
+  83  000000                                 EXTERN   ADC_SD1.B
+  84  000000                                 EXTERN   ADC_SD2.B
+  85                                   
+  86  000000                                 EXTERN   ADC_SE0.B
+  87  000000                                 EXTERN   ADC_SE1.B
+  88  000000                                 EXTERN   ADC_SE2.B
+  89                                   
+  90  000000                                 EXTERN   ADC_SF0.B
+  91  000000                                 EXTERN   ADC_SF1.B
+  92  000000                                 EXTERN   ADC_SF2.B
+  93                                   
+  94  000000                                 EXTERN   ADC_SG0.B
+  95  000000                                 EXTERN   ADC_SG1.B
+  96  000000                                 EXTERN   ADC_SG2.B
+  97                                   
+  98  000000                                 EXTERN   ADC_SH0.B
+  99  000000                                 EXTERN   ADC_SH1.B
+ 100  000000                                 EXTERN   ADC_SH2.B
+ 101                                   
+ 102  000000                                 EXTERN   ADC_SI0.B
+ 103  000000                                 EXTERN   ADC_SI1.B
+ 104  000000                                 EXTERN   ADC_SI2.B
+ 105                                   
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 14  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 106  000000                                 EXTERN   ADC_SJ0.B
+ 107  000000                                 EXTERN   ADC_SJ1.B
+ 108  000000                                 EXTERN   ADC_SJ2.B
+ 109                                   
+ 110  000000                                 EXTERN   ADC_SK0.B
+ 111  000000                                 EXTERN   ADC_SK1.B
+ 112  000000                                 EXTERN   ADC_SK2.B
+ 113                                   
+ 114  000000                                 EXTERN   ADC_SL0.B
+ 115  000000                                 EXTERN   ADC_SL1.B
+ 116  000000                                 EXTERN   ADC_SL2.B
+ 117                                   
+ 118  000000                                 EXTERN   ADC_SM0.B
+ 119  000000                                 EXTERN   ADC_SM1.B
+ 120  000000                                 EXTERN   ADC_SM2.B
+ 121                                   
+ 122  000000                                 EXTERN   ADC_SN0.B
+ 123  000000                                 EXTERN   ADC_SN1.B
+ 124  000000                                 EXTERN   ADC_SN2.B
+ 125                                   
+ 126  000000                                 EXTERN   ADC_SO0.B
+ 127  000000                                 EXTERN   ADC_SO1.B
+ 128  000000                                 EXTERN   ADC_SO2.B
+ 129                                   
+ 130  000000                                 EXTERN   ADC_SP0.B
+ 131  000000                                 EXTERN   ADC_SP1.B
+ 132  000000                                 EXTERN   ADC_SP2.B
+ 133                                   
+ 134  000000                                 EXTERN   ADC_SQ0.B
+ 135  000000                                 EXTERN   ADC_SQ1.B
+ 136  000000                                 EXTERN   ADC_SQ2.B
+ 137                                   
+ 138  000000                                 EXTERN   ADC_SR0.B
+ 139  000000                                 EXTERN   ADC_SR1.B
+ 140  000000                                 EXTERN   ADC_SR2.B
+ 141                                   
+ 142  000000                                 EXTERN   ADC_SS0.B
+ 143  000000                                 EXTERN   ADC_SS1.B
+ 144  000000                                 EXTERN   ADC_SS2.B
+ 145                                   
+ 146  000000                                 EXTERN   ADC_ST0.B
+ 147  000000                                 EXTERN   ADC_ST1.B
+ 148  000000                                 EXTERN   ADC_ST2.B
+ 149                                   
+ 150  000000                                 EXTERN   ADC_SU0.B
+ 151  000000                                 EXTERN   ADC_SU1.B
+ 152  000000                                 EXTERN   ADC_SU2.B
+ 153                                   
+ 154  000000                                 EXTERN   ADC_SV0.B
+ 155  000000                                 EXTERN   ADC_SV1.B
+ 156  000000                                 EXTERN   ADC_SV2.B
+ 157                                   
+ 158  000000                                 EXTERN   ADC_SW0.B
+ 159  000000                                 EXTERN   ADC_SW1.B
+ 160  000000                                 EXTERN   ADC_SW2.B
+ 161                                   
+ 162  000000                                 EXTERN   ADC_SX0.B
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 15  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 163  000000                                 EXTERN   ADC_SX1.B
+ 164  000000                                 EXTERN   ADC_SX2.B
+ 165                                   
+ 166  000000                                 EXTERN   ADC_SY0.B
+ 167  000000                                 EXTERN   ADC_SY1.B
+ 168  000000                                 EXTERN   ADC_SY2.B
+ 169                                   
+ 170  000000                                 EXTERN   ADC_THRESHOLD_QUOTIENT.B
+ 171  000000                                 EXTERN   ADC_THRESHOLD_QUOTIENT1.B
+ 172  000000                                 EXTERN   ADC_THRESHOLD_QUOTIENT0.B
+ 173                         
+ 174  000000                                 EXTERN   ADC_MAX_QUOTIENT.B
+ 175  000000                                 EXTERN   ADC_MAX_QUOTIENT_S1.B
+ 176  000000                                 EXTERN   ADC_MAX_QUOTIENT_S0.B
+ 177                         
+ 178  000000                                 EXTERN   ADC_MAX_REMAINDER.B
+ 179  000000                                 EXTERN   ADC_MAX_REMAINDER_S1.B
+ 180  000000                                 EXTERN   ADC_MAX_REMAINDER_S0.B
+ 181                                   
+ 182                                   
+ 183                                                          ;EXTERN ADC_SLOPE.B
+ 184                         ;   ++ 0x01
+ 185  000000                                 EXTERN   ADC_NEXT_PTR.B
+ 186                                                          ;EXTERN ADC_MAX_PTR.B
+ 187                                                          ;EXTERN ADC_MIN_PTR.B
+ 188                                   
+ 189                                   
+ 190  000000                                 EXTERN   ADC_SLOPE.B
+ 191                         ;   ++ 0x04
+ 192  000000                                 EXTERN   ZERO_ADC.B
+ 193  000000                                 EXTERN   ZERO_ADC0.B
+ 194  000000                                 EXTERN   ZERO_ADC1.B
+ 195  000000                                 EXTERN   ZERO_ADC2.B
+ 196  000000                                 EXTERN   ZERO_ADC3.B
+ 197                                   
+ 198  000000                                 EXTERN   NET_ADC.B
+ 199  000000                                 EXTERN   NET_ADC0.B
+ 200  000000                                 EXTERN   NET_ADC1.B
+ 201  000000                                 EXTERN   NET_ADC2.B
+ 202  000000                                 EXTERN   NET_ADC3.B
+ 203                                   
+ 204  000000                                 EXTERN   NET_BUF.B
+ 205  000000                                 EXTERN   NET_BUF3.B
+ 206  000000                                 EXTERN   NET_BUF2.B
+ 207  000000                                 EXTERN   NET_BUF1.B
+ 208  000000                                 EXTERN   NET_BUF0.B
+ 209                                   
+ 210                                   
+ 211  000000                                 EXTERN   WEIGHT_QUOTIENT.B
+ 212  000000                                 EXTERN   WEIGHT_REMAINDER.B
+ 213                                   
+ 214                                   
+ 215  000000                                 EXTERN   PRICE_MUL3.B
+ 216  000000                                 EXTERN   PRICE_MUL2.B
+ 217  000000                                 EXTERN   PRICE_MUL1.B
+ 218  000000                                 EXTERN   PRICE_MUL0.B
+ 219                                   
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 16  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 220  000000                                 EXTERN   KEYDOWN_FLAG.B
+ 221                                   
+ 222                                   
+ 223  000000                                 EXTERN   KEYBOARD_STORE.B
+ 224                                   
+ 225  000000                                 EXTERN   KEYBOARD_S4.B
+ 226  000000                                 EXTERN   KEYBOARD_S3.B
+ 227  000000                                 EXTERN   KEYBOARD_S2.B
+ 228  000000                                 EXTERN   KEYBOARD_S1.B
+ 229  000000                                 EXTERN   KEYBOARD_S0.B
+ 230  000000                                 EXTERN   KEYBOARD_PTR.B
+ 231                                   
+ 232  000000                                 EXTERN   KEYBOARD_DOT_OK.B
+ 233                                   
+ 234  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S4.B
+ 235  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S3.B
+ 236  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S2.B
+ 237  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S1.B
+ 238  000000                                 EXTERN   KEYBOARD_PRICE_BUF_S0.B
+ 239                                   
+ 240                                   
+ 241  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S4.B
+ 242  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S3.B
+ 243  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S2.B
+ 244  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S1.B
+ 245  000000                                 EXTERN   KEYBOARD_THRESHOLD_BUF_S0.B
+ 246                                   
+ 247                                   
+ 248  000000                                 EXTERN   KEY_ARRAY_MENU.B
+ 249  000000                                 EXTERN   KEY_TYPING_FLAG.B
+ 250                                   
+ 251                                   
+ 252  000000                                 EXTERN   STR_MASS.B
+ 253  000000                                 EXTERN   CHAR_MASS9.B
+ 254  000000                                 EXTERN   CHAR_MASS8.B
+ 255  000000                                 EXTERN   CHAR_MASS7.B
+ 256  000000                                 EXTERN   CHAR_MASS6.B
+ 257  000000                                 EXTERN   CHAR_MASS5.B
+ 258  000000                                 EXTERN   CHAR_MASS4.B
+ 259  000000                                 EXTERN   CHAR_MASS3.B
+ 260  000000                                 EXTERN   CHAR_MASS2.B
+ 261  000000                                 EXTERN   CHAR_MASS1.B
+ 262  000000                                 EXTERN   CHAR_MASS0.B
+ 263  000000                                 EXTERN   CHAR_MASS_1.B
+ 264                         
+ 265                                   
+ 266                                   
+ 267  000000                                 EXTERN   STR_PRICE.B
+ 268  000000                                 EXTERN   CHAR_PRICE5.B
+ 269  000000                                 EXTERN   CHAR_PRICE4.B
+ 270  000000                                 EXTERN   CHAR_PRICE3.B
+ 271  000000                                 EXTERN   CHAR_PRICE2.B
+ 272  000000                                 EXTERN   CHAR_PRICE1.B
+ 273  000000                                 EXTERN   CHAR_PRICE0.B
+ 274                                   
+ 275  000000                                 EXTERN   STR_THRESHOLD.B
+ 276  000000                                 EXTERN   CHAR_THRESHOLD7.B
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 17  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 277  000000                                 EXTERN   CHAR_THRESHOLD6.B
+ 278  000000                                 EXTERN   CHAR_THRESHOLD5.B
+ 279  000000                                 EXTERN   CHAR_THRESHOLD4.B
+ 280  000000                                 EXTERN   CHAR_THRESHOLD3.B
+ 281  000000                                 EXTERN   CHAR_THRESHOLD2.B
+ 282  000000                                 EXTERN   CHAR_THRESHOLD1.B
+ 283  000000                                 EXTERN   CHAR_THRESHOLD0.B
+ 284                                   
+ 285                                   
+ 286                                   
+ 287  000000                                 EXTERN   STR_MONEY.B
+ 288  000000                                 EXTERN   CHAR_MONEY7.B
+ 289  000000                                 EXTERN   CHAR_MONEY6.B
+ 290  000000                                 EXTERN   CHAR_MONEY5.B
+ 291  000000                                 EXTERN   CHAR_MONEY4.B
+ 292  000000                                 EXTERN   CHAR_MONEY3.B
+ 293  000000                                 EXTERN   CHAR_MONEY2.B
+ 294  000000                                 EXTERN   CHAR_MONEY1.B
+ 295  000000                                 EXTERN   CHAR_MONEY0.B
+ 296                                   
+ 297                                   
+ 298  000000                                 EXTERN   STR_MAX_MASS.B
+ 299                                                          ;EXTERN CHAR_MAX_MASS11.B
+ 300                                                          ;EXTERN CHAR_MAX_MASS10.B
+ 301  000000                                 EXTERN   CHAR_MAX_MASS9.B
+ 302  000000                                 EXTERN   CHAR_MAX_MASS8.B
+ 303  000000                                 EXTERN   CHAR_MAX_MASS7.B
+ 304  000000                                 EXTERN   CHAR_MAX_MASS6.B
+ 305  000000                                 EXTERN   CHAR_MAX_MASS5.B
+ 306  000000                                 EXTERN   CHAR_MAX_MASS4.B
+ 307  000000                                 EXTERN   CHAR_MAX_MASS3.B
+ 308  000000                                 EXTERN   CHAR_MAX_MASS2.B
+ 309  000000                                 EXTERN   CHAR_MAX_MASS1.B
+ 310  000000                                 EXTERN   CHAR_MAX_MASS0.B
+ 311  000000                                 EXTERN   CHAR_MAX_MASS_1.B
+ 312                                   
+ 313  000000                                 #ENDIF   
+ 314                                   
+ 315                                   
+<END_OF_INCLUSION>
+   0  000000                                 #include "MacroFunction.inc"
+   1                         
+   2                                   
+   3                                   
+   4  000000 U                               #IFDEF   __MACRO_FUNCTION_
+   7  000000                                 #define  __MACRO_FUNCTION_ 1
+   8                                   
+   0  000000                                 #include "LCD.inc"
+   1                                   
+   2  000000                                 #IFDEF   1 1
+   3                                   
+   4  000000                                 #ELSE    
+  59                                   
+  60                                   
+  61                         
+  62                                   
+  63                                   
+  64                                   
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 18  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+  65                                   
+  66                                   
+  67                                   
+  68                                   
+  69                         
+  70                         
+<END_OF_INCLUSION>
+  10                                   
+   0  000000                                 #include "GlobalVar.inc"
+   1                         
+   2  000000                                 #IFDEF   1
+   3                                   
+   4  000000                                 #ELSE    
+ 314                                   
+ 315                                   
+<END_OF_INCLUSION>
+   0  000000                                 #include "Common.inc"
+   1                                   
+   2  000000 U                               #IFDEF   __COMMON_INC_
+   5                                   
+   6  000000                                 #define  __COMMON_INC_ 1
+   7                                   
+   8  000000                                 EXTERN   LCD_Delay.W 
+   9  000000                                 EXTERN   ADC_Delay.W
+  10  000000                                 EXTERN   KeyDelay.W
+  11  000000                                 EXTERN   CPU_Delay_1us.W
+  12  000000                                 EXTERN   MassDivider.W
+  13                                                          ;EXTERN MassDivider_old.W
+  14                                   
+  15  000000                                 EXTERN   TriMul.W
+  16  000000                                 EXTERN   QuadMul.W
+  17  000000                                 EXTERN   TriDiv.W
+  18                                   
+  19  000000                                 #ENDIF   
+  20                                   
+  21                                   
+<END_OF_INCLUSION>
+  13                                   
+  14                         ;***********************************************************
+  15                         ;name   :(void)
+  16                         ;          PrintChar (cor_x: x,
+  17                         ;                     cor_y: y,
+  18                         ;                     _char: char)
+  19                         ;fun    : print char to LCD
+  20                         ;***********************************************************
+  21  000000                       PrintChar  MACRO    cor_x,cor_y,_char
+  22                                   mov      LCD_VAR0, cor_x
+  23                                   mov      LCD_VAR1, cor_y
+  24                                   mov      LCD_VAR2, _char
+  25                                   call     LCD_WriChar
+  26  000000                                 MEND     
+  27                         
+  28                         ;***********************************************************
+  29                         ;name   :(void)
+  30                         ;          LCD_ClearLine (line: _line)
+  31                         ;fun    : print char to LCD
+  32                         ;***********************************************************
+  33  000000                       LCD_ClearLine  MACRO    _line
+  34                                   PrintStr #0, #{_line+1}, #EMPTY_LINE
+  35  000000                                 MEND     
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 19  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+  36                         
+  37                         
+  38                         ;***********************************************************
+  39                         ;name   :(void)
+  40                         ;          LCD_Scmd (_cmd: cmd)
+  41                         ;fun    : print char to LCD
+  42                         ;***********************************************************
+  43  000000                       LCD_SCmd  MACRO    _cmd
+  44                                   ld       A, _cmd
+  45                                   call     LCD_WriCMD
+  46  000000                                 MEND     
+  47                                   
+  48                         ;***********************************************************
+  49                         ;name   :(void)
+  50                         ;          LCD_SetCursor (_cmd: cmd)
+  51                         ;fun    : print char to LCD
+  52                         ;***********************************************************
+  53  000000                       LCD_SetCursor_Macro  MACRO    _x,_y
+  54                                   mov      LCD_VAR0, _x
+  55                                   mov      LCD_VAR1, _y
+  56                                   call     LCD_SetCursor
+  57  000000                                 MEND     
+  58                         
+  59                                   
+  60                         ;***********************************************************
+  61                         ;name   :(void)
+  62                         ;          LCD_Clear ()
+  63                         ;fun    : clear LCD
+  64                         ;***********************************************************
+  65  000000                       LCD_Clear  MACRO    
+  66                                   ld       A, #01H
+  67                                   call     LCD_WriCMD
+  68  000000                                 MEND     
+  69                         
+  70                         ;***********************************************************
+  71                         ;name   :(void)
+  72                         ;          PrintStr (start_x: start_x,
+  73                         ;                    start_y: start_y,
+  74                         ;                    str_ptr.W: str_ptr)
+  75                         ;fun    : print char to LCD,
+  76                         ;         string end with 0
+  77                         ;***********************************************************
+  78  000000                       PrintStr  MACRO    start_x,start_y,str_ptr
+  79                                   pushw    X
+  80                                   mov      LCD_VAR0, start_x
+  81                                   mov      LCD_VAR1, start_y
+  82                                   ldw      X, str_ptr
+  83                                   call     LCD_WriString
+  84                                   popw     X
+  85  000000                                 MEND     
+  86                         
+  87                         ;***********************************************************
+  88                         ;name   : (Quotient: X, Remainder: Y)
+  89                         ;           ADC_Convert (X: _divisor)
+  90                         ;fun    : divide from [NET_ADC2:NET_ADC1:NET_ADC0]
+  91                         ;***********************************************************
+  92  000000                       ADC_Convert  MACRO    _divisor
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 20  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+  93                                   ldw      X, _divisor
+  94                                   call     MassDivider
+  95  000000                                 MEND     
+  96                         
+  97                         
+  98                         
+  99                         
+ 100                         
+ 101                                   
+ 102  000000                                 #ENDIF   
+ 103                                   
+ 104                                   
+ 105                                   
+ 106                                   
+ 107                                   
+ 108                                   
+ 109                                   
+ 110                                   
+<END_OF_INCLUSION>
+   0  000000                                 #include "Common.inc"
+   1                                   
+   2  000000                                 #IFDEF   1
+   3                                   
+   4  000000                                 #ELSE    
+  20                                   
+  21                                   
+<END_OF_INCLUSION>
+  11                                   
+  12                         
+  13                                                          ;#define LCD_OE PB_ODR,#3
+  14  000000                                 #define  LCD_RS PB_ODR,#5
+  15  000000                                 #define  LCD_RW PB_ODR,#4
+  16  000000                                 #define  LCD_E PB_ODR,#3
+  17  000000                                 #define  LCD_SER PD_ODR,#2
+  18  000000                                 #define  LCD_SRCLK PD_ODR,#5
+  19  000000                                 #define  LCD_RCK PD_ODR,#3
+  20                                   
+  21                                   
+  22  000000                                 #define  CHAR_I 0
+  23  000000                                 #define  CHAR_I_R 1
+  24  000000                                 #define  CHAR_II 2
+  25  000000                                 #define  CHAR_II_R 3
+  26  000000                                 #define  CHAR_III 4
+  27  000000                                 #define  CHAR_III_R 5
+  28                                   
+  29                                                          ;#define LCD_OE PB_ODR,#0
+  30                                   
+  31                                   
+  32  000000                                 #define  LCD_CMD_INIT #00111000B
+  33                                                          ;   enable display, no cursor, 
+                                                                ;no twinkle
+  34  000000                                 #define  LCD_CMD_ON #00001100B
+  35                                                          ;   disable display, no cursor, 
+                                                                ;no twinkle
+  36  000000                                 #define  LCD_CMD_OFF #0000000B
+  37  000000                                 #define  LCD_CMD_CLEAR #01H
+  38  000000                                 #define  LCD_CMD_FOSC_ON #00001101B
+  39  000000                                 #define  LCD_CMD_FOSC_OFF #00001100B
+  40                                   
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 21  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+  41                                   
+  42                                   
+  43  000000                                 EXTERN   LCD_Init.W
+  44  000000                                 EXTERN   LCD_WriChar.W
+  45  000000                                 EXTERN   LCD_WriCMD.W
+  46  000000                                 EXTERN   LCD_WriData.W
+  47  000000                                 EXTERN   LCD_SerData.W
+  48  000000                                 EXTERN   LCD_WriString.W
+  49  000000                                 EXTERN   LCD_SetCursor.W
+  50  000000                                 EXTERN   LCD_InitCustom.W
+  51                                                          ;EXTERN LCD_ClearLine.W
+  52                                   
+  53  000000                                 EXTERN   EMPTY_LINE.W
+  54                         ;
+  55                         ;
+  56                         ;
+  57                         ;
+  58  000000                                 #ENDIF   
+  59                                   
+  60                                   
+  61                         
+  62                                   
+  63                                   
+  64                                   
+  65                                   
+  66                                   
+  67                                   
+  68                                   
+  69                         
+  70                         
+<END_OF_INCLUSION>
+   5                                   
+   6                                   segment  'rom'
+   7                                   
+   8  00816D                                 INTEL    
+   9                         
+  10                         .EMPTY_LINE.W  
+  11  00816D   2020202020202020    
+  11  008175   2020202020202020              
+  11  00817D   00                            dc.b     "                ", 0   ; 16 space
+  12                         ;***********************************************************
+  13                         ;name   : LCD_Init()
+  14                         ;fun    : init LCD after reset
+  15                         ;params : 
+  16                         ;         IN  : NULL
+  17                         ;         OUT : NULL
+  18                         ;***********************************************************
+  19                         .LCD_Init.w  
+  20  00817E   8A                            push     CC
+  21  00817F   88                            push     A
+  22                                                          ;   --------    init gpio
+  23                                                          ; PB3, PB4, PB5, PB1, PD5, PD3
+  24                                                          ; ---------------------
+  25                                                          ;; PB3 - LCD(E)
+  26                                                          ;bres LCD_E
+  27  008180   72165005                      bset     PB_ODR,#3
+  28  008184   72165008                      bset     PB_CR1, #3
+  29  008188   72165007                      bset     PB_DDR, #3
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 22  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+  30                                   
+  31                                                          ;; PB5 - LCD(RS)
+  32  00818C   721B5005                      bres     PB_ODR,#5
+  33  008190   721A5008                      bset     PB_CR1, #5
+  34  008194   721A5007                      bset     PB_DDR, #5
+  35                                   
+  36                                                          ;; PB4 - LCD(RW)
+  37  008198   72195005                      bres     PB_ODR,#4
+  38  00819C   72185008                      bset     PB_CR1, #4
+  39  0081A0   72185007                      bset     PB_DDR, #4
+  40                                   
+  41                                                          ;; PD3 - 74HC595(RCK)
+  42                                                          ;bres LCD_RCK
+  43  0081A4   7216500F                      bset     PD_ODR,#3
+  44  0081A8   72165011                      bset     PD_DDR, #3
+  45  0081AC   72165012                      bset     PD_CR1, #3
+  46  0081B0   72165013                      bset     PD_CR2, #3
+  47                                   
+  48                                                          ;; PD2 - 74HC595(SER)
+  49                                                          ;bres LCD_SER
+  50  0081B4   7214500F                      bset     PD_ODR,#2
+  51  0081B8   72145011                      bset     PD_DDR, #2
+  52  0081BC   72145012                      bset     PD_CR1, #2
+  53  0081C0   72145013                      bset     PD_CR2, #2
+  54                                   
+  55                                                          ;; PD5 - 74HC595(SRCLK)
+  56                                                          ;bres LCD_SRCLK
+  57  0081C4   721A500F                      bset     PD_ODR,#5
+  58  0081C8   721A5011                      bset     PD_DDR, #5
+  59  0081CC   721A5012                      bset     PD_CR1, #5
+  60  0081D0   721A5013                      bset     PD_CR2, #5
+  61                         
+  62                                   
+  63                                                          ;; init lcd
+  64                                   LCD_SCmd #38H
+  64  0081D4   A638                          ld       A, #38H
+  64  0081D6   CD832D                        call     LCD_WriCMD
+  65  0081D9   CD89FF                        call     LCD_Delay
+  66  0081DC   CD89FF                        call     LCD_Delay
+  67                                   LCD_SCmd #38H
+  67  0081DF   A638                          ld       A, #38H
+  67  0081E1   CD832D                        call     LCD_WriCMD
+  68  0081E4                                 LCD_SCmd #08H
+  68  0081E4   A608                          ld       A, #08H
+  68  0081E6   CD832D                        call     LCD_WriCMD
+  69  0081E9                                 LCD_SCmd #01H
+  69  0081E9   A601                          ld       A, #01H
+  69  0081EB   CD832D                        call     LCD_WriCMD
+  70  0081EE                                 LCD_SCmd #06H
+  70  0081EE   A606                          ld       A, #06H
+  70  0081F0   CD832D                        call     LCD_WriCMD
+  71  0081F3                                 LCD_SCmd #0CH
+  71  0081F3   A60C                          ld       A, #0CH
+  71  0081F5   CD832D                        call     LCD_WriCMD
+  72  0081F8                       
+  73                         
+  74                         
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 23  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+  75                                                          ;PrintChar #0, #0, #'A'
+  76                                   
+  77                         
+  78  0081F8   84                            pop      A
+  79  0081F9   86                            pop      CC
+  80  0081FA   81                            ret      
+  81                         
+  82                         
+  83                         
+  84                         
+  85                         
+  86                         
+  87                         
+  88                         ;***********************************************************
+  89                         ;name   : LCD_InitCustom(VARB0:x, VARB1:y, VARB2:char)
+  90                         ;fun    : 
+  91                         ;params :   
+  92                         ;         IN  : LCD_VAR0 <= cor x (<=15)
+  93                         ;               LCD_VAR1 <= cor y (<=1)
+  94                         ;               LCD_VAR2 <= char
+  95                         ;         OUT : NULL
+  96                         ;***********************************************************
+  97                         
+  98  0081FB   0000000404000000    DC_CHAR_I  dc.b     000H,000H,000H,004H,004H,000H,000H,000H
+  99  008203   FFFFFFFBFBFFFFFF    DC_CONVERT_I  dc.b     0FFH,0FFH,0FFH,0FBH,0FBH,0FFH,0FFH,0FFH
+ 100  00820B   0000040000040000    DC_CHAR_II  dc.b     000H,000H,004H,000H,000H,004H,000H,000H
+ 101  008213   FFFFFBFFFFFBFFFF    DC_CONVERT_II  dc.b     0FFH,0FFH,0FBH,0FFH,0FFH,0FBH,0FFH,0FFH
+ 102  00821B   000000040A000000    DC_CHAR_III  dc.b     000H,000H,000H,004H,00AH,000H,000H,000H
+ 103  008223   FFFFFFFBF5FFFFFF    DC_CONVERT_III  dc.b     0FFH,0FFH,0FFH,0FBH,0F5H,0FFH,0FFH,0FFH
+ 104                         
+ 105  00822B   080C0E0F0E0C0800    DC_CHAR_LEFT  dc.b     008H,00CH,00EH,00FH,00EH,00CH,008H,000H
+ 106  008233   02060E1E0E060200    DC_CHAR_RIGHT  dc.b     002H,006H,00EH,01EH,00EH,006H,002H,000H
+ 107                         
+ 108                         .LCD_InitCustom.W  
+ 109  00823B   8A                            push     CC
+ 110  00823C   88                            push     A
+ 111  00823D   89                            pushw    X
+ 112                         
+ 113                                                          ; --------------- 00: , 
+ 114  00823E   A640                          ld       A, #40H
+ 115  008240   CD832D                        call     LCD_WriCMD
+ 116  008243   5F                            clrw     X
+ 117                                                          ;ldw X, #0
+ 118                         init_custom_data_loop_0:  
+ 119  008244   D681FB                        ld       A, (DC_CHAR_I,X)
+ 120  008247   CD8346                        call     LCD_WriData
+ 121  00824A   5C                            incw     X
+ 122  00824B   A30008                        cpw      X, #8
+ 123  00824E   26F4                          jrne     init_custom_data_loop_0
+ 124                                   
+ 125                                                          ; --------------- 01
+ 126  008250   A648                          ld       A, #48H
+ 127  008252   CD832D                        call     LCD_WriCMD
+ 128  008255   5F                            clrw     X
+ 129                                                          ;ldw X, #0
+ 130                         init_custom_data_loop_1:  
+ 131  008256   D68203                        ld       A, (DC_CONVERT_I,X)
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 24  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 132  008259   CD8346                        call     LCD_WriData
+ 133  00825C   5C                            incw     X
+ 134  00825D   A30008                        cpw      X, #8
+ 135  008260   26F4                          jrne     init_custom_data_loop_1
+ 136                                   
+ 137                                   
+ 138                                                          ; --------------- 02: , 
+ 139  008262   A650                          ld       A, #50H
+ 140  008264   CD832D                        call     LCD_WriCMD
+ 141  008267   5F                            clrw     X
+ 142                                                          ;ldw X, #0
+ 143                         init_custom_data_loop_2:  
+ 144  008268   D6820B                        ld       A, (DC_CHAR_II,X)
+ 145  00826B   CD8346                        call     LCD_WriData
+ 146  00826E   5C                            incw     X
+ 147  00826F   A30008                        cpw      X, #8
+ 148  008272   26F4                          jrne     init_custom_data_loop_2
+ 149                                   
+ 150                                                          ; --------------- 03
+ 151  008274   A658                          ld       A, #58H
+ 152  008276   CD832D                        call     LCD_WriCMD
+ 153  008279   5F                            clrw     X
+ 154                                                          ;ldw X, #0
+ 155                         init_custom_data_loop_3:  
+ 156  00827A   D68213                        ld       A, (DC_CONVERT_II,X)
+ 157  00827D   CD8346                        call     LCD_WriData
+ 158  008280   5C                            incw     X
+ 159  008281   A30008                        cpw      X, #8
+ 160  008284   26F4                          jrne     init_custom_data_loop_3
+ 161                                   
+ 162                                   
+ 163                                                          ; --------------- 04: , 
+ 164  008286   A660                          ld       A, #60H
+ 165  008288   CD832D                        call     LCD_WriCMD
+ 166  00828B   5F                            clrw     X
+ 167                                                          ;ldw X, #0
+ 168                         init_custom_data_loop_4:  
+ 169  00828C   D6821B                        ld       A, (DC_CHAR_III,X)
+ 170  00828F   CD8346                        call     LCD_WriData
+ 171  008292   5C                            incw     X
+ 172  008293   A30008                        cpw      X, #8
+ 173  008296   26F4                          jrne     init_custom_data_loop_4
+ 174                                   
+ 175                                                          ; --------------- 05
+ 176  008298   A668                          ld       A, #68H
+ 177  00829A   CD832D                        call     LCD_WriCMD
+ 178  00829D   5F                            clrw     X
+ 179                                                          ;ldw X, #0
+ 180                         init_custom_data_loop_5:  
+ 181  00829E   D68223                        ld       A, (DC_CONVERT_III,X)
+ 182  0082A1   CD8346                        call     LCD_WriData
+ 183  0082A4   5C                            incw     X
+ 184  0082A5   A30008                        cpw      X, #8
+ 185  0082A8   26F4                          jrne     init_custom_data_loop_5
+ 186                                   
+ 187                                                          ; --------------- 06
+ 188  0082AA   A670                          ld       A, #70H
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 25  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 189  0082AC   CD832D                        call     LCD_WriCMD
+ 190  0082AF   5F                            clrw     X
+ 191                                                          ;ldw X, #0
+ 192                         init_custom_data_loop_6:  
+ 193  0082B0   D6822B                        ld       A, (DC_CHAR_LEFT,X)
+ 194  0082B3   CD8346                        call     LCD_WriData
+ 195  0082B6   5C                            incw     X
+ 196  0082B7   A30008                        cpw      X, #8
+ 197  0082BA   26F4                          jrne     init_custom_data_loop_6
+ 198                                   
+ 199                                                          ; --------------- 07
+ 200  0082BC   A678                          ld       A, #78H
+ 201  0082BE   CD832D                        call     LCD_WriCMD
+ 202  0082C1   5F                            clrw     X
+ 203                                                          ;ldw X, #0
+ 204                         init_custom_data_loop_7:  
+ 205  0082C2   D68233                        ld       A, (DC_CHAR_RIGHT,X)
+ 206  0082C5   CD8346                        call     LCD_WriData
+ 207  0082C8   5C                            incw     X
+ 208  0082C9   A30008                        cpw      X, #8
+ 209  0082CC   26F4                          jrne     init_custom_data_loop_7
+ 210                                   
+ 211  0082CE   85                            popw     X
+ 212  0082CF   84                            pop      A
+ 213  0082D0   86                            pop      CC
+ 214  0082D1   81                            ret      
+ 215                         
+ 216                         
+ 217                         ;***********************************************************
+ 218                         ;name   : LCD_WriChar(LCD_VAR0:x, LCD_VAR1:y, LCD_VAR2:char)
+ 219                         ;fun    : write char to LCD
+ 220                         ;params :   
+ 221                         ;         IN  : LCD_VAR0 <= cor x (<=15)
+ 222                         ;               LCD_VAR1 <= cor y (<=1)
+ 223                         ;               LCD_VAR2 <= char
+ 224                         ;         OUT : NULL
+ 225                         ;***********************************************************
+ 226                         .LCD_WriChar.W  
+ 227  0082D2   8A                            push     CC
+ 228  0082D3   88                            push     A
+ 229                                   
+ 230  0082D4   B600                          ld       A, LCD_VAR0
+ 231  0082D6   AA80                          or       A, #80H
+ 232  0082D8   7201000102                    btjf     LCD_VAR1, #0, first_line
+ 233  0082DD   AA40                          or       A, #40H
+ 234                         first_line:  
+ 235                                                          ; A <= LCD_DDRAM address
+ 236  0082DF   CD832D                        call     LCD_WriCMD
+ 237                                   
+ 238                                   
+ 239                                                          ; write char
+ 240  0082E2   B602                          ld       A, LCD_VAR2
+ 241  0082E4   CD8346                        call     LCD_WriData
+ 242                                   
+ 243  0082E7   84                            pop      A
+ 244  0082E8   86                            pop      CC
+ 245  0082E9   81                            ret      
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 26  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 246                         
+ 247                         ;***********************************************************
+ 248                         ;name   : LCD_WriString(LCD_VAR0:start_x, 
+ 249                         ;                       LCD_VAR1:start_y, 
+ 250                         ;                       X       :str_ptr.W)
+ 251                         ;fun    : write string to LCD
+ 252                         ;params :   
+ 253                         ;         IN  : LCD_VAR0 <= start_x: cor x (<=15)
+ 254                         ;               LCD_VAR1 <= start_y y (<=1)
+ 255                         ;               X        <= str_ptr(WORD)
+ 256                         ;         OUT : NULL
+ 257                         ;***********************************************************
+ 258                         .LCD_WriString.W  
+ 259  0082EA   8A                            push     CC
+ 260  0082EB   88                            push     A
+ 261                                   
+ 262                         str_set_line:  
+ 263  0082EC   B600                          ld       A, LCD_VAR0
+ 264  0082EE   A110                          cp       A, #16
+ 265  0082F0   2504                          jrc      str_cur_line
+ 266                                                          ; set new line - [x=0, y=y+1]
+ 267  0082F2   3F00                          clr      LCD_VAR0
+ 268  0082F4   3C01                          inc      LCD_VAR1
+ 269                         str_cur_line:  
+ 270  0082F6   B600                          ld       A, LCD_VAR0
+ 271  0082F8   AA80                          or       A, #80H
+ 272  0082FA   7201000102                    btjf     LCD_VAR1, #0, str_first_line
+ 273  0082FF   AA40                          or       A, #40H
+ 274                         str_first_line:  
+ 275                                                          ; A <= LCD_DDRAM address
+ 276  008301   CD832D                        call     LCD_WriCMD
+ 277                                   
+ 278                         cur_char:  
+ 279  008304   B600                          ld       A, LCD_VAR0
+ 280  008306   A110                          cp       A, #16
+ 281  008308   27E2                          jreq     str_set_line
+ 282                                                          ; write char
+ 283  00830A   F6                            ld       A, (X)
+ 284  00830B   2708                          jreq     str_end
+ 285  00830D   CD8346                        call     LCD_WriData
+ 286  008310   3C00                          inc      LCD_VAR0             ; x++
+ 287  008312   5C                            incw     X                ; ptr++
+ 288  008313   20EF                          jra      cur_char
+ 289                                   
+ 290                         str_end:  
+ 291                                                          ;inc VARB0
+ 292                                   
+ 293  008315   84                            pop      A
+ 294  008316   86                            pop      CC
+ 295  008317   81                            ret      
+ 296                         
+ 297                         
+ 298                         ;***********************************************************
+ 299                         ;name   : LCD_SetCursor(A: data)
+ 300                         ;fun    : write command to LCD
+ 301                         ;params :   
+ 302                         ;         IN  : LCD_VAR0 <= start_x: cor x (<=15)
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 27  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 303                         ;               LCD_VAR1 <= start_y y (<=1)
+ 304                         ;         OUT : NULL
+ 305                         ;***********************************************************
+ 306                         .LCD_SetCursor.w  
+ 307  008318   8A                            push     CC
+ 308                         
+ 309  008319   88                            push     A
+ 310  00831A   B600                          ld       A, LCD_VAR0
+ 311  00831C   AA80                          or       A, #80H
+ 312  00831E   BE01                          ldw      X, LCD_VAR1
+ 313                                   
+ 314  008320   7201000102                    btjf     LCD_VAR1, #0, setcursor_loop
+ 315  008325   AA40                          or       A, #40H
+ 316                         setcursor_loop:  
+ 317  008327   CD832D                        call     LCD_WriCMD
+ 318  00832A   84                            pop      A
+ 319                         
+ 320  00832B   86                            pop      CC
+ 321                                   
+ 322  00832C   81                            ret      
+ 323                         
+ 324                         
+ 325                         ;***********************************************************
+ 326                         ;name   : LCD_WriCMD(A: data)
+ 327                         ;fun    : write command to LCD
+ 328                         ;params :   
+ 329                         ;         IN  : A <= CMD DATA
+ 330                         ;         OUT : NULL
+ 331                         ;***********************************************************
+ 332                         .LCD_WriCMD.w  
+ 333  00832D   8A                            push     CC
+ 334                         
+ 335  00832E   CD835F                        call     LCD_SerData
+ 336                                   
+ 337  008331   721B5005                      bres     PB_ODR,#5
+ 338  008335   72195005                      bres     PB_ODR,#4
+ 339                                   
+ 340                                                          ;bset LCD_E
+ 341  008339   72175005                      bres     PB_ODR,#3
+ 342  00833D   CD89FF                        call     LCD_Delay
+ 343                                                          ;call LCD_Delay
+ 344                                                          ;bres LCD_E
+ 345  008340   72165005                      bset     PB_ODR,#3
+ 346                                   
+ 347                         
+ 348  008344   86                            pop      CC
+ 349                                   
+ 350  008345   81                            ret      
+ 351                                   
+ 352                         ;***********************************************************
+ 353                         ;name   : LCD_WriData(A: data)
+ 354                         ;fun    : write data to LCD
+ 355                         ;params :   
+ 356                         ;         IN  : A <= DATA
+ 357                         ;         OUT : NULL
+ 358                         ;***********************************************************
+ 359                         .LCD_WriData.w  
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 28  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 360  008346   8A                            push     CC
+ 361                         
+ 362                                                          ; serial 8-bits data
+ 363  008347   CD835F                        call     LCD_SerData
+ 364                                   
+ 365  00834A   721A5005                      bset     PB_ODR,#5
+ 366  00834E   72195005                      bres     PB_ODR,#4
+ 367                                   
+ 368                         
+ 369                         
+ 370                                                          ;bset LCD_E
+ 371  008352   72175005                      bres     PB_ODR,#3
+ 372  008356   CD89FF                        call     LCD_Delay
+ 373                                                          ;call LCD_Delay
+ 374                                                          ;bres LCD_E
+ 375  008359   72165005                      bset     PB_ODR,#3
+ 376                         
+ 377  00835D   86                            pop      CC
+ 378                                   
+ 379  00835E   81                            ret      
+ 380                         
+ 381                         
+ 382                         
+ 383                         
+ 384                         ;***********************************************************
+ 385                         ;name   : LCD_SerData(A: data)
+ 386                         ;fun    : serial 8-bits data
+ 387                         ;params :   
+ 388                         ;         IN  : A <= 8bits DATA
+ 389                         ;         OUT : NULL
+ 390                         ;***********************************************************
+ 391                         .LCD_SerData.W  
+ 392  00835F   89                            pushw    X
+ 393                                   
+ 394  008360   AE0008                        ldw      X, #8
+ 395                         serial_data:  
+ 396  008363   48                            sll      A
+ 397  008364   2406                          jrnc     data_zero
+ 398  008366   7214500F                      bset     PD_ODR,#2
+ 399  00836A   2004                          jra      data_one
+ 400                         data_zero:  
+ 401  00836C   7215500F                      bres     PD_ODR,#2
+ 402                         data_one:  
+ 403                                                          ;bset LCD_SRCLK
+ 404  008370   721B500F                      bres     PD_ODR,#5
+ 405  008374   CD89FF                        call     LCD_Delay
+ 406  008377   CD89FF                        call     LCD_Delay
+ 407                                                          ;bres LCD_SRCLK
+ 408  00837A   721A500F                      bset     PD_ODR,#5
+ 409                                   
+ 410                         
+ 411                                   
+ 412  00837E   5A                            decw     X
+ 413  00837F   26E2                          jrne     serial_data
+ 414                                                          ;bset LCD_RCK
+ 415  008381   CD89FF                        call     LCD_Delay
+ 416  008384   7217500F                      bres     PD_ODR,#3      ; inverter
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 29  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ 417  008388   CD89FF                        call     LCD_Delay
+ 418                                                          ;bres LCD_RCK
+ 419  00838B   CD89FF                        call     LCD_Delay
+ 420  00838E   7216500F                      bset     PD_ODR,#3      ; inverter
+ 421  008392   CD89FF                        call     LCD_Delay
+ 422                                   
+ 423  008395   85                            popw     X
+ 424  008396   81                            ret      
+ 425                                   
+ 426                         
+ 427                         
+ 428  008397                                 end      
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 30  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+Symbol Name                       Value     Call       Type  Scope      Rel.  Line  Privacy  Segment   Size  Bytes File
+
+AWU_CSR                               50F0         no  WORD  Internal   ABS    170  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+AWU_APR                               50F1         no  WORD  Internal   ABS    172  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+AWU_TBR                               50F2         no  WORD  Internal   ABS    174  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB0RH                             53E0         no  WORD  Internal   ABS    427  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB0RL                             53E1         no  WORD  Internal   ABS    429  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB1RH                             53E2         no  WORD  Internal   ABS    431  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB1RL                             53E3         no  WORD  Internal   ABS    433  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB2RH                             53E4         no  WORD  Internal   ABS    435  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB2RL                             53E5         no  WORD  Internal   ABS    437  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB3RH                             53E6         no  WORD  Internal   ABS    439  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB3RL                             53E7         no  WORD  Internal   ABS    441  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB4RH                             53E8         no  WORD  Internal   ABS    443  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB4RL                             53E9         no  WORD  Internal   ABS    445  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB5RH                             53EA         no  WORD  Internal   ABS    447  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB5RL                             53EB         no  WORD  Internal   ABS    449  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB6RH                             53EC         no  WORD  Internal   ABS    451  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB6RL                             53ED         no  WORD  Internal   ABS    453  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB7RH                             53EE         no  WORD  Internal   ABS    455  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB7RL                             53EF         no  WORD  Internal   ABS    457  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB8RH                             53F0         no  WORD  Internal   ABS    459  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB8RL                             53F1         no  WORD  Internal   ABS    461  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB9RH                             53F2         no  WORD  Internal   ABS    463  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DB9RL                             53F3         no  WORD  Internal   ABS    465  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_CSR                               5400         no  WORD  Internal   ABS    467  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_CR1                               5401         no  WORD  Internal   ABS    469  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_CR2                               5402         no  WORD  Internal   ABS    471  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_CR3                               5403         no  WORD  Internal   ABS    473  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DRH                               5404         no  WORD  Internal   ABS    475  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_DRL                               5405         no  WORD  Internal   ABS    477  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_TDRH                              5406         no  WORD  Internal   ABS    479  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_TDRL                              5407         no  WORD  Internal   ABS    481  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_HTRH                              5408         no  WORD  Internal   ABS    483  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_HTRL                              5409         no  WORD  Internal   ABS    485  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_LTRH                              540A         no  WORD  Internal   ABS    487  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_LTRL                              540B         no  WORD  Internal   ABS    489  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_AWSRH                             540C         no  WORD  Internal   ABS    491  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_AWSRL                             540D         no  WORD  Internal   ABS    493  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_AWCRH                             540E         no  WORD  Internal   ABS    495  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_AWCRL                             540F         no  WORD  Internal   ABS    497  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ADC_COUNTER                             03         no  BYTE  Internal   ABS     12  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM                                 04         no  BYTE  Internal   ABS     16  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM0                                07         no  BYTE  Internal   ABS     17  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM1                                06         no  BYTE  Internal   ABS     18  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM2                                05         no  BYTE  Internal   ABS     19  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SUM3                                04         no  BYTE  Internal   ABS     20  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG                                 08         no  BYTE  Internal   ABS     22  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG0                                0B         no  BYTE  Internal   ABS     23  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG1                                0A         no  BYTE  Internal   ABS     24  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG2                                09         no  BYTE  Internal   ABS     25  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_AVG3                                08         no  BYTE  Internal   ABS     26  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_STORE                               0C         no  BYTE  Internal   ABS     28  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S00                                 0E         no  BYTE  Internal   ABS     30  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S01                                 0D         no  BYTE  Internal   ABS     31  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S02                                 0C         no  BYTE  Internal   ABS     32  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S10                                 11         no  BYTE  Internal   ABS     34  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 31  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ADC_S11                                 10         no  BYTE  Internal   ABS     35  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S12                                 0F         no  BYTE  Internal   ABS     36  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S20                                 14         no  BYTE  Internal   ABS     38  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S21                                 13         no  BYTE  Internal   ABS     39  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S22                                 12         no  BYTE  Internal   ABS     40  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S30                                 17         no  BYTE  Internal   ABS     42  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S31                                 16         no  BYTE  Internal   ABS     43  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S32                                 15         no  BYTE  Internal   ABS     44  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S40                                 1A         no  BYTE  Internal   ABS     46  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S41                                 19         no  BYTE  Internal   ABS     47  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S42                                 18         no  BYTE  Internal   ABS     48  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S50                                 1D         no  BYTE  Internal   ABS     50  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S51                                 1C         no  BYTE  Internal   ABS     51  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S52                                 1B         no  BYTE  Internal   ABS     52  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S60                                 20         no  BYTE  Internal   ABS     54  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S61                                 1F         no  BYTE  Internal   ABS     55  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S62                                 1E         no  BYTE  Internal   ABS     56  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S70                                 23         no  BYTE  Internal   ABS     58  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S71                                 22         no  BYTE  Internal   ABS     59  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S72                                 21         no  BYTE  Internal   ABS     60  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S80                                 26         no  BYTE  Internal   ABS     62  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S81                                 25         no  BYTE  Internal   ABS     63  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S82                                 24         no  BYTE  Internal   ABS     64  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S90                                 29         no  BYTE  Internal   ABS     66  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S91                                 28         no  BYTE  Internal   ABS     67  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_S92                                 27         no  BYTE  Internal   ABS     68  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SA0                                 2C         no  BYTE  Internal   ABS     70  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SA1                                 2B         no  BYTE  Internal   ABS     71  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SA2                                 2A         no  BYTE  Internal   ABS     72  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SB0                                 2F         no  BYTE  Internal   ABS     74  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SB1                                 2E         no  BYTE  Internal   ABS     75  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SB2                                 2D         no  BYTE  Internal   ABS     76  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SC0                                 32         no  BYTE  Internal   ABS     78  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SC1                                 31         no  BYTE  Internal   ABS     79  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SC2                                 30         no  BYTE  Internal   ABS     80  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SD0                                 35         no  BYTE  Internal   ABS     82  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SD1                                 34         no  BYTE  Internal   ABS     83  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SD2                                 33         no  BYTE  Internal   ABS     84  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SE0                                 38         no  BYTE  Internal   ABS     86  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SE1                                 37         no  BYTE  Internal   ABS     87  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SE2                                 36         no  BYTE  Internal   ABS     88  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SF0                                 3B         no  BYTE  Internal   ABS     90  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SF1                                 3A         no  BYTE  Internal   ABS     91  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SF2                                 39         no  BYTE  Internal   ABS     92  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SG0                                 3E         no  BYTE  Internal   ABS     94  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SG1                                 3D         no  BYTE  Internal   ABS     95  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SG2                                 3C         no  BYTE  Internal   ABS     96  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SH0                                 41         no  BYTE  Internal   ABS     98  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SH1                                 40         no  BYTE  Internal   ABS     99  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SH2                                 3F         no  BYTE  Internal   ABS    100  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SI0                                 44         no  BYTE  Internal   ABS    102  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SI1                                 43         no  BYTE  Internal   ABS    103  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SI2                                 42         no  BYTE  Internal   ABS    104  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SJ0                                 47         no  BYTE  Internal   ABS    106  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SJ1                                 46         no  BYTE  Internal   ABS    107  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SJ2                                 45         no  BYTE  Internal   ABS    108  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SK0                                 4A         no  BYTE  Internal   ABS    110  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 32  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+ADC_SK1                                 49         no  BYTE  Internal   ABS    111  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SK2                                 48         no  BYTE  Internal   ABS    112  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SL0                                 4D         no  BYTE  Internal   ABS    114  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SL1                                 4C         no  BYTE  Internal   ABS    115  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SL2                                 4B         no  BYTE  Internal   ABS    116  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SM0                                 50         no  BYTE  Internal   ABS    118  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SM1                                 4F         no  BYTE  Internal   ABS    119  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SM2                                 4E         no  BYTE  Internal   ABS    120  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SN0                                 53         no  BYTE  Internal   ABS    122  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SN1                                 52         no  BYTE  Internal   ABS    123  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SN2                                 51         no  BYTE  Internal   ABS    124  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SO0                                 56         no  BYTE  Internal   ABS    126  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SO1                                 55         no  BYTE  Internal   ABS    127  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SO2                                 54         no  BYTE  Internal   ABS    128  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SP0                                 59         no  BYTE  Internal   ABS    130  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SP1                                 58         no  BYTE  Internal   ABS    131  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SP2                                 57         no  BYTE  Internal   ABS    132  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SQ0                                 5C         no  BYTE  Internal   ABS    134  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SQ1                                 5B         no  BYTE  Internal   ABS    135  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SQ2                                 5A         no  BYTE  Internal   ABS    136  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SR0                                 5F         no  BYTE  Internal   ABS    138  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SR1                                 5E         no  BYTE  Internal   ABS    139  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SR2                                 5D         no  BYTE  Internal   ABS    140  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SS0                                 62         no  BYTE  Internal   ABS    142  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SS1                                 61         no  BYTE  Internal   ABS    143  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SS2                                 60         no  BYTE  Internal   ABS    144  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_ST0                                 65         no  BYTE  Internal   ABS    146  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_ST1                                 64         no  BYTE  Internal   ABS    147  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_ST2                                 63         no  BYTE  Internal   ABS    148  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SU0                                 68         no  BYTE  Internal   ABS    150  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SU1                                 67         no  BYTE  Internal   ABS    151  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SU2                                 66         no  BYTE  Internal   ABS    152  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SV0                                 6B         no  BYTE  Internal   ABS    154  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SV1                                 6A         no  BYTE  Internal   ABS    155  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SV2                                 69         no  BYTE  Internal   ABS    156  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SW0                                 6E         no  BYTE  Internal   ABS    158  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SW1                                 6D         no  BYTE  Internal   ABS    159  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SW2                                 6C         no  BYTE  Internal   ABS    160  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SX0                                 71         no  BYTE  Internal   ABS    162  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SX1                                 70         no  BYTE  Internal   ABS    163  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SX2                                 6F         no  BYTE  Internal   ABS    164  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SY0                                 74         no  BYTE  Internal   ABS    166  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SY1                                 73         no  BYTE  Internal   ABS    167  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SY2                                 72         no  BYTE  Internal   ABS    168  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_THRESHOLD_QUOTIENT                  75         no  BYTE  Internal   ABS    170  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_THRESHOLD_QUOTIENT1                 75         no  BYTE  Internal   ABS    171  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_THRESHOLD_QUOTIENT0                 76         no  BYTE  Internal   ABS    172  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_QUOTIENT                        77         no  BYTE  Internal   ABS    174  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_QUOTIENT_S1                     77         no  BYTE  Internal   ABS    175  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_QUOTIENT_S0                     78         no  BYTE  Internal   ABS    176  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_REMAINDER                       79         no  BYTE  Internal   ABS    178  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_REMAINDER_S1                    79         no  BYTE  Internal   ABS    179  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_MAX_REMAINDER_S0                    7A         no  BYTE  Internal   ABS    180  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_NEXT_PTR                            7B         no  BYTE  Internal   ABS    185  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_SLOPE                               7D         no  BYTE  Internal   ABS    190  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ADC_Delay                             8A1A         no  WORD  Internal   ABS      9  private  textdata     0     0  e:\stm8s\electronic_scale\common.inc
+
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 33  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+BEEP_CSR                              50F3         no  WORD  Internal   ABS    179  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+
+CLK_ICKR                              50C0         no  WORD  Internal   ABS    125  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_ECKR                              50C1         no  WORD  Internal   ABS    127  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_CMSR                              50C3         no  WORD  Internal   ABS    129  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_SWR                               50C4         no  WORD  Internal   ABS    131  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_SWCR                              50C5         no  WORD  Internal   ABS    133  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_CKDIVR                            50C6         no  WORD  Internal   ABS    135  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_PCKENR1                           50C7         no  WORD  Internal   ABS    137  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_CSSR                              50C8         no  WORD  Internal   ABS    139  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_CCOR                              50C9         no  WORD  Internal   ABS    141  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_PCKENR2                           50CA         no  WORD  Internal   ABS    143  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_CANCCR                            50CB         no  WORD  Internal   ABS    145  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_HSITRIMR                          50CC         no  WORD  Internal   ABS    147  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CLK_SWIMCCR                           50CD         no  WORD  Internal   ABS    149  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CFG_GCR                               7F60         no  WORD  Internal   ABS    502  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+CHAR_MASS9                              A8         no  BYTE  Internal   ABS    253  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS8                              A9         no  BYTE  Internal   ABS    254  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS7                              AA         no  BYTE  Internal   ABS    255  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS6                              AB         no  BYTE  Internal   ABS    256  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS5                              AC         no  BYTE  Internal   ABS    257  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS4                              AD         no  BYTE  Internal   ABS    258  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS3                              AE         no  BYTE  Internal   ABS    259  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS2                              AF         no  BYTE  Internal   ABS    260  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS1                              B0         no  BYTE  Internal   ABS    261  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS0                              B1         no  BYTE  Internal   ABS    262  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MASS_1                             B2         no  BYTE  Internal   ABS    263  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE5                             B4         no  BYTE  Internal   ABS    268  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE4                             B5         no  BYTE  Internal   ABS    269  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE3                             B6         no  BYTE  Internal   ABS    270  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE2                             B7         no  BYTE  Internal   ABS    271  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE1                             B8         no  BYTE  Internal   ABS    272  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_PRICE0                             B9         no  BYTE  Internal   ABS    273  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD7                         BB         no  BYTE  Internal   ABS    276  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD6                         BC         no  BYTE  Internal   ABS    277  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD5                         BD         no  BYTE  Internal   ABS    278  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD4                         BE         no  BYTE  Internal   ABS    279  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD3                         BF         no  BYTE  Internal   ABS    280  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD2                         C0         no  BYTE  Internal   ABS    281  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD1                         C1         no  BYTE  Internal   ABS    282  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_THRESHOLD0                         C2         no  BYTE  Internal   ABS    283  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY7                             C4         no  BYTE  Internal   ABS    288  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY6                             C5         no  BYTE  Internal   ABS    289  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY5                             C6         no  BYTE  Internal   ABS    290  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY4                             C7         no  BYTE  Internal   ABS    291  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY3                             C8         no  BYTE  Internal   ABS    292  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY2                             C9         no  BYTE  Internal   ABS    293  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY1                             CA         no  BYTE  Internal   ABS    294  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MONEY0                             CB         no  BYTE  Internal   ABS    295  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS9                          CD         no  BYTE  Internal   ABS    301  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS8                          CE         no  BYTE  Internal   ABS    302  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS7                          CF         no  BYTE  Internal   ABS    303  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS6                          D0         no  BYTE  Internal   ABS    304  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS5                          D1         no  BYTE  Internal   ABS    305  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS4                          D2         no  BYTE  Internal   ABS    306  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS3                          D3         no  BYTE  Internal   ABS    307  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS2                          D4         no  BYTE  Internal   ABS    308  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 34  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+CHAR_MAX_MASS1                          D5         no  BYTE  Internal   ABS    309  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS0                          D6         no  BYTE  Internal   ABS    310  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CHAR_MAX_MASS_1                         D7         no  BYTE  Internal   ABS    311  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+CPU_Delay_1us                         89E9         no  WORD  Internal   ABS     11  private  textdata     0     0  e:\stm8s\electronic_scale\common.inc
+
+DC_CHAR_I                             81FB         no  WORD  Internal   ABS     98  private  textdata     8     1  -
+DC_CONVERT_I                          8203         no  WORD  Internal   ABS     99  private  textdata     8     1  -
+DC_CHAR_II                            820B         no  WORD  Internal   ABS    100  private  textdata     8     1  -
+DC_CONVERT_II                         8213         no  WORD  Internal   ABS    101  private  textdata     8     1  -
+DC_CHAR_III                           821B         no  WORD  Internal   ABS    102  private  textdata     8     1  -
+DC_CONVERT_III                        8223         no  WORD  Internal   ABS    103  private  textdata     8     1  -
+DC_CHAR_LEFT                          822B         no  WORD  Internal   ABS    105  private  textdata     8     1  -
+DC_CHAR_RIGHT                         8233         no  WORD  Internal   ABS    106  private  textdata     8     1  -
+
+EXTI_CR1                              50A0         no  WORD  Internal   ABS    113  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+EXTI_CR2                              50A1         no  WORD  Internal   ABS    115  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+EMPTY_LINE                            816D         no  WORD  Internal   ABS     10  public   textdata    17     1  e:\stm8s\electronic_scale\lcd.inc
+
+FLASH_CR1                             505A         no  WORD  Internal   ABS     94  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+FLASH_CR2                             505B         no  WORD  Internal   ABS     96  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+FLASH_NCR2                            505C         no  WORD  Internal   ABS     98  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+FLASH_FPR                             505D         no  WORD  Internal   ABS    100  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+FLASH_NFPR                            505E         no  WORD  Internal   ABS    102  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+FLASH_IAPSR                           505F         no  WORD  Internal   ABS    104  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+FLASH_PUKR                            5062         no  WORD  Internal   ABS    106  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+FLASH_DUKR                            5064         no  WORD  Internal   ABS    108  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+
+IWDG_KR                               50E0         no  WORD  Internal   ABS    161  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+IWDG_PR                               50E1         no  WORD  Internal   ABS    163  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+IWDG_RLR                              50E2         no  WORD  Internal   ABS    165  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_CR1                               5210         no  WORD  Internal   ABS    203  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_CR2                               5211         no  WORD  Internal   ABS    205  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_FREQR                             5212         no  WORD  Internal   ABS    207  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_OARL                              5213         no  WORD  Internal   ABS    209  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_OARH                              5214         no  WORD  Internal   ABS    211  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_DR                                5216         no  WORD  Internal   ABS    213  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_SR1                               5217         no  WORD  Internal   ABS    215  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_SR2                               5218         no  WORD  Internal   ABS    217  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_SR3                               5219         no  WORD  Internal   ABS    219  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_ITR                               521A         no  WORD  Internal   ABS    221  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_CCRL                              521B         no  WORD  Internal   ABS    223  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_CCRH                              521C         no  WORD  Internal   ABS    225  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_TRISER                            521D         no  WORD  Internal   ABS    227  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+I2C_PECR                              521E         no  WORD  Internal   ABS    229  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ITC_SPR1                              7F70         no  WORD  Internal   ABS    507  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ITC_SPR2                              7F71         no  WORD  Internal   ABS    509  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ITC_SPR3                              7F72         no  WORD  Internal   ABS    511  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ITC_SPR4                              7F73         no  WORD  Internal   ABS    513  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ITC_SPR5                              7F74         no  WORD  Internal   ABS    515  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ITC_SPR6                              7F75         no  WORD  Internal   ABS    517  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+ITC_SPR7                              7F76         no  WORD  Internal   ABS    519  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+
+KEYDOWN_FLAG                            93         no  BYTE  Internal   ABS    220  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_STORE                          94         no  BYTE  Internal   ABS    223  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S4                             94         no  BYTE  Internal   ABS    225  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S3                             95         no  BYTE  Internal   ABS    226  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S2                             96         no  BYTE  Internal   ABS    227  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 35  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+KEYBOARD_S1                             97         no  BYTE  Internal   ABS    228  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_S0                             98         no  BYTE  Internal   ABS    229  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PTR                            99         no  BYTE  Internal   ABS    230  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_DOT_OK                         9B         no  BYTE  Internal   ABS    232  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S4                   9C         no  BYTE  Internal   ABS    234  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S3                   9D         no  BYTE  Internal   ABS    235  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S2                   9E         no  BYTE  Internal   ABS    236  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S1                   9F         no  BYTE  Internal   ABS    237  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_PRICE_BUF_S0                   A0         no  BYTE  Internal   ABS    238  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S4               A1         no  BYTE  Internal   ABS    241  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S3               A2         no  BYTE  Internal   ABS    242  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S2               A3         no  BYTE  Internal   ABS    243  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S1               A4         no  BYTE  Internal   ABS    244  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEYBOARD_THRESHOLD_BUF_S0               A5         no  BYTE  Internal   ABS    245  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEY_ARRAY_MENU                          A6         no  BYTE  Internal   ABS    248  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KEY_TYPING_FLAG                         A7         no  BYTE  Internal   ABS    249  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+KeyDelay                              8A0C         no  WORD  Internal   ABS     10  private  textdata     0     0  e:\stm8s\electronic_scale\common.inc
+
+LCD_VAR0                                00         no  BYTE  Internal   ABS      8  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+LCD_VAR1                                01         no  BYTE  Internal   ABS      9  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+LCD_VAR2                                02         no  BYTE  Internal   ABS     10  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+LCD_Delay                             89FF         no  WORD  Internal   ABS      8  private  textdata     0     0  e:\stm8s\electronic_scale\common.inc
+LCD_Init                              817E         no  WORD  Internal   ABS     19  public   textdata   125     0  e:\stm8s\electronic_scale\lcd.inc
+LCD_WriChar                           82D2         no  WORD  Internal   ABS    226  public   textdata    13     0  e:\stm8s\electronic_scale\lcd.inc
+LCD_WriCMD                            832D         no  WORD  Internal   ABS    332  public   textdata    25     0  e:\stm8s\electronic_scale\lcd.inc
+LCD_WriData                           8346         no  WORD  Internal   ABS    359  public   textdata    25     0  e:\stm8s\electronic_scale\lcd.inc
+LCD_SerData                           835F         no  WORD  Internal   ABS    391  public   textdata     4     0  e:\stm8s\electronic_scale\lcd.inc
+LCD_WriString                         82EA         no  WORD  Internal   ABS    258  public   textdata     2     0  e:\stm8s\electronic_scale\lcd.inc
+LCD_SetCursor                         8318         no  WORD  Internal   ABS    306  public   textdata    15     0  e:\stm8s\electronic_scale\lcd.inc
+LCD_InitCustom                        823B         no  WORD  Internal   ABS    108  public   textdata     9     0  e:\stm8s\electronic_scale\lcd.inc
+
+MassDivider                           8A27         no  WORD  Internal   ABS     12  private  textdata     0     0  e:\stm8s\electronic_scale\common.inc
+
+NET_ADC                                 83         no  BYTE  Internal   ABS    198  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC0                                86         no  BYTE  Internal   ABS    199  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC1                                85         no  BYTE  Internal   ABS    200  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC2                                84         no  BYTE  Internal   ABS    201  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_ADC3                                83         no  BYTE  Internal   ABS    202  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF                                 87         no  BYTE  Internal   ABS    204  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF3                                87         no  BYTE  Internal   ABS    205  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF2                                88         no  BYTE  Internal   ABS    206  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF1                                89         no  BYTE  Internal   ABS    207  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+NET_BUF0                                8A         no  BYTE  Internal   ABS    208  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+PA_ODR                                5000         no  WORD  Internal   ABS     16  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PA_IDR                                5001         no  WORD  Internal   ABS     18  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PA_DDR                                5002         no  WORD  Internal   ABS     20  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PA_CR1                                5003         no  WORD  Internal   ABS     22  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PA_CR2                                5004         no  WORD  Internal   ABS     24  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PB_ODR                                5005         no  WORD  Internal   ABS     29  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PB_IDR                                5006         no  WORD  Internal   ABS     31  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PB_DDR                                5007         no  WORD  Internal   ABS     33  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PB_CR1                                5008         no  WORD  Internal   ABS     35  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PB_CR2                                5009         no  WORD  Internal   ABS     37  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PC_ODR                                500A         no  WORD  Internal   ABS     42  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PC_IDR                                500B         no  WORD  Internal   ABS     44  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PC_DDR                                500C         no  WORD  Internal   ABS     46  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 36  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+PC_CR1                                500D         no  WORD  Internal   ABS     48  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PC_CR2                                500E         no  WORD  Internal   ABS     50  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PD_ODR                                500F         no  WORD  Internal   ABS     55  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PD_IDR                                5010         no  WORD  Internal   ABS     57  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PD_DDR                                5011         no  WORD  Internal   ABS     59  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PD_CR1                                5012         no  WORD  Internal   ABS     61  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PD_CR2                                5013         no  WORD  Internal   ABS     63  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PE_ODR                                5014         no  WORD  Internal   ABS     68  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PE_IDR                                5015         no  WORD  Internal   ABS     70  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PE_DDR                                5016         no  WORD  Internal   ABS     72  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PE_CR1                                5017         no  WORD  Internal   ABS     74  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PE_CR2                                5018         no  WORD  Internal   ABS     76  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PF_ODR                                5019         no  WORD  Internal   ABS     81  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PF_IDR                                501A         no  WORD  Internal   ABS     83  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PF_DDR                                501B         no  WORD  Internal   ABS     85  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PF_CR1                                501C         no  WORD  Internal   ABS     87  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PF_CR2                                501D         no  WORD  Internal   ABS     89  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+PRICE_MUL3                              8F         no  BYTE  Internal   ABS    215  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+PRICE_MUL2                              90         no  BYTE  Internal   ABS    216  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+PRICE_MUL1                              91         no  BYTE  Internal   ABS    217  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+PRICE_MUL0                              92         no  BYTE  Internal   ABS    218  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+QuadMul                               8AA7         no  WORD  Internal   ABS     16  private  textdata     0     0  e:\stm8s\electronic_scale\common.inc
+
+RST_SR                                50B3         no  WORD  Internal   ABS    120  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+
+SPI_CR1                               5200         no  WORD  Internal   ABS    184  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+SPI_CR2                               5201         no  WORD  Internal   ABS    186  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+SPI_ICR                               5202         no  WORD  Internal   ABS    188  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+SPI_SR                                5203         no  WORD  Internal   ABS    190  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+SPI_DR                                5204         no  WORD  Internal   ABS    192  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+SPI_CRCPR                             5205         no  WORD  Internal   ABS    194  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+SPI_RXCRCR                            5206         no  WORD  Internal   ABS    196  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+SPI_TXCRCR                            5207         no  WORD  Internal   ABS    198  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+STR_MASS                                A8         no  BYTE  Internal   ABS    252  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_PRICE                               B4         no  BYTE  Internal   ABS    267  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_THRESHOLD                           BB         no  BYTE  Internal   ABS    275  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_MONEY                               C4         no  BYTE  Internal   ABS    287  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+STR_MAX_MASS                            CD         no  BYTE  Internal   ABS    298  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+TIM1_CR1                              5250         no  WORD  Internal   ABS    261  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CR2                              5251         no  WORD  Internal   ABS    263  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_SMCR                             5252         no  WORD  Internal   ABS    265  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_ETR                              5253         no  WORD  Internal   ABS    267  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_IER                              5254         no  WORD  Internal   ABS    269  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_SR1                              5255         no  WORD  Internal   ABS    271  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_SR2                              5256         no  WORD  Internal   ABS    273  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_EGR                              5257         no  WORD  Internal   ABS    275  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCMR1                            5258         no  WORD  Internal   ABS    277  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCMR2                            5259         no  WORD  Internal   ABS    279  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCMR3                            525A         no  WORD  Internal   ABS    281  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCMR4                            525B         no  WORD  Internal   ABS    283  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCER1                            525C         no  WORD  Internal   ABS    285  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCER2                            525D         no  WORD  Internal   ABS    287  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CNTRH                            525E         no  WORD  Internal   ABS    289  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CNTRL                            525F         no  WORD  Internal   ABS    291  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_PSCRH                            5260         no  WORD  Internal   ABS    293  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 37  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+TIM1_PSCRL                            5261         no  WORD  Internal   ABS    295  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_ARRH                             5262         no  WORD  Internal   ABS    297  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_ARRL                             5263         no  WORD  Internal   ABS    299  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_RCR                              5264         no  WORD  Internal   ABS    301  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCR1H                            5265         no  WORD  Internal   ABS    303  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCR1L                            5266         no  WORD  Internal   ABS    305  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCR2H                            5267         no  WORD  Internal   ABS    307  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCR2L                            5268         no  WORD  Internal   ABS    309  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCR3H                            5269         no  WORD  Internal   ABS    311  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCR3L                            526A         no  WORD  Internal   ABS    313  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCR4H                            526B         no  WORD  Internal   ABS    315  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_CCR4L                            526C         no  WORD  Internal   ABS    317  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_BKR                              526D         no  WORD  Internal   ABS    319  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_DTR                              526E         no  WORD  Internal   ABS    321  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM1_OISR                             526F         no  WORD  Internal   ABS    323  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CR1                              5300         no  WORD  Internal   ABS    328  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_IER                              5301         no  WORD  Internal   ABS    330  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_SR1                              5302         no  WORD  Internal   ABS    332  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_SR2                              5303         no  WORD  Internal   ABS    334  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_EGR                              5304         no  WORD  Internal   ABS    336  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCMR1                            5305         no  WORD  Internal   ABS    338  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCMR2                            5306         no  WORD  Internal   ABS    340  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCMR3                            5307         no  WORD  Internal   ABS    342  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCER1                            5308         no  WORD  Internal   ABS    344  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCER2                            5309         no  WORD  Internal   ABS    346  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CNTRH                            530A         no  WORD  Internal   ABS    348  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CNTRL                            530B         no  WORD  Internal   ABS    350  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_PSCR                             530C         no  WORD  Internal   ABS    352  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_ARRH                             530D         no  WORD  Internal   ABS    354  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_ARRL                             530E         no  WORD  Internal   ABS    356  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCR1H                            530F         no  WORD  Internal   ABS    358  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCR1L                            5310         no  WORD  Internal   ABS    360  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCR2H                            5311         no  WORD  Internal   ABS    362  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCR2L                            5312         no  WORD  Internal   ABS    364  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCR3H                            5313         no  WORD  Internal   ABS    366  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM2_CCR3L                            5314         no  WORD  Internal   ABS    368  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CR1                              5320         no  WORD  Internal   ABS    373  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_IER                              5321         no  WORD  Internal   ABS    375  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_SR1                              5322         no  WORD  Internal   ABS    377  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_SR2                              5323         no  WORD  Internal   ABS    379  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_EGR                              5324         no  WORD  Internal   ABS    381  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CCMR1                            5325         no  WORD  Internal   ABS    383  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CCMR2                            5326         no  WORD  Internal   ABS    385  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CCER1                            5327         no  WORD  Internal   ABS    387  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CNTRH                            5328         no  WORD  Internal   ABS    389  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CNTRL                            5329         no  WORD  Internal   ABS    391  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_PSCR                             532A         no  WORD  Internal   ABS    393  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_ARRH                             532B         no  WORD  Internal   ABS    395  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_ARRL                             532C         no  WORD  Internal   ABS    397  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CCR1H                            532D         no  WORD  Internal   ABS    399  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CCR1L                            532E         no  WORD  Internal   ABS    401  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CCR2H                            532F         no  WORD  Internal   ABS    403  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM3_CCR2L                            5330         no  WORD  Internal   ABS    405  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM4_CR1                              5340         no  WORD  Internal   ABS    410  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM4_IER                              5341         no  WORD  Internal   ABS    412  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM4_SR                               5342         no  WORD  Internal   ABS    414  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM4_EGR                              5343         no  WORD  Internal   ABS    416  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+STMicroelectronics list file postprocessor v1.01   (C)2009-2018   Thu Dec 20 01:10:50 2018
+Page 38  Assembler
+                                               e:\stm8s\electronic_scale\lcd.asm
+
+TIM4_CNTR                             5344         no  WORD  Internal   ABS    418  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM4_PSCR                             5345         no  WORD  Internal   ABS    420  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TIM4_ARR                              5346         no  WORD  Internal   ABS    422  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+TriMul                                8A5C         no  WORD  Internal   ABS     15  private  textdata     0     0  e:\stm8s\electronic_scale\common.inc
+TriDiv                                8B11         no  WORD  Internal   ABS     17  private  textdata     0     0  e:\stm8s\electronic_scale\common.inc
+
+UART2_SR                              5240         no  WORD  Internal   ABS    234  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_DR                              5241         no  WORD  Internal   ABS    236  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_BRR1                            5242         no  WORD  Internal   ABS    238  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_BRR2                            5243         no  WORD  Internal   ABS    240  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_CR1                             5244         no  WORD  Internal   ABS    242  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_CR2                             5245         no  WORD  Internal   ABS    244  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_CR3                             5246         no  WORD  Internal   ABS    246  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_CR4                             5247         no  WORD  Internal   ABS    248  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_CR5                             5248         no  WORD  Internal   ABS    250  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_CR6                             5249         no  WORD  Internal   ABS    252  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_GTR                             524A         no  WORD  Internal   ABS    254  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+UART2_PSCR                            524B         no  WORD  Internal   ABS    256  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+
+WWDG_CR                               50D1         no  WORD  Internal   ABS    154  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+WWDG_WR                               50D2         no  WORD  Internal   ABS    156  private  textdata     0     0  c:\program files (x86)\stmicroelectronics\st_toolset\asm\include\STM8S105K.inc
+WEIGHT_QUOTIENT                         8B         no  BYTE  Internal   ABS    211  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+WEIGHT_REMAINDER                        8D         no  BYTE  Internal   ABS    212  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+ZERO_ADC                                7F         no  BYTE  Internal   ABS    192  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC0                               82         no  BYTE  Internal   ABS    193  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC1                               81         no  BYTE  Internal   ABS    194  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC2                               80         no  BYTE  Internal   ABS    195  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+ZERO_ADC3                               7F         no  BYTE  Internal   ABS    196  private  textdata     0     0  e:\stm8s\electronic_scale\globalvar.inc
+
+cur_char                              8304         no  WORD  Internal   ABS    278  private  textdata    17     0  -
+
+data_zero                             836C         no  WORD  Internal   ABS    400  private  textdata     4     0  -
+data_one                              8370         no  WORD  Internal   ABS    402  private  textdata    39     0  -
+
+first_line                            82DF         no  WORD  Internal   ABS    234  private  textdata    11     0  -
+
+init_custom_data_loop_0               8244         no  WORD  Internal   ABS    118  private  textdata    18     0  -
+init_custom_data_loop_1               8256         no  WORD  Internal   ABS    130  private  textdata    18     0  -
+init_custom_data_loop_2               8268         no  WORD  Internal   ABS    143  private  textdata    18     0  -
+init_custom_data_loop_3               827A         no  WORD  Internal   ABS    155  private  textdata    18     0  -
+init_custom_data_loop_4               828C         no  WORD  Internal   ABS    168  private  textdata    18     0  -
+init_custom_data_loop_5               829E         no  WORD  Internal   ABS    180  private  textdata    18     0  -
+init_custom_data_loop_6               82B0         no  WORD  Internal   ABS    192  private  textdata    18     0  -
+init_custom_data_loop_7               82C2         no  WORD  Internal   ABS    204  private  textdata    16     0  -
+
+str_set_line                          82EC         no  WORD  Internal   ABS    262  private  textdata    10     0  -
+str_cur_line                          82F6         no  WORD  Internal   ABS    269  private  textdata    11     0  -
+str_first_line                        8301         no  WORD  Internal   ABS    274  private  textdata     3     0  -
+str_end                               8315         no  WORD  Internal   ABS    290  private  textdata     3     0  -
+setcursor_loop                        8327         no  WORD  Internal   ABS    316  private  textdata     6     0  -
+serial_data                           8363         no  WORD  Internal   ABS    395  private  textdata     9     0  -
+
+
+483 labels
+No errors on assembly of 'e:\stm8s\electronic_scale\lcd.asm'

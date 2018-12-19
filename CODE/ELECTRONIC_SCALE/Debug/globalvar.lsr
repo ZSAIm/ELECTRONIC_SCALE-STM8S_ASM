@@ -1,0 +1,635 @@
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 1  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+   1                         stm8/     
+   2                         
+   3                                   segment  'ram0'
+   4                                   
+   5  000000                                 BYTES    
+   6                         ;;; COMMON TEMP VARIABLE, FOR LCD
+   7                         ;   ++ 0x0F
+   8  000000                       .LCD_VAR0.B  ds.b     1             ; LCD coor x
+   9  000001                       .LCD_VAR1.B  ds.b     1             ; LCD coor y
+  10  000002                       .LCD_VAR2.B  ds.b     1             ; char
+  11                         
+  12                         
+  13                         
+  14                         
+  15  000003                       .ADC_COUNTER.B  ds.b     1
+  16                         
+  17                         
+  18                         ;;; ADC 24bit store :8 consecutive result
+  19                         ;   ++ 0x04
+  20                         .ADC_SUM.B  
+  21  000004                       .ADC_SUM3.B  ds.b     1
+  22  000005                       .ADC_SUM2.B  ds.b     1
+  23  000006                       .ADC_SUM1.B  ds.b     1
+  24  000007                       .ADC_SUM0.B  ds.b     1
+  25                         ;   ++ 0x04
+  26                         ; ADC_AVG3 for convenience
+  27                         .ADC_AVG.B  
+  28  000008                       .ADC_AVG3.B  ds.b     1
+  29  000009                       .ADC_AVG2.B  ds.b     1
+  30  00000A                       .ADC_AVG1.B  ds.b     1
+  31  00000B                       .ADC_AVG0.B  ds.b     1
+  32                         
+  33                         
+  34                         ;   ++ 0x01
+  35                         .ADC_STORE.B  
+  36                                   
+  37                         ;   ++ 0x18
+  38  00000C                       .ADC_S02.B  ds.b     1
+  39  00000D                       .ADC_S01.B  ds.b     1
+  40  00000E                       .ADC_S00.B  ds.b     1
+  41                         
+  42  00000F                       .ADC_S12.B  ds.b     1
+  43  000010                       .ADC_S11.B  ds.b     1
+  44  000011                       .ADC_S10.B  ds.b     1
+  45                         
+  46  000012                       .ADC_S22.B  ds.b     1
+  47  000013                       .ADC_S21.B  ds.b     1
+  48  000014                       .ADC_S20.B  ds.b     1
+  49                         
+  50  000015                       .ADC_S32.B  ds.b     1
+  51  000016                       .ADC_S31.B  ds.b     1
+  52  000017                       .ADC_S30.B  ds.b     1
+  53                         
+  54  000018                       .ADC_S42.B  ds.b     1
+  55  000019                       .ADC_S41.B  ds.b     1
+  56  00001A                       .ADC_S40.B  ds.b     1
+  57                         
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 2  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+  58  00001B                       .ADC_S52.B  ds.b     1
+  59  00001C                       .ADC_S51.B  ds.b     1
+  60  00001D                       .ADC_S50.B  ds.b     1
+  61                         
+  62  00001E                       .ADC_S62.B  ds.b     1
+  63  00001F                       .ADC_S61.B  ds.b     1
+  64  000020                       .ADC_S60.B  ds.b     1
+  65                         
+  66  000021                       .ADC_S72.B  ds.b     1
+  67  000022                       .ADC_S71.B  ds.b     1
+  68  000023                       .ADC_S70.B  ds.b     1
+  69                         
+  70                         ;   ++ 0x03
+  71                         ;   extra 24bit : rotate to reduce manipulation
+  72  000024                       .ADC_S82.B  ds.b     1
+  73  000025                       .ADC_S81.B  ds.b     1
+  74  000026                       .ADC_S80.B  ds.b     1
+  75                         
+  76  000027                       .ADC_S92.B  ds.b     1
+  77  000028                       .ADC_S91.B  ds.b     1
+  78  000029                       .ADC_S90.B  ds.b     1
+  79                         
+  80  00002A                       .ADC_SA2.B  ds.b     1
+  81  00002B                       .ADC_SA1.B  ds.b     1
+  82  00002C                       .ADC_SA0.B  ds.b     1
+  83                         
+  84  00002D                       .ADC_SB2.B  ds.b     1
+  85  00002E                       .ADC_SB1.B  ds.b     1
+  86  00002F                       .ADC_SB0.B  ds.b     1
+  87                         
+  88  000030                       .ADC_SC2.B  ds.b     1
+  89  000031                       .ADC_SC1.B  ds.b     1
+  90  000032                       .ADC_SC0.B  ds.b     1
+  91                         
+  92  000033                       .ADC_SD2.B  ds.b     1
+  93  000034                       .ADC_SD1.B  ds.b     1
+  94  000035                       .ADC_SD0.B  ds.b     1
+  95                         
+  96  000036                       .ADC_SE2.B  ds.b     1
+  97  000037                       .ADC_SE1.B  ds.b     1
+  98  000038                       .ADC_SE0.B  ds.b     1
+  99                         
+ 100  000039                       .ADC_SF2.B  ds.b     1
+ 101  00003A                       .ADC_SF1.B  ds.b     1
+ 102  00003B                       .ADC_SF0.B  ds.b     1
+ 103                         
+ 104  00003C                       .ADC_SG2.B  ds.b     1
+ 105  00003D                       .ADC_SG1.B  ds.b     1
+ 106  00003E                       .ADC_SG0.B  ds.b     1
+ 107                         
+ 108  00003F                       .ADC_SH2.B  ds.b     1
+ 109  000040                       .ADC_SH1.B  ds.b     1
+ 110  000041                       .ADC_SH0.B  ds.b     1
+ 111                         
+ 112  000042                       .ADC_SI2.B  ds.b     1
+ 113  000043                       .ADC_SI1.B  ds.b     1
+ 114  000044                       .ADC_SI0.B  ds.b     1
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 3  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+ 115                         
+ 116  000045                       .ADC_SJ2.B  ds.b     1
+ 117  000046                       .ADC_SJ1.B  ds.b     1
+ 118  000047                       .ADC_SJ0.B  ds.b     1
+ 119                         
+ 120  000048                       .ADC_SK2.B  ds.b     1
+ 121  000049                       .ADC_SK1.B  ds.b     1
+ 122  00004A                       .ADC_SK0.B  ds.b     1
+ 123                         
+ 124  00004B                       .ADC_SL2.B  ds.b     1
+ 125  00004C                       .ADC_SL1.B  ds.b     1
+ 126  00004D                       .ADC_SL0.B  ds.b     1
+ 127                         
+ 128  00004E                       .ADC_SM2.B  ds.b     1
+ 129  00004F                       .ADC_SM1.B  ds.b     1
+ 130  000050                       .ADC_SM0.B  ds.b     1
+ 131                         
+ 132  000051                       .ADC_SN2.B  ds.b     1
+ 133  000052                       .ADC_SN1.B  ds.b     1
+ 134  000053                       .ADC_SN0.B  ds.b     1
+ 135                         
+ 136  000054                       .ADC_SO2.B  ds.b     1
+ 137  000055                       .ADC_SO1.B  ds.b     1
+ 138  000056                       .ADC_SO0.B  ds.b     1
+ 139                         
+ 140  000057                       .ADC_SP2.B  ds.b     1
+ 141  000058                       .ADC_SP1.B  ds.b     1
+ 142  000059                       .ADC_SP0.B  ds.b     1
+ 143                         
+ 144  00005A                       .ADC_SQ2.B  ds.b     1
+ 145  00005B                       .ADC_SQ1.B  ds.b     1
+ 146  00005C                       .ADC_SQ0.B  ds.b     1
+ 147                         
+ 148  00005D                       .ADC_SR2.B  ds.b     1
+ 149  00005E                       .ADC_SR1.B  ds.b     1
+ 150  00005F                       .ADC_SR0.B  ds.b     1
+ 151                         
+ 152  000060                       .ADC_SS2.B  ds.b     1
+ 153  000061                       .ADC_SS1.B  ds.b     1
+ 154  000062                       .ADC_SS0.B  ds.b     1
+ 155                         
+ 156  000063                       .ADC_ST2.B  ds.b     1
+ 157  000064                       .ADC_ST1.B  ds.b     1
+ 158  000065                       .ADC_ST0.B  ds.b     1
+ 159                         
+ 160  000066                       .ADC_SU2.B  ds.b     1
+ 161  000067                       .ADC_SU1.B  ds.b     1
+ 162  000068                       .ADC_SU0.B  ds.b     1
+ 163                         
+ 164  000069                       .ADC_SV2.B  ds.b     1
+ 165  00006A                       .ADC_SV1.B  ds.b     1
+ 166  00006B                       .ADC_SV0.B  ds.b     1
+ 167                         
+ 168  00006C                       .ADC_SW2.B  ds.b     1
+ 169  00006D                       .ADC_SW1.B  ds.b     1
+ 170  00006E                       .ADC_SW0.B  ds.b     1
+ 171                         
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 4  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+ 172  00006F                       .ADC_SX2.B  ds.b     1
+ 173  000070                       .ADC_SX1.B  ds.b     1
+ 174  000071                       .ADC_SX0.B  ds.b     1
+ 175                         
+ 176  000072                       .ADC_SY2.B  ds.b     1
+ 177  000073                       .ADC_SY1.B  ds.b     1
+ 178  000074                       .ADC_SY0.B  ds.b     1
+ 179                         
+ 180                         
+ 181                         ;.ADC_THRESHOLD3 ds.b 1
+ 182                         ;.ADC_THRESHOLD2 ds.b 1
+ 183                         .ADC_THRESHOLD_QUOTIENT.B  
+ 184  000075                       .ADC_THRESHOLD_QUOTIENT1.B  ds.b     1
+ 185  000076                       .ADC_THRESHOLD_QUOTIENT0.B  ds.b     1
+ 186                         
+ 187                         .ADC_MAX_QUOTIENT.B  
+ 188  000077                       .ADC_MAX_QUOTIENT_S1  ds.b     1
+ 189  000078                       .ADC_MAX_QUOTIENT_S0  ds.b     1
+ 190                         
+ 191                         .ADC_MAX_REMAINDER.B  
+ 192  000079                       .ADC_MAX_REMAINDER_S1  ds.b     1
+ 193  00007A                       .ADC_MAX_REMAINDER_S0  ds.b     1
+ 194                         
+ 195                         ;   ++ 0x01
+ 196                         ;   next store pointer, def a word for convenience
+ 197  00007B                       .ADC_NEXT_PTR.B  ds.w     1 
+ 198                         ;
+ 199                         ;.ADC_MAX_PTR.B ds.w 1
+ 200                         ;.ADC_MIN_PTR.B ds.w 1
+ 201                         
+ 202                         
+ 203  00007D                       .ADC_SLOPE.B  ds.w     1
+ 204                         ;ADC = Weight * Slope
+ 205                         
+ 206                         ;;; ZERO g <=> ADC 24bit, Calibrated ADC
+ 207                         ;   ++ 0x04
+ 208                         .ZERO_ADC.B                      ; 01 6A 00
+ 209  00007F                       .ZERO_ADC3.B  ds.b     1
+ 210  000080                       .ZERO_ADC2.B  ds.b     1
+ 211  000081                       .ZERO_ADC1.B  ds.b     1
+ 212  000082                       .ZERO_ADC0.B  ds.b     1
+ 213                         
+ 214                         ;;
+ 215                         .NET_ADC.B  
+ 216  000083                       .NET_ADC3.B  ds.b     1
+ 217  000084                       .NET_ADC2.B  ds.b     1
+ 218  000085                       .NET_ADC1.B  ds.b     1
+ 219  000086                       .NET_ADC0.B  ds.b     1
+ 220                         
+ 221                         .NET_BUF.B  
+ 222  000087                       .NET_BUF3.B  ds.b     1
+ 223  000088                       .NET_BUF2.B  ds.b     1
+ 224  000089                       .NET_BUF1.B  ds.b     1
+ 225  00008A                       .NET_BUF0.B  ds.b     1
+ 226                         
+ 227                         .WEIGHT.B  
+ 228  00008B                       .WEIGHT_QUOTIENT.B  ds.w     1
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 5  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+ 229  00008D                       .WEIGHT_REMAINDER.B  ds.w     1
+ 230                         
+ 231                         ;corresponding Voltage * 1000
+ 232                         
+ 233                         .PRICE_MUL.B  
+ 234  00008F                       .PRICE_MUL3.B  ds.b     1             ;must be 0; <= 40 * 9999 < 2^24
+ 235  000090                       .PRICE_MUL2.B  ds.b     1    
+ 236  000091                       .PRICE_MUL1.B  ds.b     1
+ 237  000092                       .PRICE_MUL0.B  ds.b     1
+ 238                                   
+ 239                         
+ 240  000093                       .KEYDOWN_FLAG.B  ds.b     1
+ 241                         
+ 242                                   
+ 243                         .KEYBOARD_STORE.B  
+ 244                         
+ 245                         ; MAX number 999.9
+ 246  000094                       .KEYBOARD_S4.B  ds.b     1             ; num 0-9(integer)
+ 247  000095                       .KEYBOARD_S3.B  ds.b     1             ; num 0-9 / dot
+ 248  000096                       .KEYBOARD_S2.B  ds.b     1             ; num 0-9 / dot
+ 249  000097                       .KEYBOARD_S1.B  ds.b     1             ; dot / num(fraction)
+ 250  000098                       .KEYBOARD_S0.B  ds.b     1             ; num 0-9(fraction)
+ 251                         
+ 252  000099                       .KEYBOARD_PTR.B  ds.w     1    
+ 253                         
+ 254  00009B                       .KEYBOARD_DOT_OK.B  ds.b     1
+ 255                         
+ 256                         
+ 257  00009C                       .KEYBOARD_PRICE_BUF_S4.B  ds.b     1
+ 258  00009D                       .KEYBOARD_PRICE_BUF_S3.B  ds.b     1
+ 259  00009E                       .KEYBOARD_PRICE_BUF_S2.B  ds.b     1
+ 260  00009F                       .KEYBOARD_PRICE_BUF_S1.B  ds.b     1
+ 261  0000A0                       .KEYBOARD_PRICE_BUF_S0.B  ds.b     1
+ 262                         
+ 263                         
+ 264  0000A1                       .KEYBOARD_THRESHOLD_BUF_S4.B  ds.b     1
+ 265  0000A2                       .KEYBOARD_THRESHOLD_BUF_S3.B  ds.b     1
+ 266  0000A3                       .KEYBOARD_THRESHOLD_BUF_S2.B  ds.b     1
+ 267  0000A4                       .KEYBOARD_THRESHOLD_BUF_S1.B  ds.b     1
+ 268  0000A5                       .KEYBOARD_THRESHOLD_BUF_S0.B  ds.b     1
+ 269                         
+ 270                         
+ 271  0000A6                       .KEY_ARRAY_MENU.B  ds.b     1
+ 272  0000A7                       .KEY_TYPING_FLAG.B  ds.b     1
+ 273                         
+ 274                         
+ 275                         
+ 276                         .STR_MASS.B  
+ 277  0000A8                       .CHAR_MASS9.B  ds.b     1             ; 
+ 278  0000A9                       .CHAR_MASS8.B  ds.b     1             ; '-' or ' '
+ 279  0000AA                       .CHAR_MASS7.B  ds.b     1
+ 280  0000AB                       .CHAR_MASS6.B  ds.b     1
+ 281  0000AC                       .CHAR_MASS5.B  ds.b     1
+ 282  0000AD                       .CHAR_MASS4.B  ds.b     1
+ 283  0000AE                       .CHAR_MASS3.B  ds.b     1
+ 284  0000AF                       .CHAR_MASS2.B  ds.b     1
+ 285  0000B0                       .CHAR_MASS1.B  ds.b     1
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 6  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+ 286  0000B1                       .CHAR_MASS0.B  ds.b     1             ; 'g'
+ 287  0000B2                       .CHAR_MASS_1.B  ds.b     1
+ 288  0000B3                       .str_mass_end.b  ds.b     1
+ 289                         
+ 290                         
+ 291                         
+ 292                         .STR_PRICE.B  
+ 293  0000B4                       .CHAR_PRICE5.B  ds.b     1             ; '#'
+ 294  0000B5                       .CHAR_PRICE4.B  ds.b     1
+ 295  0000B6                       .CHAR_PRICE3.B  ds.b     1
+ 296  0000B7                       .CHAR_PRICE2.B  ds.b     1
+ 297  0000B8                       .CHAR_PRICE1.B  ds.b     1
+ 298  0000B9                       .CHAR_PRICE0.B  ds.b     1
+ 299  0000BA                       .str_price_end.b  ds.b     1
+ 300                         
+ 301                         .STR_THRESHOLD.B  
+ 302  0000BB                       .CHAR_THRESHOLD7.B  ds.b     1             ; 'T'
+ 303  0000BC                       .CHAR_THRESHOLD6.B  ds.b     1             ; '['
+ 304  0000BD                       .CHAR_THRESHOLD5.B  ds.b     1   
+ 305  0000BE                       .CHAR_THRESHOLD4.B  ds.b     1
+ 306  0000BF                       .CHAR_THRESHOLD3.B  ds.b     1
+ 307  0000C0                       .CHAR_THRESHOLD2.B  ds.b     1
+ 308  0000C1                       .CHAR_THRESHOLD1.B  ds.b     1
+ 309  0000C2                       .CHAR_THRESHOLD0.B  ds.b     1             ; ']'
+ 310  0000C3                       .str_threshold_end.b  ds.b     1
+ 311                         
+ 312                         
+ 313                         
+ 314                         .STR_MONEY.B  
+ 315  0000C4                       .CHAR_MONEY7.B  ds.b     1             ; 'гд'
+ 316  0000C5                       .CHAR_MONEY6.B  ds.b     1
+ 317  0000C6                       .CHAR_MONEY5.B  ds.b     1
+ 318  0000C7                       .CHAR_MONEY4.B  ds.b     1
+ 319  0000C8                       .CHAR_MONEY3.B  ds.b     1
+ 320  0000C9                       .CHAR_MONEY2.B  ds.b     1
+ 321  0000CA                       .CHAR_MONEY1.B  ds.b     1
+ 322  0000CB                       .CHAR_MONEY0.B  ds.b     1
+ 323  0000CC                       .str_money_end.b  ds.b     1
+ 324                         
+ 325                         
+ 326                         .STR_MAX_MASS.B  
+ 327                         ;.CHAR_MAX_MASS11.B ds.b 1   ; 'M'
+ 328                         ;.CHAR_MAX_MASS10.B ds.b 1   ; 'M'
+ 329  0000CD                       .CHAR_MAX_MASS9.B  ds.b     1             ; 'M'
+ 330  0000CE                       .CHAR_MAX_MASS8.B  ds.b     1             ; '['
+ 331  0000CF                       .CHAR_MAX_MASS7.B  ds.b     1
+ 332  0000D0                       .CHAR_MAX_MASS6.B  ds.b     1
+ 333  0000D1                       .CHAR_MAX_MASS5.B  ds.b     1
+ 334  0000D2                       .CHAR_MAX_MASS4.B  ds.b     1
+ 335  0000D3                       .CHAR_MAX_MASS3.B  ds.b     1
+ 336  0000D4                       .CHAR_MAX_MASS2.B  ds.b     1             ; '.'
+ 337  0000D5                       .CHAR_MAX_MASS1.B  ds.b     1             ; 
+ 338  0000D6                       .CHAR_MAX_MASS0.B  ds.b     1             ; 'g'
+ 339  0000D7                       .CHAR_MAX_MASS_1.B  ds.b     1             ; ']'
+ 340                         
+ 341  0000D8                       .str_max_mass_end.b  ds.b     1
+ 342                         
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 7  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+ 343  0000D9                                 end      
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 8  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+Symbol Name                       Value     Call       Type  Scope      Rel.  Line  Privacy  Segment   Size  Bytes File
+
+ADC_COUNTER                             03         no  BYTE  Internal   rel     15  public   bss          1     1  -
+ADC_SUM                                 04         no  BYTE  Internal   rel     20  public   bss          1     1  -
+ADC_SUM3                                04         no  BYTE  Internal   rel     21  public   bss          1     1  -
+ADC_SUM2                                05         no  BYTE  Internal   rel     22  public   bss          1     1  -
+ADC_SUM1                                06         no  BYTE  Internal   rel     23  public   bss          1     1  -
+ADC_SUM0                                07         no  BYTE  Internal   rel     24  public   bss          1     1  -
+ADC_AVG                                 08         no  BYTE  Internal   rel     27  public   bss          1     1  -
+ADC_AVG3                                08         no  BYTE  Internal   rel     28  public   bss          1     1  -
+ADC_AVG2                                09         no  BYTE  Internal   rel     29  public   bss          1     1  -
+ADC_AVG1                                0A         no  BYTE  Internal   rel     30  public   bss          1     1  -
+ADC_AVG0                                0B         no  BYTE  Internal   rel     31  public   bss          1     1  -
+ADC_STORE                               0C         no  BYTE  Internal   rel     35  public   bss          1     1  -
+ADC_S02                                 0C         no  BYTE  Internal   rel     38  public   bss          1     1  -
+ADC_S01                                 0D         no  BYTE  Internal   rel     39  public   bss          1     1  -
+ADC_S00                                 0E         no  BYTE  Internal   rel     40  public   bss          1     1  -
+ADC_S12                                 0F         no  BYTE  Internal   rel     42  public   bss          1     1  -
+ADC_S11                                 10         no  BYTE  Internal   rel     43  public   bss          1     1  -
+ADC_S10                                 11         no  BYTE  Internal   rel     44  public   bss          1     1  -
+ADC_S22                                 12         no  BYTE  Internal   rel     46  public   bss          1     1  -
+ADC_S21                                 13         no  BYTE  Internal   rel     47  public   bss          1     1  -
+ADC_S20                                 14         no  BYTE  Internal   rel     48  public   bss          1     1  -
+ADC_S32                                 15         no  BYTE  Internal   rel     50  public   bss          1     1  -
+ADC_S31                                 16         no  BYTE  Internal   rel     51  public   bss          1     1  -
+ADC_S30                                 17         no  BYTE  Internal   rel     52  public   bss          1     1  -
+ADC_S42                                 18         no  BYTE  Internal   rel     54  public   bss          1     1  -
+ADC_S41                                 19         no  BYTE  Internal   rel     55  public   bss          1     1  -
+ADC_S40                                 1A         no  BYTE  Internal   rel     56  public   bss          1     1  -
+ADC_S52                                 1B         no  BYTE  Internal   rel     58  public   bss          1     1  -
+ADC_S51                                 1C         no  BYTE  Internal   rel     59  public   bss          1     1  -
+ADC_S50                                 1D         no  BYTE  Internal   rel     60  public   bss          1     1  -
+ADC_S62                                 1E         no  BYTE  Internal   rel     62  public   bss          1     1  -
+ADC_S61                                 1F         no  BYTE  Internal   rel     63  public   bss          1     1  -
+ADC_S60                                 20         no  BYTE  Internal   rel     64  public   bss          1     1  -
+ADC_S72                                 21         no  BYTE  Internal   rel     66  public   bss          1     1  -
+ADC_S71                                 22         no  BYTE  Internal   rel     67  public   bss          1     1  -
+ADC_S70                                 23         no  BYTE  Internal   rel     68  public   bss          1     1  -
+ADC_S82                                 24         no  BYTE  Internal   rel     72  public   bss          1     1  -
+ADC_S81                                 25         no  BYTE  Internal   rel     73  public   bss          1     1  -
+ADC_S80                                 26         no  BYTE  Internal   rel     74  public   bss          1     1  -
+ADC_S92                                 27         no  BYTE  Internal   rel     76  public   bss          1     1  -
+ADC_S91                                 28         no  BYTE  Internal   rel     77  public   bss          1     1  -
+ADC_S90                                 29         no  BYTE  Internal   rel     78  public   bss          1     1  -
+ADC_SA2                                 2A         no  BYTE  Internal   rel     80  public   bss          1     1  -
+ADC_SA1                                 2B         no  BYTE  Internal   rel     81  public   bss          1     1  -
+ADC_SA0                                 2C         no  BYTE  Internal   rel     82  public   bss          1     1  -
+ADC_SB2                                 2D         no  BYTE  Internal   rel     84  public   bss          1     1  -
+ADC_SB1                                 2E         no  BYTE  Internal   rel     85  public   bss          1     1  -
+ADC_SB0                                 2F         no  BYTE  Internal   rel     86  public   bss          1     1  -
+ADC_SC2                                 30         no  BYTE  Internal   rel     88  public   bss          1     1  -
+ADC_SC1                                 31         no  BYTE  Internal   rel     89  public   bss          1     1  -
+ADC_SC0                                 32         no  BYTE  Internal   rel     90  public   bss          1     1  -
+ADC_SD2                                 33         no  BYTE  Internal   rel     92  public   bss          1     1  -
+ADC_SD1                                 34         no  BYTE  Internal   rel     93  public   bss          1     1  -
+ADC_SD0                                 35         no  BYTE  Internal   rel     94  public   bss          1     1  -
+ADC_SE2                                 36         no  BYTE  Internal   rel     96  public   bss          1     1  -
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 9  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+ADC_SE1                                 37         no  BYTE  Internal   rel     97  public   bss          1     1  -
+ADC_SE0                                 38         no  BYTE  Internal   rel     98  public   bss          1     1  -
+ADC_SF2                                 39         no  BYTE  Internal   rel    100  public   bss          1     1  -
+ADC_SF1                                 3A         no  BYTE  Internal   rel    101  public   bss          1     1  -
+ADC_SF0                                 3B         no  BYTE  Internal   rel    102  public   bss          1     1  -
+ADC_SG2                                 3C         no  BYTE  Internal   rel    104  public   bss          1     1  -
+ADC_SG1                                 3D         no  BYTE  Internal   rel    105  public   bss          1     1  -
+ADC_SG0                                 3E         no  BYTE  Internal   rel    106  public   bss          1     1  -
+ADC_SH2                                 3F         no  BYTE  Internal   rel    108  public   bss          1     1  -
+ADC_SH1                                 40         no  BYTE  Internal   rel    109  public   bss          1     1  -
+ADC_SH0                                 41         no  BYTE  Internal   rel    110  public   bss          1     1  -
+ADC_SI2                                 42         no  BYTE  Internal   rel    112  public   bss          1     1  -
+ADC_SI1                                 43         no  BYTE  Internal   rel    113  public   bss          1     1  -
+ADC_SI0                                 44         no  BYTE  Internal   rel    114  public   bss          1     1  -
+ADC_SJ2                                 45         no  BYTE  Internal   rel    116  public   bss          1     1  -
+ADC_SJ1                                 46         no  BYTE  Internal   rel    117  public   bss          1     1  -
+ADC_SJ0                                 47         no  BYTE  Internal   rel    118  public   bss          1     1  -
+ADC_SK2                                 48         no  BYTE  Internal   rel    120  public   bss          1     1  -
+ADC_SK1                                 49         no  BYTE  Internal   rel    121  public   bss          1     1  -
+ADC_SK0                                 4A         no  BYTE  Internal   rel    122  public   bss          1     1  -
+ADC_SL2                                 4B         no  BYTE  Internal   rel    124  public   bss          1     1  -
+ADC_SL1                                 4C         no  BYTE  Internal   rel    125  public   bss          1     1  -
+ADC_SL0                                 4D         no  BYTE  Internal   rel    126  public   bss          1     1  -
+ADC_SM2                                 4E         no  BYTE  Internal   rel    128  public   bss          1     1  -
+ADC_SM1                                 4F         no  BYTE  Internal   rel    129  public   bss          1     1  -
+ADC_SM0                                 50         no  BYTE  Internal   rel    130  public   bss          1     1  -
+ADC_SN2                                 51         no  BYTE  Internal   rel    132  public   bss          1     1  -
+ADC_SN1                                 52         no  BYTE  Internal   rel    133  public   bss          1     1  -
+ADC_SN0                                 53         no  BYTE  Internal   rel    134  public   bss          1     1  -
+ADC_SO2                                 54         no  BYTE  Internal   rel    136  public   bss          1     1  -
+ADC_SO1                                 55         no  BYTE  Internal   rel    137  public   bss          1     1  -
+ADC_SO0                                 56         no  BYTE  Internal   rel    138  public   bss          1     1  -
+ADC_SP2                                 57         no  BYTE  Internal   rel    140  public   bss          1     1  -
+ADC_SP1                                 58         no  BYTE  Internal   rel    141  public   bss          1     1  -
+ADC_SP0                                 59         no  BYTE  Internal   rel    142  public   bss          1     1  -
+ADC_SQ2                                 5A         no  BYTE  Internal   rel    144  public   bss          1     1  -
+ADC_SQ1                                 5B         no  BYTE  Internal   rel    145  public   bss          1     1  -
+ADC_SQ0                                 5C         no  BYTE  Internal   rel    146  public   bss          1     1  -
+ADC_SR2                                 5D         no  BYTE  Internal   rel    148  public   bss          1     1  -
+ADC_SR1                                 5E         no  BYTE  Internal   rel    149  public   bss          1     1  -
+ADC_SR0                                 5F         no  BYTE  Internal   rel    150  public   bss          1     1  -
+ADC_SS2                                 60         no  BYTE  Internal   rel    152  public   bss          1     1  -
+ADC_SS1                                 61         no  BYTE  Internal   rel    153  public   bss          1     1  -
+ADC_SS0                                 62         no  BYTE  Internal   rel    154  public   bss          1     1  -
+ADC_ST2                                 63         no  BYTE  Internal   rel    156  public   bss          1     1  -
+ADC_ST1                                 64         no  BYTE  Internal   rel    157  public   bss          1     1  -
+ADC_ST0                                 65         no  BYTE  Internal   rel    158  public   bss          1     1  -
+ADC_SU2                                 66         no  BYTE  Internal   rel    160  public   bss          1     1  -
+ADC_SU1                                 67         no  BYTE  Internal   rel    161  public   bss          1     1  -
+ADC_SU0                                 68         no  BYTE  Internal   rel    162  public   bss          1     1  -
+ADC_SV2                                 69         no  BYTE  Internal   rel    164  public   bss          1     1  -
+ADC_SV1                                 6A         no  BYTE  Internal   rel    165  public   bss          1     1  -
+ADC_SV0                                 6B         no  BYTE  Internal   rel    166  public   bss          1     1  -
+ADC_SW2                                 6C         no  BYTE  Internal   rel    168  public   bss          1     1  -
+ADC_SW1                                 6D         no  BYTE  Internal   rel    169  public   bss          1     1  -
+ADC_SW0                                 6E         no  BYTE  Internal   rel    170  public   bss          1     1  -
+ADC_SX2                                 6F         no  BYTE  Internal   rel    172  public   bss          1     1  -
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 10  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+ADC_SX1                                 70         no  BYTE  Internal   rel    173  public   bss          1     1  -
+ADC_SX0                                 71         no  BYTE  Internal   rel    174  public   bss          1     1  -
+ADC_SY2                                 72         no  BYTE  Internal   rel    176  public   bss          1     1  -
+ADC_SY1                                 73         no  BYTE  Internal   rel    177  public   bss          1     1  -
+ADC_SY0                                 74         no  BYTE  Internal   rel    178  public   bss          1     1  -
+ADC_THRESHOLD_QUOTIENT                  75         no  BYTE  Internal   rel    183  public   bss          1     1  -
+ADC_THRESHOLD_QUOTIENT1                 75         no  BYTE  Internal   rel    184  public   bss          1     1  -
+ADC_THRESHOLD_QUOTIENT0                 76         no  BYTE  Internal   rel    185  public   bss          1     1  -
+ADC_MAX_QUOTIENT                        77         no  BYTE  Internal   rel    187  public   bss          1     1  -
+ADC_MAX_QUOTIENT_S1                     77         no  BYTE  Internal   rel    188  public   bss          1     1  -
+ADC_MAX_QUOTIENT_S0                     78         no  BYTE  Internal   rel    189  public   bss          1     1  -
+ADC_MAX_REMAINDER                       79         no  BYTE  Internal   rel    191  public   bss          1     1  -
+ADC_MAX_REMAINDER_S1                    79         no  BYTE  Internal   rel    192  public   bss          1     1  -
+ADC_MAX_REMAINDER_S0                    7A         no  BYTE  Internal   rel    193  public   bss          1     1  -
+ADC_NEXT_PTR                            7B         no  BYTE  Internal   rel    197  public   bss          2     2  -
+ADC_SLOPE                               7D         no  BYTE  Internal   rel    203  public   bss          2     2  -
+
+CHAR_MASS9                              A8         no  BYTE  Internal   rel    277  public   bss          1     1  -
+CHAR_MASS8                              A9         no  BYTE  Internal   rel    278  public   bss          1     1  -
+CHAR_MASS7                              AA         no  BYTE  Internal   rel    279  public   bss          1     1  -
+CHAR_MASS6                              AB         no  BYTE  Internal   rel    280  public   bss          1     1  -
+CHAR_MASS5                              AC         no  BYTE  Internal   rel    281  public   bss          1     1  -
+CHAR_MASS4                              AD         no  BYTE  Internal   rel    282  public   bss          1     1  -
+CHAR_MASS3                              AE         no  BYTE  Internal   rel    283  public   bss          1     1  -
+CHAR_MASS2                              AF         no  BYTE  Internal   rel    284  public   bss          1     1  -
+CHAR_MASS1                              B0         no  BYTE  Internal   rel    285  public   bss          1     1  -
+CHAR_MASS0                              B1         no  BYTE  Internal   rel    286  public   bss          1     1  -
+CHAR_MASS_1                             B2         no  BYTE  Internal   rel    287  public   bss          1     1  -
+CHAR_PRICE5                             B4         no  BYTE  Internal   rel    293  public   bss          1     1  -
+CHAR_PRICE4                             B5         no  BYTE  Internal   rel    294  public   bss          1     1  -
+CHAR_PRICE3                             B6         no  BYTE  Internal   rel    295  public   bss          1     1  -
+CHAR_PRICE2                             B7         no  BYTE  Internal   rel    296  public   bss          1     1  -
+CHAR_PRICE1                             B8         no  BYTE  Internal   rel    297  public   bss          1     1  -
+CHAR_PRICE0                             B9         no  BYTE  Internal   rel    298  public   bss          1     1  -
+CHAR_THRESHOLD7                         BB         no  BYTE  Internal   rel    302  public   bss          1     1  -
+CHAR_THRESHOLD6                         BC         no  BYTE  Internal   rel    303  public   bss          1     1  -
+CHAR_THRESHOLD5                         BD         no  BYTE  Internal   rel    304  public   bss          1     1  -
+CHAR_THRESHOLD4                         BE         no  BYTE  Internal   rel    305  public   bss          1     1  -
+CHAR_THRESHOLD3                         BF         no  BYTE  Internal   rel    306  public   bss          1     1  -
+CHAR_THRESHOLD2                         C0         no  BYTE  Internal   rel    307  public   bss          1     1  -
+CHAR_THRESHOLD1                         C1         no  BYTE  Internal   rel    308  public   bss          1     1  -
+CHAR_THRESHOLD0                         C2         no  BYTE  Internal   rel    309  public   bss          1     1  -
+CHAR_MONEY7                             C4         no  BYTE  Internal   rel    315  public   bss          1     1  -
+CHAR_MONEY6                             C5         no  BYTE  Internal   rel    316  public   bss          1     1  -
+CHAR_MONEY5                             C6         no  BYTE  Internal   rel    317  public   bss          1     1  -
+CHAR_MONEY4                             C7         no  BYTE  Internal   rel    318  public   bss          1     1  -
+CHAR_MONEY3                             C8         no  BYTE  Internal   rel    319  public   bss          1     1  -
+CHAR_MONEY2                             C9         no  BYTE  Internal   rel    320  public   bss          1     1  -
+CHAR_MONEY1                             CA         no  BYTE  Internal   rel    321  public   bss          1     1  -
+CHAR_MONEY0                             CB         no  BYTE  Internal   rel    322  public   bss          1     1  -
+CHAR_MAX_MASS9                          CD         no  BYTE  Internal   rel    329  public   bss          1     1  -
+CHAR_MAX_MASS8                          CE         no  BYTE  Internal   rel    330  public   bss          1     1  -
+CHAR_MAX_MASS7                          CF         no  BYTE  Internal   rel    331  public   bss          1     1  -
+CHAR_MAX_MASS6                          D0         no  BYTE  Internal   rel    332  public   bss          1     1  -
+CHAR_MAX_MASS5                          D1         no  BYTE  Internal   rel    333  public   bss          1     1  -
+CHAR_MAX_MASS4                          D2         no  BYTE  Internal   rel    334  public   bss          1     1  -
+CHAR_MAX_MASS3                          D3         no  BYTE  Internal   rel    335  public   bss          1     1  -
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 11  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+CHAR_MAX_MASS2                          D4         no  BYTE  Internal   rel    336  public   bss          1     1  -
+CHAR_MAX_MASS1                          D5         no  BYTE  Internal   rel    337  public   bss          1     1  -
+CHAR_MAX_MASS0                          D6         no  BYTE  Internal   rel    338  public   bss          1     1  -
+CHAR_MAX_MASS_1                         D7         no  BYTE  Internal   rel    339  public   bss          1     1  -
+
+KEYDOWN_FLAG                            93         no  BYTE  Internal   rel    240  public   bss          1     1  -
+KEYBOARD_STORE                          94         no  BYTE  Internal   rel    243  public   bss          1     1  -
+KEYBOARD_S4                             94         no  BYTE  Internal   rel    246  public   bss          1     1  -
+KEYBOARD_S3                             95         no  BYTE  Internal   rel    247  public   bss          1     1  -
+KEYBOARD_S2                             96         no  BYTE  Internal   rel    248  public   bss          1     1  -
+KEYBOARD_S1                             97         no  BYTE  Internal   rel    249  public   bss          1     1  -
+KEYBOARD_S0                             98         no  BYTE  Internal   rel    250  public   bss          1     1  -
+KEYBOARD_PTR                            99         no  BYTE  Internal   rel    252  public   bss          2     2  -
+KEYBOARD_DOT_OK                         9B         no  BYTE  Internal   rel    254  public   bss          1     1  -
+KEYBOARD_PRICE_BUF_S4                   9C         no  BYTE  Internal   rel    257  public   bss          1     1  -
+KEYBOARD_PRICE_BUF_S3                   9D         no  BYTE  Internal   rel    258  public   bss          1     1  -
+KEYBOARD_PRICE_BUF_S2                   9E         no  BYTE  Internal   rel    259  public   bss          1     1  -
+KEYBOARD_PRICE_BUF_S1                   9F         no  BYTE  Internal   rel    260  public   bss          1     1  -
+KEYBOARD_PRICE_BUF_S0                   A0         no  BYTE  Internal   rel    261  public   bss          1     1  -
+KEYBOARD_THRESHOLD_BUF_S4               A1         no  BYTE  Internal   rel    264  public   bss          1     1  -
+KEYBOARD_THRESHOLD_BUF_S3               A2         no  BYTE  Internal   rel    265  public   bss          1     1  -
+KEYBOARD_THRESHOLD_BUF_S2               A3         no  BYTE  Internal   rel    266  public   bss          1     1  -
+KEYBOARD_THRESHOLD_BUF_S1               A4         no  BYTE  Internal   rel    267  public   bss          1     1  -
+KEYBOARD_THRESHOLD_BUF_S0               A5         no  BYTE  Internal   rel    268  public   bss          1     1  -
+KEY_ARRAY_MENU                          A6         no  BYTE  Internal   rel    271  public   bss          1     1  -
+KEY_TYPING_FLAG                         A7         no  BYTE  Internal   rel    272  public   bss          1     1  -
+
+LCD_VAR0                                00         no  BYTE  Internal   rel      8  public   bss          1     1  -
+LCD_VAR1                                01         no  BYTE  Internal   rel      9  public   bss          1     1  -
+LCD_VAR2                                02         no  BYTE  Internal   rel     10  public   bss          1     1  -
+
+NET_ADC                                 83         no  BYTE  Internal   rel    215  public   bss          1     1  -
+NET_ADC3                                83         no  BYTE  Internal   rel    216  public   bss          1     1  -
+NET_ADC2                                84         no  BYTE  Internal   rel    217  public   bss          1     1  -
+NET_ADC1                                85         no  BYTE  Internal   rel    218  public   bss          1     1  -
+NET_ADC0                                86         no  BYTE  Internal   rel    219  public   bss          1     1  -
+NET_BUF                                 87         no  BYTE  Internal   rel    221  public   bss          1     1  -
+NET_BUF3                                87         no  BYTE  Internal   rel    222  public   bss          1     1  -
+NET_BUF2                                88         no  BYTE  Internal   rel    223  public   bss          1     1  -
+NET_BUF1                                89         no  BYTE  Internal   rel    224  public   bss          1     1  -
+NET_BUF0                                8A         no  BYTE  Internal   rel    225  public   bss          1     1  -
+
+PRICE_MUL                               8F         no  BYTE  Internal   rel    233  public   bss          1     1  -
+PRICE_MUL3                              8F         no  BYTE  Internal   rel    234  public   bss          1     1  -
+PRICE_MUL2                              90         no  BYTE  Internal   rel    235  public   bss          1     1  -
+PRICE_MUL1                              91         no  BYTE  Internal   rel    236  public   bss          1     1  -
+PRICE_MUL0                              92         no  BYTE  Internal   rel    237  public   bss          1     1  -
+
+STR_MASS                                A8         no  BYTE  Internal   rel    276  public   bss          1     1  -
+STR_PRICE                               B4         no  BYTE  Internal   rel    292  public   bss          1     1  -
+STR_THRESHOLD                           BB         no  BYTE  Internal   rel    301  public   bss          1     1  -
+STR_MONEY                               C4         no  BYTE  Internal   rel    314  public   bss          1     1  -
+STR_MAX_MASS                            CD         no  BYTE  Internal   rel    326  public   bss          1     1  -
+
+WEIGHT                                  8B         no  BYTE  Internal   rel    227  public   bss          2     2  -
+WEIGHT_QUOTIENT                         8B         no  BYTE  Internal   rel    228  public   bss          2     2  -
+WEIGHT_REMAINDER                        8D         no  BYTE  Internal   rel    229  public   bss          2     2  -
+STMicroelectronics assembler v4.52   (C)1987-2018   Thu Dec 20 01:10:37 2018
+Page 12  Assembler
+                                               e:\stm8s\electronic_scale\globalvar.asm
+
+
+ZERO_ADC                                7F         no  BYTE  Internal   rel    208  public   bss          1     1  -
+ZERO_ADC3                               7F         no  BYTE  Internal   rel    209  public   bss          1     1  -
+ZERO_ADC2                               80         no  BYTE  Internal   rel    210  public   bss          1     1  -
+ZERO_ADC1                               81         no  BYTE  Internal   rel    211  public   bss          1     1  -
+ZERO_ADC0                               82         no  BYTE  Internal   rel    212  public   bss          1     1  -
+
+str_mass_end                            B3         no  BYTE  Internal   rel    288  public   bss          1     1  -
+str_price_end                           BA         no  BYTE  Internal   rel    299  public   bss          1     1  -
+str_threshold_end                       C3         no  BYTE  Internal   rel    310  public   bss          1     1  -
+str_money_end                           CC         no  BYTE  Internal   rel    323  public   bss          1     1  -
+str_max_mass_end                        D8         no  BYTE  Internal   rel    341  public   bss          1     1  -
+
+
+229 labels
+No errors on assembly of 'e:\stm8s\electronic_scale\globalvar.asm'
